@@ -49,10 +49,19 @@ class User {
         }
         return result*10000;
     }
+
+    public String getUsername() {
+        return username;
+    }
 }
 
 class Project {
     public static class Bid {
+        public Bid (String username, int bidAmount) {
+            this.username = username;
+            this.bidAmount = bidAmount;
+        }
+
         private String username;
         private int bidAmount;
     }
@@ -79,11 +88,10 @@ class Project {
     public String getTitle() {
         return this.title;
     }
-}
 
-class Bid {
-    private String username;
-    private int bidAmount;
+    public void addBid (String username, int bidAmount) {
+        bids.add(new Bid(username, bidAmount));
+    }
 }
 
 public class Main {
@@ -91,7 +99,6 @@ public class Main {
     private static boolean isFinished = false;
     private static Vector<User> users;
     private static Vector<Project> projects;
-    private static Vector<Bid> bids;
 
     public static void main(String[] args) {
         while (!isFinished) {
@@ -102,12 +109,15 @@ public class Main {
             switch (commandName) {
                 case "register":
                     System.out.println(commandData);
+                    registerUser(commandData);
                     break;
                 case "addProject":
                     System.out.println(commandData);
+                    addProject(commandData);
                     break;
                 case "bid":
                     System.out.println(commandData);
+                    addBid(commandData);
                     break;
                 case "auction":
                     Project p = findProject(commandData);
@@ -120,6 +130,18 @@ public class Main {
                     break;
             }
         }
+    }
+
+    private static User findUser(String username) {
+        if (users == null){
+            return null;
+        }
+        for (int i=0; i<users.size(); i++){
+            if (username.equals(users.get(i).getUsername())) {
+                return users.get(i);
+            }
+        }
+        return null;
     }
 
     private static Project findProject(String projectTitle) {
@@ -140,21 +162,48 @@ public class Main {
         return new Pair<>(command.substring(0, spaceIndex), command.substring(spaceIndex+1));
     }
 
-    private static void jsonParser (String jsonString) throws ParseException {
-        String str = "{\"username\":\"user1\",\"skills\":[{\"name\":\"HTML\",\"points\":10},{\"name\":\"CSS\",\"points\":20}]}" ;
-        Object obj =  new JSONParser().parse(str);
+    private static Vector<Skill> parseSkills(JSONArray skillsJA) {
+        Vector<Skill> skills = new Vector<Skill>();
+        for (int i=0; i<skillsJA.size(); i++) {
+            JSONObject skillJO = (JSONObject) skillsJA.get(i);
+            String skillName = (String) skillJO.get("name");
+            int skillPoints = (int) (long) skillJO.get("points");
+            skills.add(new Skill(skillName, skillPoints));
+        }
+        return skills;
+    }
+
+    private static void registerUser (String jsonString) throws ParseException {
+        Object obj =  new JSONParser().parse(jsonString);
         JSONObject jo = (JSONObject) obj;
 
-        System.out.println((String) jo.get("username"));
-        JSONArray jsonarray = (JSONArray)jo.get("skills");
-        for (int i=0; i<jsonarray.size(); i++) {
-            JSONObject jsonobject = (JSONObject) jsonarray.get(i);
-            System.out.println((String) jsonobject.get("name"));
-            System.out.println("kir");
-            System.out.println((int) (long) jsonobject.get("points"));
-        }
-        //System.out.println((String) jo.get("skills"));
-        //System.out.println((String) jo.get("skills.point"));
-        //System.out.println((String) jo.get("firstName"));
+        String username = (String) jo.get("username");
+        Vector<Skill> skills = parseSkills((JSONArray)jo.get("skills"));
+
+        users.add(new User(username, skills));
+    }
+
+    private static void addProject (String jsonString) throws ParseException {
+        Object obj =  new JSONParser().parse(jsonString);
+        JSONObject jo = (JSONObject) obj;
+
+        String title = (String) jo.get("title");
+        Vector<Skill> skills = parseSkills((JSONArray)jo.get("skills"));
+        int budget = (int) (long) jo.get("budget");
+
+        projects.add(new Project(title, skills, budget));
+    }
+
+    private static void addBid (String jsonString) throws ParseException {
+        Object obj =  new JSONParser().parse(jsonString);
+        JSONObject jo = (JSONObject) obj;
+
+        String biddingUser = (String) jo.get("biddingUser");
+        String projectTitle = (String)jo.get("projectTitle");
+        int bidAmount = (int) (long) jo.get("bidAmount");
+
+        Project prj = findProject(projectTitle);
+        User user = findUser(biddingUser);
+        prj.addBid(biddingUser, bidAmount);
     }
 }
