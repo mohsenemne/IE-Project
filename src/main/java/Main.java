@@ -20,12 +20,15 @@ class Skill {
         else
             return 0 ;
     }
+
+    public String getName(){
+        return name;
+    }
 }
 
 
 class User {
     private String username ;
-    //private  HashMap<String, int> skills ;
     private Vector<Skill> skills ;
 
     public User (String username, Vector<Skill> skills) {
@@ -33,37 +36,26 @@ class User {
         this.skills = skills ;
     }
 
-    public int skillsPoint(Vector<Skill> requiredSkills) {
-        int result = 0;
-        //Iterator it = requiredSkills.iterator();
-        for (int i=0; i<requiredSkills.size(); i++){
-            for (int j=0; j<this.skills.size(); j++){
-                int point = this.skills.get(j).getPoint(requiredSkills.get(i));
-                if (point < 0){
-                    return -1;
-                }
-                else if(point > 0){
-                    result += point*point;
-                }
-            }
-        }
-        return result*10000;
-    }
-
     public String getUsername() {
         return username;
+    }
+
+    public Vector<Skill> getSkills() {
+        return skills;
     }
 }
 
 class Project {
     public static class Bid {
-        public Bid (String username, int bidAmount) {
+        public Bid (String username, int bidAmount, int skillsPoints) {
             this.username = username;
             this.bidAmount = bidAmount;
+            this.skillsPoints = skillsPoints;
         }
 
         private String username;
         private int bidAmount;
+        private int skillsPoints;
     }
 
     private String title;
@@ -75,32 +67,85 @@ class Project {
         this.title = title;
         this.requiredSkills = requiredSkills;
         this.budget = budget;
-    }
-
-    public Vector<Skill> getRequiredSkills() {
-        return this.requiredSkills;
-    }
-
-    public int getPoint(int userOffer) {
-        return this.budget - userOffer;
+        this.bids = new Vector<>();
     }
 
     public String getTitle() {
         return this.title;
     }
 
-    public void addBid (String username, int bidAmount) {
-        bids.add(new Bid(username, bidAmount));
+    public int calculateSkillsPoint(Vector<Skill> skills) {
+        int result = 0;
+        for (int i=0; i<requiredSkills.size(); i++){
+            int j;
+            for (j=0; j<skills.size(); j++){
+                if(!requiredSkills.get(i).getName().equals(skills.get(j).getName())){
+                    continue;
+                }
+                int point = skills.get(j).getPoint(this.requiredSkills.get(i));
+                if (point < 0){
+                    return -1;
+                }
+                result += point*point;
+                break;
+            }
+            if(j == skills.size()){
+                return -1;
+            }
+        }
+        return result*10000;
+    }
+
+    private Bid findBid(String username){
+        for (int i=0; i<this.bids.size(); i++){
+            if (username.equals(bids.get(i).username)) {
+                return bids.get(i);
+            }
+        }
+        return null;
+    }
+
+    public void addBid(int bidAmount, User user) {
+        int skillsPoint = calculateSkillsPoint(user.getSkills());
+        if(skillsPoint < 0){
+            System.out.println("User " + user.getUsername() + "'s skill doesn't satisfy project " + this.title + "'s requirments!");
+            return;
+        }
+        if(bidAmount > this.budget){
+            System.out.println("Project " + this.title + "'s budget cannot satisfy user " + user.getUsername() + "'s bid!");
+            return;
+        }
+
+        Bid bid = findBid(user.getUsername());
+        if(bid != null){
+            bid.bidAmount = bidAmount;
+            return;
+        }
+
+        bids.add(new Bid(user.getUsername(), bidAmount, skillsPoint));
+    }
+
+    public String auction(){
+        int max = 0;
+        int maxID = 0;
+        for (int i=0; i<this.bids.size(); i++){
+            int temp = bids.get(i).skillsPoints + (budget - bids.get(i).bidAmount);
+            if (temp > max) {
+                max = temp;
+                maxID = i;
+            }
+        }
+        return bids.get(maxID).username;
     }
 }
 
 public class Main {
     private static Scanner scanner = new Scanner(System.in);
     private static boolean isFinished = false;
-    private static Vector<User> users;
-    private static Vector<Project> projects;
+    private static Vector<User> users = new Vector<>();
+    private static Vector<Project> projects = new Vector<>();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         while (!isFinished) {
             Pair<String, String> commandParts = getCommandParts();
             String commandName = commandParts.getKey();
@@ -120,12 +165,7 @@ public class Main {
                     addBid(commandData);
                     break;
                 case "auction":
-                    Project p = findProject(commandData);
-                    if(p == null) {
-                        System.out.println("Project doesn't exist!");
-                        break;
-                    }
-                    System.out.println(commandData);
+                    auction(commandData);
                     isFinished = true;
                     break;
             }
@@ -133,9 +173,6 @@ public class Main {
     }
 
     private static User findUser(String username) {
-        if (users == null){
-            return null;
-        }
         for (int i=0; i<users.size(); i++){
             if (username.equals(users.get(i).getUsername())) {
                 return users.get(i);
@@ -145,9 +182,6 @@ public class Main {
     }
 
     private static Project findProject(String projectTitle) {
-        if (projects == null){
-            return null;
-        }
         for (int i=0; i<projects.size(); i++){
             if (projectTitle.equals(projects.get(i).getTitle())) {
                 return projects.get(i);
@@ -163,7 +197,7 @@ public class Main {
     }
 
     private static Vector<Skill> parseSkills(JSONArray skillsJA) {
-        Vector<Skill> skills = new Vector<Skill>();
+        Vector<Skill> skills = new Vector<>();
         for (int i=0; i<skillsJA.size(); i++) {
             JSONObject skillJO = (JSONObject) skillsJA.get(i);
             String skillName = (String) skillJO.get("name");
@@ -180,6 +214,11 @@ public class Main {
         String username = (String) jo.get("username");
         Vector<Skill> skills = parseSkills((JSONArray)jo.get("skills"));
 
+        if(findUser(username) != null){
+            System.out.println("Username " + username + " is already taken!");
+            return;
+        }
+
         users.add(new User(username, skills));
     }
 
@@ -191,6 +230,10 @@ public class Main {
         Vector<Skill> skills = parseSkills((JSONArray)jo.get("skills"));
         int budget = (int) (long) jo.get("budget");
 
+        if(findProject(title) != null){
+            System.out.println("ProjectTitle " + title + " is already taken!");
+            return;
+        }
         projects.add(new Project(title, skills, budget));
     }
 
@@ -204,6 +247,31 @@ public class Main {
 
         Project prj = findProject(projectTitle);
         User user = findUser(biddingUser);
-        prj.addBid(biddingUser, bidAmount);
+
+        if(user == null){
+            System.out.println("User " + biddingUser + " doesn't exist!");
+            return;
+        }
+        if(prj == null){
+            System.out.println("Project " + projectTitle + " doesn't exist!");
+            return;
+        }
+
+        prj.addBid(bidAmount, user);
+    }
+
+    private static void auction (String jsonString) throws ParseException {
+        Object obj =  new JSONParser().parse(jsonString);
+        JSONObject jo = (JSONObject) obj;
+
+        String projectTitle = (String)jo.get("projectTitle");
+
+        Project prj = findProject(projectTitle);
+        if(prj == null){
+            System.out.println("Project " + projectTitle + " doesn't exist!");
+            return;
+        }
+        String winner = prj.auction();
+        System.out.println("winner: " + winner);
     }
 }
