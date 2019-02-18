@@ -27,10 +27,10 @@ public class Project {
     }
 
     public User auction() {
-
         for(Bid b: bids){
 
         }
+        return null;
     }
 
     public void addBid(Bid bid) {

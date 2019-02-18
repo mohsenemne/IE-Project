@@ -1,5 +1,6 @@
 import javafx.util.Pair;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -7,20 +8,30 @@ import java.util.Scanner;
 import jobunja.model.*;
 import jobunja.repo.*;
 
+import org.apache.http.client.ClientProtocolException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.*;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 
 public class Main {
     private static Scanner scanner = new Scanner(System.in);
     private static boolean isFinished = false;
 
-    private static ProjectRepo projrcts;
+    private static ProjectRepo projects;
     private static UserRepo users;
     private static BidRepo bids;
     private static SkillsRepo skills;
 
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) throws ParseException, IOException {
+        loadData();
         while (!isFinished) {
             Pair<String, String> commandParts = getCommandParts();
             String commandName = commandParts.getKey();
@@ -44,6 +55,51 @@ public class Main {
         }
     }
 
+    private static void loadData() throws ParseException, IOException {
+        CloseableHttpClient client = HttpClientBuilder.create().build();
+        loadProjects(client);
+        loadSkills(client);
+    }
+
+    private static String getRequestTo(CloseableHttpClient client, String address) throws IOException {
+        HttpGet request = new HttpGet(address);
+        HttpResponse response = client.execute(request);
+
+        BufferedReader bufReader = new BufferedReader(new InputStreamReader(
+                response.getEntity().getContent()));
+
+        StringBuilder builder = new StringBuilder();
+
+        String line;
+
+        while ((line = bufReader.readLine()) != null) {
+            builder.append(line);
+            builder.append(System.lineSeparator());
+        }
+
+        return builder.toString();
+    }
+
+    private static void loadProjects(CloseableHttpClient client) throws ParseException, IOException {
+        String jsonString = getRequestTo(client, "http://142.93.134.194:8000/joboonja/project");
+        JSONArray ja = (JSONArray) new JSONParser().parse(jsonString);
+        for (int i=0; i<ja.size(); i++) {
+            JSONObject jo = (JSONObject) ja.get(i);
+            Project project = createProject(jo);
+            projects.add(project);
+        }
+    }
+
+    private static void loadSkills(CloseableHttpClient client) throws ParseException, IOException {
+        String jsonString = getRequestTo(client, "http://142.93.134.194:8000/joboonja/skill");
+        JSONArray ja = (JSONArray) new JSONParser().parse(jsonString);
+        for (int i=0; i<ja.size(); i++) {
+            JSONObject jo = (JSONObject) ja.get(i);
+            String skillName = (String) jo.get("name");
+            skills.add(skillName);
+        }
+    }
+
     private static Pair<String, String> getCommandParts() {
         String command = scanner.nextLine();
         int spaceIndex = command.indexOf(" ");
@@ -61,7 +117,7 @@ public class Main {
     private static void addProject(String jsonString) throws ParseException {
         JSONObject jo = (JSONObject) new JSONParser().parse(jsonString);
         Project newProject = createProject(jo);
-        if(projrcts.add(newProject) < 0){
+        if(projects.add(newProject) < 0){
             System.out.println("ProjectTitle " + newProject.getTitle() + " is already taken!");
         }
     }
@@ -89,8 +145,9 @@ public class Main {
 
     private static void auction(String jsonString) throws ParseException {
         JSONObject jo = (JSONObject) new JSONParser().parse(jsonString);
-        Project project = projrcts.get((String) jo.get("projectTitle"));
-        project.auction();
+        Project project = projects.get((String) jo.get("projectTitle"));
+        User winner = project.auction();
+        System.out.println("winner: " + winner.getUsername());
     }
 
     private static List<Skill> parseSkills(JSONArray skillsJA) {
@@ -126,7 +183,7 @@ public class Main {
         int bidAmount = (int)(long)jo.get("bidAmount");
 
         User user = users.get(biddingUser);
-        Project project = projrcts.get(projectTitle);
+        Project project = projects.get(projectTitle);
 
         return new Bid(user, project, bidAmount);
     }
