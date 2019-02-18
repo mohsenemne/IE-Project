@@ -128,6 +128,12 @@ public class Main {
         User biddingUser = newBid.getBiddingUser();
         Project project = newBid.getProject();
 
+        int skillsPoint = project.skillsPoint(biddingUser.getSkills()) ;
+        int offerPoint = project.getBudget() - newBid.getBidAmount() ;
+        if(skillsPoint<0 || offerPoint<0){
+            System.out.println("Your offer doesn't satisfied project's requirements!");
+            newBid = null ;
+        }
         if(biddingUser == null){
             System.out.println("User " + newBid.getBiddingUser().getUsername() + " doesn't exist!");
             newBid = null;
@@ -137,6 +143,7 @@ public class Main {
             newBid = null;
         }
         if(newBid != null){
+            newBid.setPoints(skillsPoint+offerPoint) ;
             if(bids.add(newBid) == 0){
                 newBid.getProject().addBid(newBid);
             }

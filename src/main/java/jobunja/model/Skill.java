@@ -8,4 +8,12 @@ public class Skill {
         this.name = name;
         this.points = points;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPoints() {
+        return points ;
+    }
 }

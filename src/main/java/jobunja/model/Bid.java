@@ -4,6 +4,7 @@ public class Bid {
     private User biddingUser;
     private Project project;
     private int bidAmount;
+    private int points ;
 
     public Bid(User biddingUser, Project project, int bidAmount){
         this.biddingUser = biddingUser;
@@ -25,5 +26,13 @@ public class Bid {
 
     public void setBidAmount(int bidAmount) {
         this.bidAmount = bidAmount;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
     }
 }

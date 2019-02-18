@@ -39,17 +39,38 @@ public class Project {
         return budget;
     }
 
+
+    public void addBid(Bid bid) {
+        bids.add(bid);
+    }
+
     public User auction() {
         if(bids.size() == 0){
             return null;
         }
+        int maxOffer = -1 ;
+        User winner = null ;
         for(Bid b: bids){
-
+            if(maxOffer<b.getPoints()){
+                maxOffer = b.getPoints() ;
+                winner = b.getBiddingUser() ;
+            }
         }
-        return null;
+        return winner;
     }
 
-    public void addBid(Bid bid) {
-        bids.add(bid);
+    public int skillsPoint(List<Skill> skills) {
+        int result = 0;
+        for(Skill rs: requiredSkills){
+            for(Skill s: skills){
+                if(rs.getName().equals(s.getName())){
+                    if(rs.getPoints() > s.getPoints())
+                        return -1 ;
+                    int point = s.getPoints() - rs.getPoints() ;
+                    result += point*point ;
+                }
+            }
+        }
+        return result*10000;
     }
 }

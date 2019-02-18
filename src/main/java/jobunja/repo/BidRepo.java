@@ -16,6 +16,7 @@ public class BidRepo {
         for(Bid b: bids){
             if(b.getProject().equals(newBid.getProject()) && b.getBiddingUser().equals(newBid.getBiddingUser())){
                 b.setBidAmount(newBid.getBidAmount());
+                b.setPoints(newBid.getPoints());
                 return -1;
             }
         }
