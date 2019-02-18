@@ -25,10 +25,10 @@ public class Main {
     private static Scanner scanner = new Scanner(System.in);
     private static boolean isFinished = false;
 
-    private static ProjectRepo projects;
-    private static UserRepo users;
-    private static BidRepo bids;
-    private static SkillsRepo skills;
+    private static ProjectRepo projects = new ProjectRepo();
+    private static UserRepo users = new UserRepo();
+    private static BidRepo bids = new BidRepo();
+    private static SkillsRepo skills = new SkillsRepo();
 
     public static void main(String[] args) throws ParseException, IOException {
         loadData();
@@ -162,7 +162,7 @@ public class Main {
         for (int i=0; i<skillsJA.size(); i++) {
             JSONObject skillJO = (JSONObject) skillsJA.get(i);
             String skillName = (String) skillJO.get("name");
-            int skillPoints = (int) (long) skillJO.get("points");
+            int skillPoints = (int) (long) skillJO.get("point");
 
             skills.add(new Skill(skillName, skillPoints));
         }
