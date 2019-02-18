@@ -118,7 +118,7 @@ public class Main {
         JSONObject jo = (JSONObject) new JSONParser().parse(jsonString);
         Project newProject = createProject(jo);
         if(projects.add(newProject) < 0){
-            System.out.println("ProjectTitle " + newProject.getTitle() + " is already taken!");
+            System.out.println("projectID " + newProject.getID() + " is already taken!");
         }
     }
 
@@ -133,7 +133,7 @@ public class Main {
             newBid = null;
         }
         if(project == null){
-            System.out.println("Project " + newBid.getProject().getTitle() + " doesn't exist!");
+            System.out.println("Project " + newBid.getProject().getID() + " doesn't exist!");
             newBid = null;
         }
         if(newBid != null){
@@ -145,7 +145,7 @@ public class Main {
 
     private static void auction(String jsonString) throws ParseException {
         JSONObject jo = (JSONObject) new JSONParser().parse(jsonString);
-        Project project = projects.get((String) jo.get("projectTitle"));
+        Project project = projects.get((String) jo.get("projectID"));
         User winner = project.auction();
         System.out.println("winner: " + winner.getUsername());
     }
@@ -164,26 +164,34 @@ public class Main {
 
     private static User createUser(JSONObject jo) {
         String username = (String) jo.get("username");
+        String firstName = (String) jo.get("firstName");
+        String lastName = (String) jo.get("lastName");
+        String jobTitle = (String) jo.get("jobTitle");
         List<Skill> skills = parseSkills((JSONArray)jo.get("skills"));
+        String bio = (String) jo.get("bio");
 
-        return new User(username, skills);
+        return new User(username, firstName, lastName, jobTitle, skills, bio);
     }
 
     private static Project createProject(JSONObject jo) {
+        String id = (String) jo.get("id");
         String title = (String) jo.get("title");
+        String description = (String) jo.get("description");
+        String imageURL = (String) jo.get("imageURL");
         List<Skill> skills = parseSkills((JSONArray)jo.get("skills"));
         int budget = (int)(long)jo.get("budget");
+        long deadline = (long)jo.get("deadline");
 
-        return new Project(title, skills, budget);
+        return new Project(id, title, description, imageURL, skills, budget, deadline);
     }
 
     private static Bid createBid(JSONObject jo) {
         String biddingUser = (String) jo.get("biddingUser");
-        String projectTitle = (String) jo.get("projectTitle");
+        String projectID = (String) jo.get("projectID");
         int bidAmount = (int)(long)jo.get("bidAmount");
 
         User user = users.get(biddingUser);
-        Project project = projects.get(projectTitle);
+        Project project = projects.get(projectID);
 
         return new Bid(user, project, bidAmount);
     }

@@ -20,27 +20,27 @@ public class ProjectRepo {
         return 0;
     }
 
-    public boolean contains(String projectTitle){
+    public boolean contains(String projectID){
         for (Project p: projects) {
-            if(p.getTitle().equals(projectTitle)){
+            if(p.getID().equals(projectID)){
                 return true;
             }
         }
         return false;
     }
 
-    public Project get(String projectTitle) {
+    public Project get(String projectID) {
         for (Project p: projects) {
-            if(p.getTitle().equals(projectTitle)){
+            if(p.getID().equals(projectID)){
                 return p;
             }
         }
         return null;
     }
 
-    public void auction(String projectTitle) {
+    public void auction(String projectID) {
         for (Project p: projects) {
-            if(p.getTitle().equals(projectTitle)){
+            if(p.getID().equals(projectID)){
                 p.auction();
             }
         }
