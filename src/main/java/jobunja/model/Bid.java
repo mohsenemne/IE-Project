@@ -1,15 +1,20 @@
 package jobunja.model;
 
+import jobunja.repo.ProjectRepo;
+import jobunja.repo.UserRepo;
+import org.json.simple.JSONObject;
+
 public class Bid {
     private User biddingUser;
     private Project project;
     private int bidAmount;
     private int points ;
 
-    public Bid(User biddingUser, Project project, int bidAmount){
+    public Bid(User biddingUser, Project project, int bidAmount, int points){
         this.biddingUser = biddingUser;
         this.project = project;
         this.bidAmount = bidAmount;
+        this.points = points;
     }
 
     public int getBidAmount() {

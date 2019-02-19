@@ -9,7 +9,7 @@ public class UserRepo {
     private List<User> users;
 
     public UserRepo(){
-        users = new ArrayList<User>();
+        users = new ArrayList<>();
     }
 
     public int add(User newUser){
@@ -20,7 +20,7 @@ public class UserRepo {
         return 0;
     }
 
-    public boolean contains(String username){
+    private boolean contains(String username){
         for (User u: users) {
             if(u.getUsername().equals(username)){
                 return true;

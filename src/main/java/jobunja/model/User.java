@@ -1,6 +1,8 @@
 package jobunja.model;
 
 import jobunja.repo.SkillsRepo;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import java.util.List;
 
@@ -21,6 +23,15 @@ public class User {
         this.bio = bio;
     }
 
+    public User(JSONObject jo){
+        username = (String) jo.get("username");
+        firstName = (String) jo.get("firstName");
+        lastName = (String) jo.get("lastName");
+        jobTitle = (String) jo.get("jobTitle");
+        skills = Skill.parseSkills((JSONArray)jo.get("skills"));
+        bio = (String) jo.get("bio");
+    }
+
     public String getUsername() {
         return username;
     }
@@ -28,4 +39,5 @@ public class User {
     public List<Skill> getSkills() {
         return skills;
     }
+
 }

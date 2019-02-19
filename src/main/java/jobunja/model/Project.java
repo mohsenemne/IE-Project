@@ -1,5 +1,8 @@
 package jobunja.model;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import java.util.List;
 
 public class Project {
@@ -21,6 +24,16 @@ public class Project {
         this.requiredSkills = skills;
         this.budget = budget;
         this.deadline = deadline;
+    }
+
+    public Project(JSONObject jo){
+        id = (String) jo.get("id");
+        title = (String) jo.get("title");
+        description = (String) jo.get("description");
+        imageURL = (String) jo.get("imageURL");
+        requiredSkills = Skill.parseSkills((JSONArray)jo.get("skills"));
+        budget = (int)(long)jo.get("budget");
+        deadline = (long)jo.get("deadline");
     }
 
     public String getID() {

@@ -1,14 +1,11 @@
 import javafx.util.Pair;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import jobunja.model.*;
 import jobunja.repo.*;
 
-import org.apache.http.client.ClientProtocolException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.*;
@@ -61,7 +58,7 @@ public class Main {
         loadSkills(client);
     }
 
-    private static String getRequestTo(CloseableHttpClient client, String address) throws IOException {
+    private static String getRequestTo(String address, CloseableHttpClient client) throws IOException {
         HttpGet request = new HttpGet(address);
         HttpResponse response = client.execute(request);
 
@@ -81,21 +78,19 @@ public class Main {
     }
 
     private static void loadProjects(CloseableHttpClient client) throws ParseException, IOException {
-        String jsonString = getRequestTo(client, "http://142.93.134.194:8000/joboonja/project");
+        String jsonString = getRequestTo("http://142.93.134.194:8000/joboonja/project", client);
         JSONArray ja = (JSONArray) new JSONParser().parse(jsonString);
-        for (int i=0; i<ja.size(); i++) {
-            JSONObject jo = (JSONObject) ja.get(i);
-            Project project = createProject(jo);
+        for (Object o : ja) {
+            Project project = new Project((JSONObject) o);
             projects.add(project);
         }
     }
 
     private static void loadSkills(CloseableHttpClient client) throws ParseException, IOException {
-        String jsonString = getRequestTo(client, "http://142.93.134.194:8000/joboonja/skill");
+        String jsonString = getRequestTo("http://142.93.134.194:8000/joboonja/skill", client);
         JSONArray ja = (JSONArray) new JSONParser().parse(jsonString);
-        for (int i=0; i<ja.size(); i++) {
-            JSONObject jo = (JSONObject) ja.get(i);
-            String skillName = (String) jo.get("name");
+        for (Object o : ja) {
+            String skillName = (String) ((JSONObject)o).get("name");
             skills.add(skillName);
         }
     }
@@ -108,7 +103,7 @@ public class Main {
 
     private static void register(String jsonString) throws ParseException {
         JSONObject jo = (JSONObject) new JSONParser().parse(jsonString);
-        User newUser = createUser(jo);
+        User newUser = new User(jo);
         if(users.add(newUser) < 0){
             System.out.println("Username " + newUser.getUsername() + " is already taken!");
         }
@@ -116,7 +111,7 @@ public class Main {
 
     private static void addProject(String jsonString) throws ParseException {
         JSONObject jo = (JSONObject) new JSONParser().parse(jsonString);
-        Project newProject = createProject(jo);
+        Project newProject = new Project(jo);
         if(projects.add(newProject) < 0){
             System.out.println("projectID " + newProject.getID() + " is already taken!");
         }
@@ -124,29 +119,30 @@ public class Main {
 
     private static void bid(String jsonString) throws ParseException {
         JSONObject jo = (JSONObject) new JSONParser().parse(jsonString);
-        Bid newBid = createBid(jo);
-        User biddingUser = newBid.getBiddingUser();
-        Project project = newBid.getProject();
 
-        int skillsPoint = project.skillsPoint(biddingUser.getSkills()) ;
-        int offerPoint = project.getBudget() - newBid.getBidAmount() ;
-        if(skillsPoint<0 || offerPoint<0){
-            System.out.println("Your offer doesn't satisfied project's requirements!");
-            newBid = null ;
-        }
+        User biddingUser = users.get((String) jo.get("biddingUser"));
         if(biddingUser == null){
-            System.out.println("User " + newBid.getBiddingUser().getUsername() + " doesn't exist!");
-            newBid = null;
+            System.out.println("User " + jo.get("biddingUser") + " doesn't exist!");
+            return;
         }
+
+        Project project = projects.get((String) jo.get("projectID"));
         if(project == null){
-            System.out.println("Project " + newBid.getProject().getID() + " doesn't exist!");
-            newBid = null;
+            System.out.println("Project " + jo.get("projectID") + " doesn't exist!");
+            return;
         }
-        if(newBid != null){
-            newBid.setPoints(skillsPoint+offerPoint) ;
-            if(bids.add(newBid) == 0){
-                newBid.getProject().addBid(newBid);
-            }
+
+        int bidAmount = (int)(long)jo.get("bidAmount");
+        int skillsPoint = project.skillsPoint(biddingUser.getSkills()) ;
+        int offerPoint = project.getBudget() - bidAmount ;
+        if(skillsPoint<0 || offerPoint<0){
+            System.out.println("Your offer doesn't satisfy project's requirements!");
+            return;
+        }
+
+        Bid newBid = new Bid(biddingUser, project, bidAmount, skillsPoint + offerPoint);
+        if(bids.add(newBid) == 0){
+            project.addBid(newBid);
         }
     }
 
@@ -155,51 +151,5 @@ public class Main {
         Project project = projects.get((String) jo.get("projectID"));
         User winner = project.auction();
         System.out.println("winner: " + winner.getUsername());
-    }
-
-    private static List<Skill> parseSkills(JSONArray skillsJA) {
-        List<Skill> skills = new ArrayList<Skill>();
-        for (int i=0; i<skillsJA.size(); i++) {
-            JSONObject skillJO = (JSONObject) skillsJA.get(i);
-            String skillName = (String) skillJO.get("name");
-            int skillPoints = (int) (long) skillJO.get("point");
-
-            skills.add(new Skill(skillName, skillPoints));
-        }
-        return skills;
-    }
-
-    private static User createUser(JSONObject jo) {
-        String username = (String) jo.get("username");
-        String firstName = (String) jo.get("firstName");
-        String lastName = (String) jo.get("lastName");
-        String jobTitle = (String) jo.get("jobTitle");
-        List<Skill> skills = parseSkills((JSONArray)jo.get("skills"));
-        String bio = (String) jo.get("bio");
-
-        return new User(username, firstName, lastName, jobTitle, skills, bio);
-    }
-
-    private static Project createProject(JSONObject jo) {
-        String id = (String) jo.get("id");
-        String title = (String) jo.get("title");
-        String description = (String) jo.get("description");
-        String imageURL = (String) jo.get("imageURL");
-        List<Skill> skills = parseSkills((JSONArray)jo.get("skills"));
-        int budget = (int)(long)jo.get("budget");
-        long deadline = (long)jo.get("deadline");
-
-        return new Project(id, title, description, imageURL, skills, budget, deadline);
-    }
-
-    private static Bid createBid(JSONObject jo) {
-        String biddingUser = (String) jo.get("biddingUser");
-        String projectID = (String) jo.get("projectID");
-        int bidAmount = (int)(long)jo.get("bidAmount");
-
-        User user = users.get(biddingUser);
-        Project project = projects.get(projectID);
-
-        return new Bid(user, project, bidAmount);
     }
 }

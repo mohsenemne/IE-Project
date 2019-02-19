@@ -1,6 +1,7 @@
 package jobunja.repo;
 
 import jobunja.model.Project;
+import jobunja.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +10,7 @@ public class ProjectRepo {
     private List<Project> projects;
 
     public ProjectRepo(){
-        projects = new ArrayList<Project>();
+        projects = new ArrayList<>();
     }
 
     public int add(Project newProject){
@@ -20,7 +21,7 @@ public class ProjectRepo {
         return 0;
     }
 
-    public boolean contains(String projectID){
+    private boolean contains(String projectID){
         for (Project p: projects) {
             if(p.getID().equals(projectID)){
                 return true;
@@ -36,13 +37,5 @@ public class ProjectRepo {
             }
         }
         return null;
-    }
-
-    public void auction(String projectID) {
-        for (Project p: projects) {
-            if(p.getID().equals(projectID)){
-                p.auction();
-            }
-        }
     }
 }

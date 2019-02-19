@@ -8,9 +8,7 @@ import java.util.List;
 public class BidRepo {
     private List<Bid> bids;
 
-    public BidRepo(){
-        bids = new ArrayList<Bid>();
-    }
+    public BidRepo(){ bids = new ArrayList<>(); }
 
     public int add(Bid newBid){
         for(Bid b: bids){
