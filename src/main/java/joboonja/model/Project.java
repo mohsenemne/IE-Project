@@ -1,4 +1,4 @@
-package jobunja.model;
+package joboonja.model;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -24,16 +24,6 @@ public class Project {
         this.requiredSkills = skills;
         this.budget = budget;
         this.deadline = deadline;
-    }
-
-    public Project(JSONObject jo){
-        id = (String) jo.get("id");
-        title = (String) jo.get("title");
-        description = (String) jo.get("description");
-        imageURL = (String) jo.get("imageURL");
-        requiredSkills = Skill.parseSkills((JSONArray)jo.get("skills"));
-        budget = (int)(long)jo.get("budget");
-        deadline = (long)jo.get("deadline");
     }
 
     public String getID() {
@@ -72,7 +62,7 @@ public class Project {
         return winner;
     }
 
-    public int skillsPoint(List<Skill> skills) {
+    public int skillsPointCalc(List<Skill> skills) {
         int result = 0;
         for(Skill rs: requiredSkills){
             for(Skill s: skills){
@@ -85,5 +75,15 @@ public class Project {
             }
         }
         return result*10000;
+    }
+
+    public int bidPointsCalc(User user, int bidAmount){
+        int skillsPoint = this.skillsPointCalc(user.getSkills()) ;
+        int offerPoint = this.getBudget() - bidAmount ;
+        if(skillsPoint<0)
+            return -1;
+        if(offerPoint<0)
+            return -2;
+        return skillsPoint + offerPoint;
     }
 }

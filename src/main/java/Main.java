@@ -3,8 +3,8 @@ import javafx.util.Pair;
 import java.io.IOException;
 import java.util.Scanner;
 
-import jobunja.model.*;
-import jobunja.repo.*;
+import joboonja.model.*;
+import joboonja.repo.*;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -22,11 +22,6 @@ public class Main {
     private static Scanner scanner = new Scanner(System.in);
     private static boolean isFinished = false;
 
-    private static ProjectRepo projects = new ProjectRepo();
-    private static UserRepo users = new UserRepo();
-    private static BidRepo bids = new BidRepo();
-    private static SkillsRepo skills = new SkillsRepo();
-
     public static void main(String[] args) throws ParseException, IOException {
         loadData();
         while (!isFinished) {
@@ -34,21 +29,21 @@ public class Main {
             String commandName = commandParts.getKey();
             String commandData = commandParts.getValue();
 
-            switch (commandName) {
-                case "register":
-                    register(commandData);
-                    break;
-                case "addProject":
-                    addProject(commandData);
-                    break;
-                case "bid":
-                    bid(commandData);
-                    break;
-                case "auction":
-                    auction(commandData);
-                    isFinished = true;
-                    break;
-            }
+//            switch (commandName) {
+//                case "register":
+//                    register(commandData);
+//                    break;
+//                case "addProject":
+//                    addProject(commandData);
+//                    break;
+//                case "bid":
+//                    bid(commandData);
+//                    break;
+//                case "auction":
+//                    auction(commandData);
+//                    isFinished = true;
+//                    break;
+//            }
         }
     }
 
@@ -90,8 +85,7 @@ public class Main {
         String jsonString = getRequestTo("http://142.93.134.194:8000/joboonja/skill", client);
         JSONArray ja = (JSONArray) new JSONParser().parse(jsonString);
         for (Object o : ja) {
-            String skillName = (String) ((JSONObject)o).get("name");
-            skills.add(skillName);
+            skills.add((JSONObject)o);
         }
     }
 
@@ -101,55 +95,10 @@ public class Main {
         return new Pair<String, String>(command.substring(0, spaceIndex), command.substring(spaceIndex+1));
     }
 
-    private static void register(String jsonString) throws ParseException {
-        JSONObject jo = (JSONObject) new JSONParser().parse(jsonString);
-        User newUser = new User(jo);
-        if(users.add(newUser) < 0){
-            System.out.println("Username " + newUser.getUsername() + " is already taken!");
-        }
-    }
-
-    private static void addProject(String jsonString) throws ParseException {
-        JSONObject jo = (JSONObject) new JSONParser().parse(jsonString);
-        Project newProject = new Project(jo);
-        if(projects.add(newProject) < 0){
-            System.out.println("projectID " + newProject.getID() + " is already taken!");
-        }
-    }
-
-    private static void bid(String jsonString) throws ParseException {
-        JSONObject jo = (JSONObject) new JSONParser().parse(jsonString);
-
-        User biddingUser = users.get((String) jo.get("biddingUser"));
-        if(biddingUser == null){
-            System.out.println("User " + jo.get("biddingUser") + " doesn't exist!");
-            return;
-        }
-
-        Project project = projects.get((String) jo.get("projectID"));
-        if(project == null){
-            System.out.println("Project " + jo.get("projectID") + " doesn't exist!");
-            return;
-        }
-
-        int bidAmount = (int)(long)jo.get("bidAmount");
-        int skillsPoint = project.skillsPoint(biddingUser.getSkills()) ;
-        int offerPoint = project.getBudget() - bidAmount ;
-        if(skillsPoint<0 || offerPoint<0){
-            System.out.println("Your offer doesn't satisfy project's requirements!");
-            return;
-        }
-
-        Bid newBid = new Bid(biddingUser, project, bidAmount, skillsPoint + offerPoint);
-        if(bids.add(newBid) == 0){
-            project.addBid(newBid);
-        }
-    }
-
-    private static void auction(String jsonString) throws ParseException {
-        JSONObject jo = (JSONObject) new JSONParser().parse(jsonString);
-        Project project = projects.get((String) jo.get("projectID"));
-        User winner = project.auction();
-        System.out.println("winner: " + winner.getUsername());
-    }
+//    private static void auction(String jsonString) throws ParseException {
+//        JSONObject jo = (JSONObject) new JSONParser().parse(jsonString);
+//        Project project = projects.get((String) jo.get("projectID"));
+//        User winner = project.auction();
+//        System.out.println("winner: " + winner.getUsername());
+//    }
 }

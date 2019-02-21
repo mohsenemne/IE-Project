@@ -1,4 +1,4 @@
-package jobunja.model;
+package joboonja.model;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -15,18 +15,16 @@ public class Skill {
         this.points = points;
     }
 
-    public String getName() {
-        return name;
-    }
+    String getName() { return name; }
 
-    public int getPoints() {
+    int getPoints() {
         return points ;
     }
 
     public static List<Skill> parseSkills(JSONArray skillsJA) {
-        List<Skill> skills = new ArrayList<Skill>();
-        for (int i=0; i<skillsJA.size(); i++) {
-            JSONObject skillJO = (JSONObject) skillsJA.get(i);
+        List<Skill> skills = new ArrayList<>();
+        for (Object o : skillsJA) {
+            JSONObject skillJO = (JSONObject) o;
             String skillName = (String) skillJO.get("name");
             int skillPoints = (int) (long) skillJO.get("point");
 

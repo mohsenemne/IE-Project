@@ -1,8 +1,4 @@
-package jobunja.model;
-
-import jobunja.repo.ProjectRepo;
-import jobunja.repo.UserRepo;
-import org.json.simple.JSONObject;
+package joboonja.model;
 
 public class Bid {
     private User biddingUser;

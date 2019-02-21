@@ -1,6 +1,6 @@
-package jobunja.repo;
+package joboonja.repo;
 
-import jobunja.model.User;
+import joboonja.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
