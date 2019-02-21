@@ -3,6 +3,7 @@ import javafx.util.Pair;
 import java.io.IOException;
 import java.util.Scanner;
 
+import joboonja.Database;
 import joboonja.model.*;
 import joboonja.repo.*;
 
@@ -19,15 +20,20 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 
 public class Main {
-    private static Scanner scanner = new Scanner(System.in);
-    private static boolean isFinished = false;
+//    private static Scanner scanner = new Scanner(System.in);
+//    private static boolean isFinished = false;
 
     public static void main(String[] args) throws ParseException, IOException {
-        loadData();
-        while (!isFinished) {
-            Pair<String, String> commandParts = getCommandParts();
-            String commandName = commandParts.getKey();
-            String commandData = commandParts.getValue();
+        Database db = Database.getInstance();
+        loadData(db);
+//        db.registerUser();
+
+        // should create and start server here...
+
+//        while (!isFinished) {
+//            Pair<String, String> commandParts = getCommandParts();
+//            String commandName = commandParts.getKey();
+//            String commandData = commandParts.getValue();
 
 //            switch (commandName) {
 //                case "register":
@@ -44,13 +50,13 @@ public class Main {
 //                    isFinished = true;
 //                    break;
 //            }
-        }
+//        }
     }
 
-    private static void loadData() throws ParseException, IOException {
+    private static void loadData(Database db) throws ParseException, IOException {
         CloseableHttpClient client = HttpClientBuilder.create().build();
-        loadProjects(client);
-        loadSkills(client);
+        loadProjects(client, db);
+        loadSkills(client, db);
     }
 
     private static String getRequestTo(String address, CloseableHttpClient client) throws IOException {
@@ -72,28 +78,29 @@ public class Main {
         return builder.toString();
     }
 
-    private static void loadProjects(CloseableHttpClient client) throws ParseException, IOException {
+    private static void loadProjects(CloseableHttpClient client, Database db) throws ParseException, IOException {
         String jsonString = getRequestTo("http://142.93.134.194:8000/joboonja/project", client);
+
         JSONArray ja = (JSONArray) new JSONParser().parse(jsonString);
         for (Object o : ja) {
-            Project project = new Project((JSONObject) o);
-            projects.add(project);
+            db.addProject((JSONObject)o);
         }
     }
 
-    private static void loadSkills(CloseableHttpClient client) throws ParseException, IOException {
+    private static void loadSkills(CloseableHttpClient client, Database db) throws ParseException, IOException {
         String jsonString = getRequestTo("http://142.93.134.194:8000/joboonja/skill", client);
+
         JSONArray ja = (JSONArray) new JSONParser().parse(jsonString);
         for (Object o : ja) {
-            skills.add((JSONObject)o);
+            db.addSkill((JSONObject)o);
         }
     }
 
-    private static Pair<String, String> getCommandParts() {
-        String command = scanner.nextLine();
-        int spaceIndex = command.indexOf(" ");
-        return new Pair<String, String>(command.substring(0, spaceIndex), command.substring(spaceIndex+1));
-    }
+//    private static Pair<String, String> getCommandParts() {
+//        String command = scanner.nextLine();
+//        int spaceIndex = command.indexOf(" ");
+//        return new Pair<String, String>(command.substring(0, spaceIndex), command.substring(spaceIndex+1));
+//    }
 
 //    private static void auction(String jsonString) throws ParseException {
 //        JSONObject jo = (JSONObject) new JSONParser().parse(jsonString);
