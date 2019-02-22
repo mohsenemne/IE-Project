@@ -50,7 +50,7 @@ public class Database {
         String id = (String) jo.get("id");
         String title = (String) jo.get("title");
         String description = (String) jo.get("description");
-        String imageURL = (String) jo.get("imageURL");
+        String imageURL = (String) jo.get("imageUrl");
         List<Skill> requiredSkills = Skill.parseSkills((JSONArray)jo.get("skills"));
         int budget = (int)(long)jo.get("budget");
         long deadline = (long)jo.get("deadline");
@@ -82,8 +82,27 @@ public class Database {
         return 0;
     }
 
-    public int addSkill(JSONObject jo) throws ParseException {
+    public int addSkill(JSONObject jo)  {
         String skillName = (String) jo.get("name");
         return skills.add(skillName);
+    }
+
+    public String getUserInfo(String username) {
+        User user = users.get(username);
+        if (user == null)
+            return null;
+        return user.getJsonInfo();
+    }
+
+    public String getProjectInfo(String projectID) {
+        Project project = projects.get(projectID);
+        if (project == null)
+            return null;
+        return project.getJsonInfo();
+    }
+
+    public String getApplicableProjectsList(String username) {
+        User user = users.get(username);
+        return projects.getApplicableJsonList(user.getSkills());
     }
 }

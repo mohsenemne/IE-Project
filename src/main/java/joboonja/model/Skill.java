@@ -32,4 +32,16 @@ public class Skill {
         }
         return skills;
     }
+
+    public static String getJsonInfo(List<Skill> skills) {
+        String info = "[";
+        for (int i = 0; i < skills.size(); i++) {
+            info += "{\"name\":\"" + skills.get(i).getName() + "\",\"point\":" + skills.get(i).getPoints() + "}";
+            if (i != skills.size() - 1)
+                info += ",";
+        }
+        info += "]";
+
+        return info;
+    }
 }

@@ -2,6 +2,8 @@ package joboonja.model;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import java.util.List;
 
@@ -30,4 +32,12 @@ public class User {
         return skills;
     }
 
+    public String getJsonInfo() {
+        String info = "{\"id\":\"" + username + "\",\"firstName\":\"" + firstName + "\",\"lastName\":\"" + lastName
+                + "\",\"jobTitle\":\"" + jobTitle + "\",\"skills\":";
+        info += Skill.getJsonInfo(skills);
+        info += ",\"bio\":\"" + bio + "\"}";
+
+        return info;
+    }
 }

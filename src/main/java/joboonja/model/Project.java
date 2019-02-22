@@ -86,4 +86,14 @@ public class Project {
             return -2;
         return skillsPoint + offerPoint;
     }
+
+    public String getJsonInfo() {
+        String info = "{\"id\":\"" + id + "\",\"title\":\"" + title+ "\",\"description\":\"" + description
+                + "\",\"imageUrl\":\"" + imageURL + "\",\"budget\":\"" + budget + "\",\"deadline\":\"" + deadline
+                + "\",\"skills\":";
+        info += Skill.getJsonInfo(requiredSkills);
+        info += "}";
+
+        return info;
+    }
 }

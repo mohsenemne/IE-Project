@@ -7,6 +7,7 @@ import joboonja.Database;
 import joboonja.model.*;
 import joboonja.repo.*;
 
+import joboonja.server.JoboonjaServer;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.*;
@@ -23,11 +24,18 @@ public class Main {
 //    private static Scanner scanner = new Scanner(System.in);
 //    private static boolean isFinished = false;
 
-    public static void main(String[] args) throws ParseException, IOException {
+    public static void main(String[] args) throws Exception {
         Database db = Database.getInstance();
         loadData(db);
-//        db.registerUser();
 
+        String userInfo = "{\"username\":\"1\",\"firstName\":\"علی\",\"lastName\":\"شریف‌زاده\",\"jobTitle\":\"برنامه‌نویس وب\","
+                + "\"skills\":[{\"name\":\"HTML\",\"point\":5},{\"name\":\"Javascript\",\"point\"4},"
+                + "{\"name\":\"C++\",\"point\":2},{\"name\":\"Java\",\"point\":3}],\"bio\":"
+                + "\"" + "روی سنگ قبرم بنویسید: خدا بیامرز میخواست خیلی کارا بکنه ولی پول نداشت"
+                + "\"}";
+        db.registerUser((JSONObject) new JSONParser().parse(userInfo));
+        JoboonjaServer server = new JoboonjaServer();
+        server.startServer();
         // should create and start server here...
 
 //        while (!isFinished) {

@@ -1,6 +1,7 @@
 package joboonja.repo;
 
 import joboonja.model.Project;
+import joboonja.model.Skill;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,5 +37,21 @@ public class ProjectRepo {
             }
         }
         return null;
+    }
+
+    public String getApplicableJsonList(List<Skill> skills) {
+        String info = "[";
+        for (Project p : projects) {
+            if(p.skillsPointCalc(skills) < 0)
+                continue;
+            char str = info.charAt(info.length() - 1);
+            if(str != ',' && str != '['){
+                info += ",";
+            }
+            info += "{\"id\":\"" + p.getID() + "\",\"title\":\"" + p.getTitle()
+                    + "\",\"budget\":" + p.getBudget() + "}";
+        }
+        info += "]";
+        return info;
     }
 }
