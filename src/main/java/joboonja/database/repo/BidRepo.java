@@ -1,6 +1,6 @@
-package joboonja.repo;
+package joboonja.database.repo;
 
-import joboonja.model.Bid;
+import joboonja.database.model.Bid;
 
 import java.util.ArrayList;
 import java.util.List;

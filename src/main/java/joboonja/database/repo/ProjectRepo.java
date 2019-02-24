@@ -1,7 +1,7 @@
-package joboonja.repo;
+package joboonja.database.repo;
 
-import joboonja.model.Project;
-import joboonja.model.Skill;
+import joboonja.database.model.Project;
+import joboonja.database.model.Skill;
 
 import java.util.ArrayList;
 import java.util.List;

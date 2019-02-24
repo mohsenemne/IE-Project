@@ -1,4 +1,4 @@
-package joboonja.model;
+package joboonja.database.model;
 
 public class Bid {
     private User biddingUser;

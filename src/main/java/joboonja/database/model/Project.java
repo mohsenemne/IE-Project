@@ -1,7 +1,4 @@
-package joboonja.model;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+package joboonja.database.model;
 
 import java.util.List;
 

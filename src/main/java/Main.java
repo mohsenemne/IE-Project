@@ -1,11 +1,6 @@
-import javafx.util.Pair;
-
 import java.io.IOException;
-import java.util.Scanner;
 
-import joboonja.Database;
-import joboonja.model.*;
-import joboonja.repo.*;
+import joboonja.database.Database;
 
 import joboonja.server.JoboonjaServer;
 import org.json.simple.JSONArray;

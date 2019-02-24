@@ -1,9 +1,4 @@
-package joboonja.model;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+package joboonja.database.model;
 
 import java.util.List;
 

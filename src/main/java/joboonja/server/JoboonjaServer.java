@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.net.InetSocketAddress;
-import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
 import com.sun.net.httpserver.HttpExchange;

@@ -1,10 +1,9 @@
-package joboonja;
+package joboonja.database;
 
-import joboonja.model.*;
-import joboonja.repo.*;
+import joboonja.database.model.*;
+import joboonja.database.repo.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.util.List;

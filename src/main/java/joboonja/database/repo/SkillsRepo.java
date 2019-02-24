@@ -1,4 +1,4 @@
-package joboonja.repo;
+package joboonja.database.repo;
 
 import java.util.LinkedList;
 import java.util.List;

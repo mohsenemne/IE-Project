@@ -1,14 +1,13 @@
 package joboonja.server;
 
 import com.sun.net.httpserver.HttpExchange;
-import joboonja.Database;
+import joboonja.database.Database;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
-import java.io.OutputStream;
 
 public class ProjectsListPage implements IPage{
     public void HandleRequest(HttpExchange httpExchange, String id, String applicantUser) throws IOException, ParseException {
