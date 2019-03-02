@@ -2,7 +2,6 @@ import java.io.IOException;
 
 import joboonja.database.Database;
 
-import joboonja.server.JoboonjaServer;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.*;
@@ -29,8 +28,8 @@ public class Main {
                 + "\"" + "روی سنگ قبرم بنویسید: خدا بیامرز میخواست خیلی کارا بکنه ولی پول نداشت"
                 + "\"}";
         db.registerUser((JSONObject) new JSONParser().parse(userInfo));
-        JoboonjaServer server = new JoboonjaServer();
-        server.startServer();
+//        JoboonjaServer server = new JoboonjaServer();
+//        server.startServer();
         // should create and start server here...
 
 //        while (!isFinished) {
