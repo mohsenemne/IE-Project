@@ -18,10 +18,10 @@ public class UserInfoController extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         StringTokenizer tokenizer = new StringTokenizer(request.getRequestURI(), "/");
         String context = tokenizer.nextToken();
-        String id = tokenizer.nextToken();
+        String userID = tokenizer.nextToken();
 
         Database db = Database.getInstance();
-        String userInfo = db.getUserInfo(id);
+        String userInfo = db.getUserInfo(userID);
 
         if(userInfo == null)
             request.getRequestDispatcher("pageNotFound.jsp").forward(request, response);

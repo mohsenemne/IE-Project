@@ -19,10 +19,10 @@ public class ProjectInfoController extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         StringTokenizer tokenizer = new StringTokenizer(request.getRequestURI(), "/");
         String context = tokenizer.nextToken();
-        String id = tokenizer.nextToken();
+        String projectID = tokenizer.nextToken();
 
         Database db = Database.getInstance();
-        String projectInfo = db.getProjectInfo(id);
+        String projectInfo = db.getProjectInfo(projectID);
 
         if(projectInfo == null)
             request.getRequestDispatcher("pageNotFound.jsp").forward(request, response);

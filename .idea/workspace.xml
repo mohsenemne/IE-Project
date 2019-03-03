@@ -7,13 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="88348723-0cd1-42d3-bc07-837edd2f8dc6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/joboonja/DatabaseLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Joboonja.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Java_EE_6_Java_EE_6.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/server/service/ProjectInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/controllers/ProjectInfoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/server/service/ProjectsListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/controllers/ProjectsListController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/server/service/UserInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/controllers/UserInfoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/server/service/UsersListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/controllers/UsersListController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/controllers/ProjectInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/controllers/ProjectInfoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/controllers/UserInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/controllers/UserInfoController.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,8 +25,60 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-120">
+              <caret line="4" selection-start-line="4" selection-end-line="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/database/model/Project.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="32">
+              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/database/model/Bid.java">
+          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="30">
-              <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/database/Database.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1275">
+              <caret line="91" column="24" selection-start-line="91" selection-start-column="24" selection-end-line="91" selection-end-column="24" />
+              <folding>
+                <element signature="e#3345#3346#0" expanded="true" />
+                <element signature="e#3387#3388#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/database/model/Skill.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/DatabaseLoader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="825">
+              <caret line="55" selection-start-line="55" selection-end-line="55" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -45,35 +95,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/controllers/UsersListController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="24" column="12" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/controllers/ProjectInfoController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="404">
-              <caret line="35" column="52" lean-forward="true" selection-start-line="35" selection-start-column="52" selection-end-line="35" selection-end-column="52" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/DatabaseLoader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="371">
-              <caret line="55" selection-start-line="55" selection-end-line="55" />
+              <caret line="35" column="34" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -84,8 +110,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/controllers/UserInfoController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="36" column="9" lean-forward="true" selection-start-line="25" selection-start-column="8" selection-end-line="36" selection-end-column="9" />
+            <state relative-caret-position="187">
+              <caret line="23" column="47" selection-start-line="23" selection-start-column="47" selection-end-line="23" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -94,45 +120,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/database/Database.java">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="32" selection-start-line="32" selection-end-line="32" />
-              <folding>
-                <element signature="e#3345#3346#0" expanded="true" />
-                <element signature="e#3372#3373#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/database/repo/UserRepo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="424">
-              <caret line="51" column="20" selection-start-line="51" selection-start-column="20" selection-end-line="51" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/database/model/User.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="451">
-              <caret line="42" column="50" selection-start-line="42" selection-start-column="50" selection-end-line="42" selection-end-column="50" />
-              <folding>
-                <element signature="e#1067#1068#0" expanded="true" />
-                <element signature="e#1115#1116#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/database/repo/ProjectRepo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="54" column="20" selection-start-line="42" selection-start-column="8" selection-end-line="54" selection-end-column="20" />
+            <state relative-caret-position="630">
+              <caret line="42" column="57" selection-start-line="42" selection-start-column="57" selection-end-line="42" selection-end-column="57" />
             </state>
           </provider>
         </entry>
@@ -147,6 +138,9 @@
     </option>
   </component>
   <component name="FindInProjectRecents">
+    <findStrings>
+      <find>getApplicable</find>
+    </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/WEB-INF</dir>
     </dirStrings>
@@ -171,6 +165,8 @@
         <option value="$PROJECT_DIR$/src/main/java/joboonja/Controllers/ProjectInfoController.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/joboonja/DatabaseLoader.java" />
+        <option value="$PROJECT_DIR$/src/main/java/joboonja/controllers/ProjectInfoController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/joboonja/controllers/UserInfoController.java" />
       </list>
     </option>
   </component>
@@ -191,35 +187,36 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="Joboonja" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Joboonja" type="462c0819:PsiDirectoryNode" />
+              <item name="IE-Project" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Joboonja" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Joboonja" type="462c0819:PsiDirectoryNode" />
+              <item name="IE-Project" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Joboonja" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Joboonja" type="462c0819:PsiDirectoryNode" />
+              <item name="IE-Project" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Joboonja" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Joboonja" type="462c0819:PsiDirectoryNode" />
+              <item name="IE-Project" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Joboonja" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Joboonja" type="462c0819:PsiDirectoryNode" />
+              <item name="IE-Project" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
@@ -227,20 +224,26 @@
             </path>
             <path>
               <item name="Joboonja" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Joboonja" type="462c0819:PsiDirectoryNode" />
+              <item name="IE-Project" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="joboonja" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Joboonja" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Joboonja" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="IE-Project" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="joboonja" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -355,13 +358,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10821000" />
+    <option name="totallyTimeSpent" value="11266000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2532189" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26752505" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -402,8 +405,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="46" column="31" selection-start-line="46" selection-start-column="31" selection-end-line="46" selection-end-column="31" />
+        <state relative-caret-position="630">
+          <caret line="42" column="57" selection-start-line="42" selection-start-column="57" selection-end-line="42" selection-end-column="57" />
         </state>
       </provider>
     </entry>
@@ -430,12 +433,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/database/model/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="42" column="50" selection-start-line="42" selection-start-column="50" selection-end-line="42" selection-end-column="50" />
-          <folding>
-            <element signature="e#1067#1068#0" expanded="true" />
-            <element signature="e#1115#1116#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="60">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -446,21 +445,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/database/Database.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="32" selection-start-line="32" selection-end-line="32" />
-          <folding>
-            <element signature="e#3345#3346#0" expanded="true" />
-            <element signature="e#3372#3373#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/controllers/UsersListController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="296">
           <caret line="24" column="12" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-120">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/database/Database.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1275">
+          <caret line="91" column="24" selection-start-line="91" selection-start-column="24" selection-end-line="91" selection-end-column="24" />
+          <folding>
+            <element signature="e#3345#3346#0" expanded="true" />
+            <element signature="e#3387#3388#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/DatabaseLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="825">
+          <caret line="55" selection-start-line="55" selection-end-line="55" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -479,8 +495,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/controllers/UserInfoController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="36" column="9" lean-forward="true" selection-start-line="25" selection-start-column="8" selection-end-line="36" selection-end-column="9" />
+        <state relative-caret-position="187">
+          <caret line="23" column="47" selection-start-line="23" selection-start-column="47" selection-end-line="23" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -490,24 +506,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/controllers/ProjectInfoController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="404">
-          <caret line="35" column="52" lean-forward="true" selection-start-line="35" selection-start-column="52" selection-end-line="35" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/DatabaseLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="55" selection-start-line="55" selection-end-line="55" />
+          <caret line="35" column="34" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
