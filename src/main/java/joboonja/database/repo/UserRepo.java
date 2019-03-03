@@ -37,4 +37,18 @@ public class UserRepo {
         }
         return null;
     }
+
+    public String getJsonList() {
+        String info = "[";
+        for (User u : users) {
+            char str = info.charAt(info.length() - 1);
+            if(str != ',' && str != '['){
+                info += ",";
+            }
+            info += "{\"id\":\"" + u.getUsername() + "\",\"name\":\"" + u.getName()
+                    + "\",\"jobTitle\":" + u.getJobTitle() + "}";
+        }
+        info += "]";
+        return info;
+    }
 }

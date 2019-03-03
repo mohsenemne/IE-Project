@@ -104,4 +104,8 @@ public class Database {
         User user = users.get(username);
         return projects.getApplicableJsonList(user.getSkills());
     }
+
+    public String getUsersList() {
+        return users.getJsonList();
+    }
 }

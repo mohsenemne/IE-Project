@@ -35,4 +35,10 @@ public class User {
 
         return info;
     }
+
+    public String getName() {
+        return firstName + " " + lastName;
+    }
+
+    public String getJobTitle() { return jobTitle; }
 }
