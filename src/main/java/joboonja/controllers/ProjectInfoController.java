@@ -2,6 +2,7 @@ package joboonja.controllers;
 
 
 import joboonja.database.Database;
+import joboonja.database.model.Project;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -22,18 +23,15 @@ public class ProjectInfoController extends HttpServlet {
         String projectID = tokenizer.nextToken();
 
         Database db = Database.getInstance();
-        String projectInfo = db.getProjectInfo(projectID);
+        Project project = db.getProject(projectID);
 
-        if(projectInfo == null)
+        boolean enableBid = db.hasBidded("1", projectID);
+
+        if(project == null)
             request.getRequestDispatcher("pageNotFound.jsp").forward(request, response);
         else{
-            JSONObject jo = null;
-            try {
-                jo = (JSONObject) new JSONParser().parse(projectInfo);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            request.setAttribute("projectInfo", jo);
+            request.setAttribute("projectInfo", project);
+            request.setAttribute("enableBid", enableBid);
             request.getRequestDispatcher("projectInfo.jsp").forward(request, response);
         }
     }

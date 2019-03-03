@@ -39,19 +39,13 @@ public class ProjectRepo {
         return null;
     }
 
-    public String getApplicableJsonList(List<Skill> skills) {
-        String info = "[";
+    public List<Project> getApplicables(List<Skill> skills) {
+        List<Project> applicables = new ArrayList<>();
         for (Project p : projects) {
             if(p.skillsPointCalc(skills) < 0)
                 continue;
-            char str = info.charAt(info.length() - 1);
-            if(str != ',' && str != '['){
-                info += ",";
-            }
-            info += "{\"id\":\"" + p.getID() + "\",\"title\":\"" + p.getTitle()
-                    + "\",\"budget\":" + p.getBudget() + "}";
+            applicables.add(p);
         }
-        info += "]";
-        return info;
+        return applicables;
     }
 }

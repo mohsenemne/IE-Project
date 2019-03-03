@@ -1,6 +1,7 @@
 package joboonja.controllers;
 
 import joboonja.database.Database;
+import joboonja.database.model.User;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -21,20 +22,13 @@ public class UserInfoController extends HttpServlet {
         String userID = tokenizer.nextToken();
 
         Database db = Database.getInstance();
-        String userInfo = db.getUserInfo(userID);
+        User user= db.getUser(userID);
 
-        if(userInfo == null)
+        if(user == null)
             request.getRequestDispatcher("pageNotFound.jsp").forward(request, response);
         else{
-            JSONObject jo = null;
-            try {
-                jo = (JSONObject) new JSONParser().parse(userInfo);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            request.setAttribute("userInfo", jo);
+            request.setAttribute("userInfo", user);
             request.getRequestDispatcher("userInfo.jsp").forward(request, response);
         }
     }
-
 }

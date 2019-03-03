@@ -86,26 +86,27 @@ public class Database {
         return skills.add(skillName);
     }
 
-    public String getUserInfo(String username) {
-        User user = users.get(username);
-        if (user == null)
-            return null;
-        return user.getJsonInfo();
+    public User getUser(String username) {
+        return users.get(username);
     }
 
-    public String getProjectInfo(String projectID) {
+    public Project getProject(String projectID) {
+        return projects.get(projectID);
+    }
+
+    public List<Project> getApplicableProjects(String username) {
+        User user = users.get(username);
+        return projects.getApplicables(user.getSkills());
+    }
+
+    public List<User> getUsersList() {
+        return users.getList();
+    }
+
+    public boolean hasBidded(String username, String projectID) {
+        User user = users.get(username);
         Project project = projects.get(projectID);
-        if (project == null)
-            return null;
-        return project.getJsonInfo();
-    }
 
-    public String getApplicableProjectsList(String username) {
-        User user = users.get(username);
-        return projects.getApplicableJsonList(user.getSkills());
-    }
-
-    public String getUsersList() {
-        return users.getJsonList();
+        return bids.hasBidded(user, project);
     }
 }
