@@ -1,11 +1,8 @@
 package joboonja.controllers;
 
 
-import joboonja.database.Database;
-import joboonja.database.model.Project;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import joboonja.domain.Database;
+import joboonja.domain.model.Project;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,16 +20,20 @@ public class ProjectInfoController extends HttpServlet {
         String projectID = tokenizer.nextToken();
 
         Database db = Database.getInstance();
-        Project project = db.getProject(projectID);
+        Project project = tokenizer.hasMoreTokens() ? null : db.getProject(projectID);
 
-        boolean enableBid = db.hasBidded("1", projectID);
+        boolean enableBid = !db.hasBidded("1", projectID);
 
         if(project == null)
             request.getRequestDispatcher("pageNotFound.jsp").forward(request, response);
         else{
             request.setAttribute("projectInfo", project);
             request.setAttribute("enableBid", enableBid);
-            request.getRequestDispatcher("projectInfo.jsp").forward(request, response);
+            request.getRequestDispatcher("/projectInfo.jsp").forward(request, response);
         }
+    }
+
+    public void doPost(HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("Sdfg");
     }
 }

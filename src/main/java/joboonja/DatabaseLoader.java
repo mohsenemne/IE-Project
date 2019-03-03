@@ -1,6 +1,6 @@
 package joboonja;
 
-import joboonja.database.Database;
+import joboonja.domain.Database;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -12,10 +12,12 @@ import org.json.simple.parser.ParseException;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+@WebListener
 public class DatabaseLoader implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
@@ -89,7 +91,6 @@ public class DatabaseLoader implements ServletContextListener {
 
     private static void loadProjects(CloseableHttpClient client, Database db) throws ParseException, IOException {
         String jsonString = getRequestTo("http://142.93.134.194:8000/joboonja/project", client);
-
         JSONArray ja = (JSONArray) new JSONParser().parse(jsonString);
         for (Object o : ja) {
             db.addProject((JSONObject)o);

@@ -1,10 +1,7 @@
 package joboonja.controllers;
 
-import joboonja.database.Database;
-import joboonja.database.model.Project;
-import org.json.simple.JSONArray;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import joboonja.domain.Database;
+import joboonja.domain.model.Project;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,9 +15,8 @@ import java.util.List;
 public class ProjectsListController extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         Database db = Database.getInstance();
-        List<Project> apllicableProjects = db.getApplicableProjects("1");
-
-        request.setAttribute("projectsList", apllicableProjects);
+        List<Project> applicableProjects = db.getApplicableProjects("1");
+        request.setAttribute("projectsList", applicableProjects);
         request.getRequestDispatcher("projectsList.jsp").forward(request, response);
     }
 }

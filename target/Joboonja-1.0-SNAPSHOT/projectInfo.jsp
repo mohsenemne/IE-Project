@@ -27,9 +27,10 @@
         </ul>
 
         <c:if test="${requestScope.enableBid}">
-            <form action="/project/${requestScope.projectInfo.getID()}" method="POST">
+            <form action="/project/" method="POST">
                 <label for="bidAmount">Bid Amount:</label>
                 <input type="number" name="bidAmount">
+
                 <button>Submit</button>
             </form>
         </c:if>

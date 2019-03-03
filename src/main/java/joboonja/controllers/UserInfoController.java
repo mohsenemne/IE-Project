@@ -1,10 +1,7 @@
 package joboonja.controllers;
 
-import joboonja.database.Database;
-import joboonja.database.model.User;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import joboonja.domain.Database;
+import joboonja.domain.model.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
