@@ -102,7 +102,7 @@ public class DatabaseLoader implements ServletContextListener {
 
         JSONArray ja = (JSONArray) new JSONParser().parse(jsonString);
         for (Object o : ja) {
-            db.addSkill((JSONObject)o);
+            db.addSkill((String) ((JSONObject)o).get("name"));
         }
     }
 

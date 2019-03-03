@@ -15,12 +15,14 @@ public class Database {
     private UserRepo users;
     private BidRepo bids;
     private SkillsRepo skills;
+    private EndorsementRepo endorsements;
 
     private Database(){
         projects = new ProjectRepo();
         users = new UserRepo();
         bids = new BidRepo();
         skills = new SkillsRepo();
+        endorsements = new EndorsementRepo();
     }
 
     public static Database getInstance()
@@ -81,8 +83,7 @@ public class Database {
         return 0;
     }
 
-    public int addSkill(JSONObject jo)  {
-        String skillName = (String) jo.get("name");
+    public int addSkill(String skillName)  {
         return skills.add(skillName);
     }
 
@@ -108,5 +109,25 @@ public class Database {
         Project project = projects.get(projectID);
 
         return bids.hasBidded(user, project);
+    }
+
+    public boolean hasEndorsed(User endorser, User target, String skill){
+        return endorsements.hasEndorsed(endorser, target, skill);
+    }
+
+    public void endorse(String endorser, String target, String skill){
+        endorsements.addEndorsment(users.get(endorser), users.get(target), skill);
+    }
+
+    public void deleteSkill(String skillName, String username){
+        users.get(username).deleteSkill(skillName);
+    }
+
+    public void addSkill(String skillName, String username){
+        users.get(username).addSkill(skillName);
+    }
+
+    public List<String> getSkills() {
+        return skills.getList();
     }
 }

@@ -22,10 +22,13 @@ public class User {
     public String getUsername() {
         return username;
     }
-
+    public String getFirstName() { return firstName; }
+    public String getLastName() { return lastName; }
+    public String getJobTitle() { return jobTitle; }
     public List<Skill> getSkills() {
         return skills;
     }
+    public String getBio() { return bio; }
 
     public String getJsonInfo() {
         String info = "{\"id\":\"" + username + "\",\"firstName\":\"" + firstName + "\",\"lastName\":\"" + lastName
@@ -40,5 +43,32 @@ public class User {
         return firstName + " " + lastName;
     }
 
-    public String getJobTitle() { return jobTitle; }
+    public void incPoint(String skill) {
+        for (Skill s : skills){
+            if (s.getName().equals(skill))
+                s.incPoint();
+        }
+    }
+
+    public void deleteSkill(String skillName) {
+        for (Skill s : skills) {
+            if(s.getName().equals(skillName)) {
+                skills.remove(s);
+                return;
+            }
+        }
+    }
+
+    public boolean hasSkill(String skillName){
+        for (Skill s : skills) {
+            if(s.getName().equals(skillName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void addSkill(String skillName){
+        skills.add(new Skill(skillName, 0));
+    }
 }

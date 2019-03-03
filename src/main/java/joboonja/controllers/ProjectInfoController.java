@@ -27,7 +27,7 @@ public class ProjectInfoController extends HttpServlet {
         if(project == null)
             request.getRequestDispatcher("pageNotFound.jsp").forward(request, response);
         else{
-            request.setAttribute("projectInfo", project);
+            request.setAttribute("project", project);
             request.setAttribute("enableBid", enableBid);
             request.getRequestDispatcher("/projectInfo.jsp").forward(request, response);
         }

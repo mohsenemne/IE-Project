@@ -15,9 +15,9 @@ public class Skill {
         this.points = points;
     }
 
-    String getName() { return name; }
+    public String getName() { return name; }
 
-    int getPoints() {
+    public int getPoints() {
         return points ;
     }
 
@@ -43,5 +43,9 @@ public class Skill {
         info += "]";
 
         return info;
+    }
+
+    public void incPoint() {
+        points++;
     }
 }
