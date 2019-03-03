@@ -1,4 +1,4 @@
-package joboonja.server.service;
+package joboonja.controllers;
 
 import joboonja.database.Database;
 import org.json.simple.JSONArray;
@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 @WebServlet("/project")
 public class ProjectsListController extends HttpServlet {

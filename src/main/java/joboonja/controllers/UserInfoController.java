@@ -1,5 +1,4 @@
-package joboonja.server.service;
-
+package joboonja.controllers;
 
 import joboonja.database.Database;
 import org.json.simple.JSONObject;
@@ -7,35 +6,35 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
-@WebServlet("/project/*")
-public class ProjectInfoController extends HttpServlet {
+@WebServlet("/user/*")
+public class UserInfoController extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         StringTokenizer tokenizer = new StringTokenizer(request.getRequestURI(), "/");
         String context = tokenizer.nextToken();
         String id = tokenizer.nextToken();
 
         Database db = Database.getInstance();
-        String projectInfo = db.getProjectInfo(id);
+        String userInfo = db.getUserInfo(id);
 
-        if(projectInfo == null)
+        if(userInfo == null)
             request.getRequestDispatcher("pageNotFound.jsp").forward(request, response);
         else{
             JSONObject jo = null;
             try {
-                jo = (JSONObject) new JSONParser().parse(projectInfo);
+                jo = (JSONObject) new JSONParser().parse(userInfo);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            request.setAttribute("projectInfo", jo);
-            request.getRequestDispatcher("projectInfo.jsp").forward(request, response);
+            request.setAttribute("userInfo", jo);
+            request.getRequestDispatcher("userInfo.jsp").forward(request, response);
         }
     }
+
 }

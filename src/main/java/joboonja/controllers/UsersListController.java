@@ -1,4 +1,4 @@
-package joboonja.server.service;
+package joboonja.controllers;
 
 import joboonja.database.Database;
 import org.json.simple.JSONArray;
