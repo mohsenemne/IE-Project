@@ -34,11 +34,13 @@
                 <th>Role</th>
             </tr>
             <c:forEach items="${requestScope.usersList}" var="user">
-                <tr>
-                    <td>${user.getUsername()}</td>
-                    <td>${user.getName()}</td>
-                    <td>${user.getJobTitle()}</td>
-                </tr>
+                <c:if test = "${user.getUsername() != '1'}">
+                    <tr>
+                        <td>${user.getUsername()}</td>
+                        <td>${user.getName()}</td>
+                        <td>${user.getJobTitle()}</td>
+                    </tr>
+                </c:if>
             </c:forEach>
             </tbody>
         </table>

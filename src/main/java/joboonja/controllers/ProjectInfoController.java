@@ -3,6 +3,8 @@ package joboonja.controllers;
 
 import joboonja.domain.Database;
 import joboonja.domain.model.Project;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,12 +17,10 @@ import java.util.StringTokenizer;
 @WebServlet("/project/*")
 public class ProjectInfoController extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        StringTokenizer tokenizer = new StringTokenizer(request.getRequestURI(), "/");
-        String context = tokenizer.nextToken();
-        String projectID = tokenizer.nextToken();
+        String projectID = extractProjectID(request);
 
         Database db = Database.getInstance();
-        Project project = tokenizer.hasMoreTokens() ? null : db.getProject(projectID);
+        Project project = db.getProject(projectID);
 
         boolean enableBid = !db.hasBidded("1", projectID);
 
@@ -33,7 +33,30 @@ public class ProjectInfoController extends HttpServlet {
         }
     }
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response) {
-        System.out.println("Sdfg");
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String projectID = extractProjectID(request);
+        int bidAmount = Integer.parseInt(request.getParameter("bidAmount"));
+
+        JSONObject bid = new JSONObject();
+        bid.put("biddingUser", "1");
+        bid.put("projectID", projectID);
+        bid.put("bidAmount", new Long(bidAmount));
+
+        Database db = Database.getInstance();
+        try {
+            db.addBid(bid);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        response.sendRedirect(request.getRequestURI());
+    }
+
+    private String extractProjectID(HttpServletRequest request){
+        StringTokenizer tokenizer = new StringTokenizer(request.getRequestURI(), "/");
+        String context = tokenizer.nextToken();
+        String projectID = tokenizer.nextToken();
+
+        return tokenizer.hasMoreTokens() ? null : projectID;
     }
 }

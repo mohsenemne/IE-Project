@@ -1,5 +1,6 @@
 package joboonja.domain.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Project {
@@ -21,6 +22,7 @@ public class Project {
         this.requiredSkills = skills;
         this.budget = budget;
         this.deadline = deadline;
+        this.bids = new ArrayList<>();
     }
 
     public String getID() {

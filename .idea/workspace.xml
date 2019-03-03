@@ -7,54 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="88348723-0cd1-42d3-bc07-837edd2f8dc6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/javax_servlet_jstl_1_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/DatabaseLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/DatabaseLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/controllers/ProjectInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/controllers/ProjectInfoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/controllers/ProjectsListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/controllers/ProjectsListController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/controllers/UserInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/controllers/UserInfoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/controllers/UsersListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/controllers/UsersListController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/database/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/domain/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/database/model/Bid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/domain/model/Bid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/database/model/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/domain/model/Project.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/database/model/Skill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/domain/model/Skill.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/database/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/domain/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/database/repo/BidRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/domain/repo/BidRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/database/repo/ProjectRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/domain/repo/ProjectRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/database/repo/SkillsRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/domain/repo/SkillsRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/database/repo/UserRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/domain/repo/UserRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/projectInfo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/projectInfo.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/projectsList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/projectsList.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/usersList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/usersList.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Joboonja-1.0-SNAPSHOT/WEB-INF/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Joboonja-1.0-SNAPSHOT/WEB-INF/classes/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Joboonja-1.0-SNAPSHOT/WEB-INF/classes/joboonja/database/Database.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Joboonja-1.0-SNAPSHOT/WEB-INF/classes/joboonja/database/model/Bid.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Joboonja-1.0-SNAPSHOT/WEB-INF/classes/joboonja/database/model/Project.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Joboonja-1.0-SNAPSHOT/WEB-INF/classes/joboonja/database/model/Skill.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Joboonja-1.0-SNAPSHOT/WEB-INF/classes/joboonja/database/model/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Joboonja-1.0-SNAPSHOT/WEB-INF/classes/joboonja/database/repo/BidRepo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Joboonja-1.0-SNAPSHOT/WEB-INF/classes/joboonja/database/repo/ProjectRepo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Joboonja-1.0-SNAPSHOT/WEB-INF/classes/joboonja/database/repo/SkillsRepo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Joboonja-1.0-SNAPSHOT/WEB-INF/classes/joboonja/database/repo/UserRepo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Joboonja-1.0-SNAPSHOT/WEB-INF/classes/joboonja/server/service/ProjectInfoController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Joboonja-1.0-SNAPSHOT/WEB-INF/classes/joboonja/server/service/ProjectsListController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Joboonja-1.0-SNAPSHOT/WEB-INF/classes/joboonja/server/service/UserInfoController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Joboonja-1.0-SNAPSHOT/WEB-INF/classes/joboonja/server/service/UsersListController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/database/Database.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/database/model/Bid.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/database/model/Project.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/database/model/Skill.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/database/model/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/database/repo/BidRepo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/database/repo/ProjectRepo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/database/repo/SkillsRepo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/database/repo/UserRepo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/server/service/ProjectInfoController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/server/service/ProjectsListController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/server/service/UserInfoController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/server/service/UsersListController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/domain/model/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/domain/model/Project.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -66,13 +20,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/controllers/UsersListController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/domain/Database.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="24" selection-start-line="24" selection-end-line="24" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="427">
+              <caret line="78" column="26" selection-start-line="78" selection-start-column="20" selection-end-line="78" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -93,7 +44,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/webapp/projectInfo.jsp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="405">
-              <caret line="31" column="54" selection-start-line="31" selection-start-column="54" selection-end-line="31" selection-end-column="54" />
+              <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
               <folding>
                 <element signature="n#style#0;n#img#0;n#li#3;n#ul#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -101,11 +52,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/domain/model/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="451">
-              <caret line="42" column="50" selection-start-line="42" selection-start-column="50" selection-end-line="42" selection-end-column="50" />
+            <state relative-caret-position="286">
+              <caret line="29" column="4" lean-forward="true" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -113,8 +64,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/domain/model/Project.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="32" column="29" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="29" />
+            <state relative-caret-position="282">
+              <caret line="24" column="38" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -128,15 +82,13 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/controllers/ProjectInfoController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="457">
-              <caret line="36" column="35" lean-forward="true" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="35" />
+            <state relative-caret-position="411">
+              <caret line="50" column="8" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1402#1403#0" expanded="true" />
-                <element signature="e#1423#1424#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -218,11 +170,11 @@
         <option value="$PROJECT_DIR$/src/main/java/joboonja/DatabaseLoader.java" />
         <option value="$PROJECT_DIR$/src/main/java/joboonja/controllers/ProjectsListController.java" />
         <option value="$PROJECT_DIR$/src/main/java/joboonja/domain/repo/ProjectRepo.java" />
-        <option value="$PROJECT_DIR$/src/main/java/joboonja/domain/model/Project.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/projectsList.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/usersList.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/joboonja/controllers/ProjectInfoController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/projectInfo.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/joboonja/domain/model/Project.java" />
+        <option value="$PROJECT_DIR$/src/main/java/joboonja/controllers/ProjectInfoController.java" />
       </list>
     </option>
   </component>
@@ -442,18 +394,18 @@
       <updated>1551525656894</updated>
       <workItem from="1551525658077" duration="5526000" />
       <workItem from="1551615932921" duration="5295000" />
-      <workItem from="1551639678155" duration="2721000" />
+      <workItem from="1551639678155" duration="4333000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22272000" />
+    <option name="totallyTimeSpent" value="23884000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20886981" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20886981" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -463,7 +415,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32891566" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32048193" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32048193" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -561,13 +513,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/domain/Database.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1320">
-          <caret line="98" column="23" selection-start-line="98" selection-start-column="15" selection-end-line="98" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/domain/repo/ProjectRepo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
@@ -619,13 +564,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/domain/model/Project.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="32" column="29" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/projectsList.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="482">
@@ -633,32 +571,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/controllers/ProjectInfoController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/domain/model/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
-          <caret line="36" column="35" lean-forward="true" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1402#1403#0" expanded="true" />
-            <element signature="e#1423#1424#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="286">
+          <caret line="29" column="4" lean-forward="true" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/projectInfo.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
-          <caret line="31" column="54" selection-start-line="31" selection-start-column="54" selection-end-line="31" selection-end-column="54" />
+          <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
           <folding>
             <element signature="n#style#0;n#img#0;n#li#3;n#ul#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/domain/model/User.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/domain/Database.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="42" column="50" selection-start-line="42" selection-start-column="50" selection-end-line="42" selection-end-column="50" />
+        <state relative-caret-position="427">
+          <caret line="78" column="26" selection-start-line="78" selection-start-column="20" selection-end-line="78" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/domain/model/Project.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="24" column="38" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/controllers/ProjectInfoController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="411">
+          <caret line="50" column="8" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
