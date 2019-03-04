@@ -63,7 +63,9 @@ public class UserInfoController extends HttpServlet {
     private void addSkill(HttpServletRequest request, HttpServletResponse response) {
         String userID = extractUserID(request);
         String skillName = request.getParameter("skills");
-        System.out.println(skillName);
+
+        if(skillName == null)
+            return;
 
         Database.getInstance().addSkill(skillName, userID);
     }
