@@ -1,9 +1,7 @@
-package joboonja.controllers;
+package joboonja.service;
 
 import joboonja.domain.Database;
 import joboonja.domain.model.User;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.ParseException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +12,7 @@ import java.io.IOException;
 import java.util.StringTokenizer;
 
 @WebServlet("/user/*")
-public class UserInfoController extends HttpServlet {
+public class UserInfo extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String userID = extractUserID(request);
 

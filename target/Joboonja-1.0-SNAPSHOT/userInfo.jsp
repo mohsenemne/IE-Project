@@ -58,7 +58,7 @@
             <form action="/user/${requestScope.user.getUsername()}" method="POST">
                 <input type="hidden" name="action" value="addSkill"/>
                 <select name="skills">
-                    <c:forEach items="$${db.getSkills()}" var="skill">
+                    <c:forEach items="${db.getSkills()}" var="skill">
                         <c:if test="${!requestScope.visitor.hasSkill(skill)}">
                             <option value="${skill}">${skill}</option>
                         </c:if>

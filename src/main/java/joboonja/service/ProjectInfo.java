@@ -1,4 +1,4 @@
-package joboonja.controllers;
+package joboonja.service;
 
 
 import joboonja.domain.Database;
@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.StringTokenizer;
 
 @WebServlet("/project/*")
-public class ProjectInfoController extends HttpServlet {
+public class ProjectInfo extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String projectID = extractProjectID(request);
 

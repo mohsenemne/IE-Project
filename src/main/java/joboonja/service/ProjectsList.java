@@ -1,4 +1,4 @@
-package joboonja.controllers;
+package joboonja.service;
 
 import joboonja.domain.Database;
 import joboonja.domain.model.Project;
@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/project")
-public class ProjectsListController extends HttpServlet {
+public class ProjectsList extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         Database db = Database.getInstance();
         List<Project> applicableProjects = db.getApplicableProjects("1");

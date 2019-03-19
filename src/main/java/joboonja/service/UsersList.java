@@ -1,4 +1,4 @@
-package joboonja.controllers;
+package joboonja.service;
 
 import joboonja.domain.Database;
 import joboonja.domain.model.User;
@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/user")
-public class UsersListController extends HttpServlet {
+public class UsersList extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Database db = Database.getInstance();
         List<User> users = db.getUsersList();

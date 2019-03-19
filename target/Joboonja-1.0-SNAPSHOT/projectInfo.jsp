@@ -19,7 +19,7 @@
     <body>
         <ul>
             <li>id: ${requestScope.project.getID()}</li>
-            <li>title: ${requestScope.project.getID()}</li>
+            <li>title: ${requestScope.project.getTitle()}</li>
             <li>description: ${requestScope.project.getDescription()}</li>
             <li>imageUrl: <img src="${requestScope.project.getImageURL()}" style="width: 50px; height: 50px;"></li>
             <li>budget: ${requestScope.project.getBudget()}</li>
