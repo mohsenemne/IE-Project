@@ -30,7 +30,7 @@ public class UserInfo extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String action = request.getParameter("action");
-        
+
         System.out.println(action);
         boolean success = false;
         if (action.equals("delete")){

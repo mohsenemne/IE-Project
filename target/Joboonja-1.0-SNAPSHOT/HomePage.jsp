@@ -21,7 +21,7 @@
                     document.getElementById("GET").innerHTML = "<h4>" + this.status + "</h4>";
                 }
             };
-            xhttp.open("GET", "/project?applicantUser=4", true);
+            xhttp.open("GET", "/project?applicantUser=1", true);
             xhttp.send();
         }
 
@@ -32,10 +32,11 @@
                     document.getElementById("POST").innerHTML = "<h4>" + this.status + "</h4>";
                 }
             };
-            var params = new FormData();
-            params.append('action', 'addSkill');
-            params.append('skill', 'C++');
+            var params = "action=addSkill&skill=C++";
             xhttp.open("POST", "/user/1", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.setRequestHeader("Content-length", params.length);
+            xhttp.setRequestHeader("Connection", "close");
             xhttp.send(params);
         }
 
