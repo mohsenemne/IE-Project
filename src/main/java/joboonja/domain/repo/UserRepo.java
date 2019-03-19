@@ -1,5 +1,6 @@
 package joboonja.domain.repo;
 
+import joboonja.domain.model.Skill;
 import joboonja.domain.model.User;
 
 import java.util.ArrayList;

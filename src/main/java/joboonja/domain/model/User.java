@@ -1,5 +1,7 @@
 package joboonja.domain.model;
 
+import org.json.simple.JSONObject;
+
 import java.util.List;
 
 public class User {
@@ -30,14 +32,6 @@ public class User {
     }
     public String getBio() { return bio; }
 
-    public String getJsonInfo() {
-        String info = "{\"id\":\"" + username + "\",\"firstName\":\"" + firstName + "\",\"lastName\":\"" + lastName
-                + "\",\"jobTitle\":\"" + jobTitle + "\",\"skills\":";
-        info += Skill.getJsonInfo(skills);
-        info += ",\"bio\":\"" + bio + "\"}";
-
-        return info;
-    }
 
     public String getName() {
         return firstName + " " + lastName;
@@ -50,13 +44,14 @@ public class User {
         }
     }
 
-    public void deleteSkill(String skillName) {
+    public boolean deleteSkill(String skillName) {
         for (Skill s : skills) {
             if(s.getName().equals(skillName)) {
                 skills.remove(s);
-                return;
+                return true;
             }
         }
+        return false;
     }
 
     public boolean hasSkill(String skillName){
@@ -68,7 +63,33 @@ public class User {
         return false;
     }
 
-    public void addSkill(String skillName){
+    public boolean addSkill(String skillName){
+        if (hasSkill(skillName))
+            return false;
+
         skills.add(new Skill(skillName, 0));
+        return true;
+    }
+
+    public String toJSONString() {
+        String info = "{\"id\":\"" + username + "\",\"firstName\":\"" + firstName + "\",\"lastName\":\"" + lastName
+                + "\",\"jobTitle\":\"" + jobTitle + "\",\"skills\":";
+        info += Skill.getJsonInfo(skills);
+        info += ",\"bio\":\"" + bio + "\"}";
+
+        return info;
+    }
+
+    static public String toJSONString(List<User> users) {
+        String info = "[";
+        for (int i = 0; i < users.size(); i++) {
+            User u = users.get(i);
+            info += "{\"id\":\"" + u.getUsername() + "\",\"name\":\"" + u.getName() + "\",\"jobTitle\":\"" + u.getJobTitle() +  "\"}";
+            if (i != users.size() - 1)
+                info += ",";
+        }
+        info += "]";
+
+        return info;
     }
 }

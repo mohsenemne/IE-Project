@@ -85,12 +85,25 @@ public class Project {
         return skillsPoint + offerPoint;
     }
 
-    public String getJsonInfo() {
+    public String toJSONString() {
         String info = "{\"id\":\"" + id + "\",\"title\":\"" + title+ "\",\"description\":\"" + description
                 + "\",\"imageUrl\":\"" + imageURL + "\",\"budget\":\"" + budget + "\",\"deadline\":\"" + deadline
                 + "\",\"skills\":";
         info += Skill.getJsonInfo(requiredSkills);
         info += "}";
+
+        return info;
+    }
+
+    public static String toJSONString(List<Project> projects) {
+        String info = "[";
+        for (int i = 0; i < projects.size(); i++) {
+            Project p = projects.get(i);
+            info += "{\"id\":\"" + p.getID() + "\",\"title\":\"" + p.getTitle() + "\",\"budget\":" + p.getBudget() +  "}";
+            if (i != projects.size() - 1)
+                info += ",";
+        }
+        info += "]";
 
         return info;
     }

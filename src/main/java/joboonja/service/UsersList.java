@@ -13,12 +13,11 @@ import java.util.List;
 
 @WebServlet("/user")
 public class UsersList extends HttpServlet {
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Database db = Database.getInstance();
-        List<User> users = db.getUsersList();
 
-        request.setAttribute("usersList", users);
-        request.getRequestDispatcher("usersList.jsp").forward(request, response);
+        response.setStatus(200);
+        response.getWriter().println(User.toJSONString(db.getUsersList()));
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{

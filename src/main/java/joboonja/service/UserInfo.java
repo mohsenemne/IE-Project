@@ -13,61 +13,63 @@ import java.util.StringTokenizer;
 
 @WebServlet("/user/*")
 public class UserInfo extends HttpServlet {
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String userID = extractUserID(request);
 
         Database db = Database.getInstance();
         User user= db.getUser(userID);
 
-        if(user == null)
-            request.getRequestDispatcher("pageNotFound.jsp").forward(request, response);
+        if(user == null) {
+            response.setStatus(404);
+        }
         else{
-            request.setAttribute("visitor", db.getUser("1"));
-            request.setAttribute("user", user);
-            request.getRequestDispatcher("/userInfo.jsp").forward(request, response);
+            response.setStatus(200);
+            response.getWriter().println(user.toJSONString());
         }
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String action = request.getParameter("action");
 
+        boolean success = false;
         if (action.equals("delete")){
-            deleteSkill(request, response);
+            success = deleteSkill(request);
         }
         else if(action.equals("endorse")){
-            endorseSkill(request, response);
+            success = endorseSkill(request);
         }
         else if(action.equals("addSkill")){
-            addSkill(request, response);
+            success = addSkill(request);
         }
 
-        response.sendRedirect(request.getRequestURI());
+        if (success)
+            response.setStatus(200);
+        else
+            response.setStatus(400);
     }
 
-
-    private void deleteSkill(HttpServletRequest request, HttpServletResponse response){
+    private boolean deleteSkill(HttpServletRequest request){
         String userID = extractUserID(request);
         String skillName = request.getParameter("skill");
-        Database.getInstance().deleteSkill(skillName, userID);
+        return Database.getInstance().deleteSkill(skillName, userID);
     }
 
-    private void endorseSkill(HttpServletRequest request, HttpServletResponse response) {
+    private boolean endorseSkill(HttpServletRequest request) {
         String userID = extractUserID(request);
         String skillName = request.getParameter("skill");
         String endorser = request.getParameter("endorser");
-        Database.getInstance().endorse(endorser, userID, skillName);
+        return Database.getInstance().endorse(endorser, userID, skillName);
     }
 
-    private void addSkill(HttpServletRequest request, HttpServletResponse response) {
+    private boolean addSkill(HttpServletRequest request) {
         String userID = extractUserID(request);
         String skillName = request.getParameter("skills");
 
         if(skillName == null)
-            return;
+            return false;
 
-        Database.getInstance().addSkill(skillName, userID);
+        return Database.getInstance().addSkill(skillName, userID);
     }
-
 
     private String extractUserID(HttpServletRequest request){
         StringTokenizer tokenizer = new StringTokenizer(request.getRequestURI(), "/");

@@ -15,8 +15,13 @@ import java.util.List;
 public class ProjectsList extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         Database db = Database.getInstance();
-        List<Project> applicableProjects = db.getApplicableProjects("1");
-        request.setAttribute("projectsList", applicableProjects);
-        request.getRequestDispatcher("projectsList.jsp").forward(request, response);
+
+        List<Project> projects = db.getApplicableProjects(request.getParameter("applicantUser"));
+        if(projects == null)
+            response.setStatus(400);
+        else{
+            response.setStatus(200);
+            response.getWriter().println(Project.toJSONString(projects));
+        }
     }
 }

@@ -62,21 +62,20 @@ public class Database {
         return 0;
     }
 
-    public int addBid(JSONObject jo) throws ParseException {
-        User biddingUser = users.get((String) jo.get("biddingUser"));
-        if(biddingUser == null)
+    public int addBid(String biddingUser, String projectID, int bidAmount) {
+        User user = users.get(biddingUser);
+        if(user == null)
             return -1;
 
-        Project project = projects.get((String) jo.get("projectID"));
+        Project project = projects.get(projectID);
         if(project == null)
             return -2;
 
-        int bidAmount = (int)(long)jo.get("bidAmount");
-        int points = project.bidPointsCalc(biddingUser, bidAmount);
+        int points = project.bidPointsCalc(user, bidAmount);
         if(points < 0)
             return points - 2;
 
-        Bid newBid = new Bid(biddingUser, project, bidAmount, points);
+        Bid newBid = new Bid(user, project, bidAmount, points);
         if(bids.add(newBid) == 0)
             project.addBid(newBid);
 
@@ -97,6 +96,8 @@ public class Database {
 
     public List<Project> getApplicableProjects(String username) {
         User user = users.get(username);
+        if(user == null)
+            return null;
         return projects.getApplicables(user.getSkills());
     }
 
@@ -115,16 +116,28 @@ public class Database {
         return endorsements.hasEndorsed(endorser, target, skill);
     }
 
-    public void endorse(String endorser, String target, String skill){
-        endorsements.addEndorsment(users.get(endorser), users.get(target), skill);
+    public boolean endorse(String endorser, String target, String skill){
+        User endrsr = users.get(endorser);
+        if (endrsr == null)
+            return false;
+        User trgt = users.get(target);
+        if (trgt == null)
+            return false;
+        return endorsements.addEndorsment(endrsr, trgt, skill);
     }
 
-    public void deleteSkill(String skillName, String username){
-        users.get(username).deleteSkill(skillName);
+    public boolean deleteSkill(String skillName, String username){
+        User u = users.get(username);
+        if (u == null)
+            return false;
+        return u.deleteSkill(skillName);
     }
 
-    public void addSkill(String skillName, String username){
-        users.get(username).addSkill(skillName);
+    public boolean addSkill(String skillName, String username){
+        User u = users.get(username);
+        if (u == null)
+            return false;
+        return u.addSkill(skillName);
     }
 
     public List<String> getSkills() {

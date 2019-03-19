@@ -13,9 +13,12 @@ public class EndorsementRepo {
         endorsements = new ArrayList<>();
     }
 
-    public void addEndorsment(User endorser, User target, String skill){
+    public boolean addEndorsment(User endorser, User target, String skill){
+        if(hasEndorsed(endorser, target, skill))
+            return false;
         endorsements.add(new Endorsement(endorser, target, skill));
         target.incPoint(skill);
+        return true;
     }
 
     public boolean hasEndorsed(User endorser, User target, String skill){

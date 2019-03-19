@@ -22,34 +22,29 @@ public class ProjectInfo extends HttpServlet {
         Database db = Database.getInstance();
         Project project = db.getProject(projectID);
 
-        boolean enableBid = !db.hasBidded("1", projectID);
-
         if(project == null)
-            request.getRequestDispatcher("pageNotFound.jsp").forward(request, response);
+            response.setStatus(404);
         else{
-            request.setAttribute("project", project);
-            request.setAttribute("enableBid", enableBid);
-            request.getRequestDispatcher("/projectInfo.jsp").forward(request, response);
+            response.setStatus(200);
+            response.getWriter().println(project.toJSONString());
         }
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String projectID = extractProjectID(request);
         int bidAmount = Integer.parseInt(request.getParameter("bidAmount"));
-
-        JSONObject bid = new JSONObject();
-        bid.put("biddingUser", "1");
-        bid.put("projectID", projectID);
-        bid.put("bidAmount", new Long(bidAmount));
+        String biddingUser = request.getParameter("applicantUser");
 
         Database db = Database.getInstance();
-        try {
-            db.addBid(bid);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
 
-        response.sendRedirect(request.getRequestURI());
+        int result = db.addBid(biddingUser, projectID, bidAmount);
+        if(result < 0)
+            if (result < -2)
+                response.setStatus(412);
+            else
+               response.setStatus(400);
+        else
+            response.setStatus(200);
     }
 
     private String extractProjectID(HttpServletRequest request){
