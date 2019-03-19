@@ -30,7 +30,8 @@ public class UserInfo extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String action = request.getParameter("action");
-
+        
+        System.out.println(action);
         boolean success = false;
         if (action.equals("delete")){
             success = deleteSkill(request);
@@ -63,7 +64,7 @@ public class UserInfo extends HttpServlet {
 
     private boolean addSkill(HttpServletRequest request) {
         String userID = extractUserID(request);
-        String skillName = request.getParameter("skills");
+        String skillName = request.getParameter("skill");
 
         if(skillName == null)
             return false;
