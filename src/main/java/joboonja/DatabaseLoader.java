@@ -17,10 +17,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-@WebListener
-public class DatabaseLoader implements ServletContextListener {
-    @Override
-    public void contextInitialized(ServletContextEvent servletContextEvent) {
+
+class DatabaseLoader {
+
+    static void contextInitialized() {
         Database db = Database.getInstance();
         try {
             loadData(db);
@@ -106,8 +106,6 @@ public class DatabaseLoader implements ServletContextListener {
         }
     }
 
-
-    @Override
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
 
     }
