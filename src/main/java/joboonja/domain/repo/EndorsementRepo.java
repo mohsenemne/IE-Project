@@ -28,4 +28,14 @@ public class EndorsementRepo {
         }
         return false;
     }
+
+    public List<Endorsement> getEndorsments(String endorser, String target) {
+        List<Endorsement> endorsements = new ArrayList<>();
+        for(Endorsement e: this.endorsements){
+            if(e.getEndorser().getUsername().equals(endorser) && e.getTarget().getUsername().equals(target)){
+                endorsements.add(e);
+            }
+        }
+        return endorsements;
+    }
 }

@@ -2,6 +2,7 @@ package joboonja.domain.repo;
 
 import joboonja.domain.model.Skill;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -18,7 +19,12 @@ public class SkillsRepo {
         return 0;
     }
 
-    public List<String> getList() {
+    public List<String> getList(List<String> userSkills) {
+        List<String> skills = new ArrayList<>();
+        for(String s: this.skills){
+            if(!userSkills.contains(s))
+                skills.add(s);
+        }
         return skills;
     }
 }

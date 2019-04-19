@@ -140,7 +140,16 @@ public class Database {
         return u.addSkill(skillName);
     }
 
-    public List<String> getSkills() {
-        return skills.getList();
+    public List<String> getSkills(String username) {
+        User u = users.get(username);
+        return skills.getList(Skill.getNames(u.getSkills()));
+    }
+
+    public List<Bid> getBids(String projectID) {
+        return bids.getBids(projectID);
+    }
+
+    public List<Endorsement> getEndorsments(String endorser, String target) {
+        return endorsements.getEndorsments(endorser, target);
     }
 }

@@ -1,12 +1,15 @@
 package joboonja.service;
 
 import joboonja.domain.Database;
+import joboonja.domain.model.Bid;
 import joboonja.domain.model.Project;
 
 import javax.servlet.ServletException;
+import java.io.Console;
 import java.io.IOException;
 import java.util.List;
 
+import joboonja.domain.repo.BidRepo;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -33,6 +36,7 @@ public class ProjectController {
         Database db = Database.getInstance();
         Project project = db.getProject(projectID);
 
+        System.out.println(project.toJSONString());
         if(project == null)
             return null ;
         else{
@@ -40,7 +44,20 @@ public class ProjectController {
         }
     }
 
-    @RequestMapping(value = "/{project_id}/bids", method = RequestMethod.POST)
+    @RequestMapping(value = "/{project_id}/bids", method = RequestMethod.GET)
+    public String getBids (@PathVariable(value = "project_id") String projectID) throws IOException {
+
+        Database db = Database.getInstance();
+        List<Bid> bids = db.getBids(projectID);
+
+        if(bids == null)
+            return null ;
+        else{
+            return Bid.toJSONString(bids) ;
+        }
+    }
+
+    @RequestMapping(value = "/{project_id}/bids", method = RequestMethod.PUT)
     public int addBid (@PathVariable(value = "project_id") String projectID,
                            @RequestParam("bidAmount") String BidAmount) throws IOException {
         int bidAmount = Integer.parseInt(BidAmount);

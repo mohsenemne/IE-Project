@@ -12,6 +12,16 @@ public class BidRepo {
 
     public BidRepo(){ bids = new ArrayList<>(); }
 
+    public List<Bid> getBids(String projectID) {
+        List<Bid> bids = new ArrayList<>();
+        for(Bid b: this.bids){
+            if(b.getProject().getID().equals(projectID)){
+                bids.add(b);
+            }
+        }
+        return bids;
+    }
+
     public int add(Bid newBid){
         for(Bid b: bids){
             if(b.getProject().equals(newBid.getProject()) && b.getBiddingUser().equals(newBid.getBiddingUser())){

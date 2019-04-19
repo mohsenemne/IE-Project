@@ -1,5 +1,7 @@
 package joboonja.domain.model;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -13,6 +15,21 @@ public class Skill {
     public Skill(String name, int points){
         this.name = name;
         this.points = points;
+    }
+
+    public static String toJSONString(List<String> skills) throws JsonProcessingException {
+        ObjectMapper Obj = new ObjectMapper();
+        String info = Obj.writeValueAsString(skills);
+
+        return info;
+    }
+
+    public static List<String> getNames(List<Skill> skills) {
+        List<String> skillNames = new ArrayList<>();
+        for(Skill s: skills){
+            skillNames.add(s.name);
+        }
+        return skillNames;
     }
 
     public String getName() { return name; }
@@ -31,18 +48,6 @@ public class Skill {
             skills.add(new Skill(skillName, skillPoints));
         }
         return skills;
-    }
-
-    public static String getJsonInfo(List<Skill> skills) {
-        String info = "[";
-        for (int i = 0; i < skills.size(); i++) {
-            info += "{\"name\":\"" + skills.get(i).getName() + "\",\"point\":" + skills.get(i).getPoints() + "}";
-            if (i != skills.size() - 1)
-                info += ",";
-        }
-        info += "]";
-
-        return info;
     }
 
     public void incPoint() {

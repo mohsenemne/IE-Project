@@ -30,7 +30,7 @@ class DatabaseLoader {
             e.printStackTrace();
         }
 
-        String userInfo = "{\"username\":\"1\",\"firstName\":\"علی\",\"lastName\":\"شریف‌زاده\",\"jobTitle\":\"برنامه‌نویس وب\","
+        String userInfo = "{\"username\":\"1\",\"firstName\":\"صادق\",\"lastName\":\"حایری\",\"jobTitle\":\"گیک\","
                 + "\"skills\":[{\"name\":\"HTML\",\"point\":5},{\"name\":\"Javascript\",\"point\"4},"
                 + "{\"name\":\"C++\",\"point\":2},{\"name\":\"Java\",\"point\":3}],\"bio\":"
                 + "\"" + "روی سنگ قبرم بنویسید: خدا بیامرز میخواست خیلی کارا بکنه ولی پول نداشت"
@@ -41,7 +41,7 @@ class DatabaseLoader {
             e.printStackTrace();
         }
 
-        userInfo = "{\"username\":\"2\",\"firstName\":\"غلام\",\"lastName\":\"قره‌گوزلو\",\"jobTitle\":\"حمال\","
+        userInfo = "{\"username\":\"2\",\"firstName\":\"محمدرضا\",\"lastName\":\"کیانی\",\"jobTitle\":\"چیف تی‌ای\","
                 + "\"skills\":[{\"name\":\"Django\",\"point\":2},{\"name\":\"CSS\",\"point\"4},"
                 + "{\"name\":\"Python\",\"point\":5}],\"bio\":\""
                 + "پرواز را به خاطر بسپار؛ پرنده مردنی است."
@@ -52,7 +52,7 @@ class DatabaseLoader {
             e.printStackTrace();
         }
 
-        userInfo = "{\"username\":\"3\",\"firstName\":\"قمری\",\"lastName\":\"سنجاب‌پوش\",\"jobTitle\":\"مهندس نرم‌افزار\","
+        userInfo = "{\"username\":\"3\",\"firstName\":\"آبتین\",\"lastName\":\"باطنی\",\"jobTitle\":\"توسعه‌دهنده‌ی فرانت‌اند\","
                 + "\"skills\":[{\"name\":\"Java\",\"point\":4},{\"name\":\"Javascript\",\"point\"2},"
                 + "{\"name\":\"React\",\"point\":3},{\"name\":\"Node.js\",\"point\":6},{\"name\":\"Linux\",\"point\":8}],\"bio\":"
                 + "\"" + "خوشش بیاد خودش میاد، منت نکش."

@@ -1,10 +1,13 @@
 package joboonja.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import joboonja.domain.Database;
+import joboonja.domain.model.Endorsement;
+import joboonja.domain.model.Skill;
 import joboonja.domain.model.User;
 
-import javax.servlet.ServletException;
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.web.bind.annotation.*;
 
@@ -36,6 +39,20 @@ public class UserController {
 
         return Database.getInstance().deleteSkill(skillName, userID);
     }
+
+
+    @RequestMapping(value = "/{user_id}/skills/endorsments", method = RequestMethod.GET)
+    public String getEndorsments (@PathVariable(value = "user_id") String target) throws JsonProcessingException {
+        String endorser = "1";
+        if(endorser.equals(target)){
+            return null;
+        }
+
+        Database db = Database.getInstance();
+        List<Endorsement> endorsements = db.getEndorsments(endorser, target);
+        return Skill.toJSONString(Endorsement.getSkillNames(endorsements));
+    }
+
 
     @RequestMapping(value = "/{user_id}/skills", method = RequestMethod.PUT)
     public Boolean addUserSkill (@PathVariable(value = "user_id") String userID, @RequestParam("skill") String skillName) {
