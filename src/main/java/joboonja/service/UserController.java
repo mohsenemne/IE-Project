@@ -14,7 +14,7 @@ import java.util.StringTokenizer;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
@@ -42,14 +42,14 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "/{user_id}/delete_skill", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{user_id}/skills", method = RequestMethod.DELETE)
     public Boolean deleteUserSkill (@PathVariable(value = "user_id") String userID, @RequestParam("skill") String skillName)
             throws IOException {
 
         return Database.getInstance().deleteSkill(skillName, userID);
     }
 
-    @RequestMapping(value = "/{user_id}/add_skill", method = RequestMethod.POST)
+    @RequestMapping(value = "/{user_id}/skills", method = RequestMethod.PUT)
     public Boolean addUserSkill (@PathVariable(value = "user_id") String userID, @RequestParam("skill") String skillName)
         throws IOException {
 
@@ -59,7 +59,7 @@ public class UserController {
         return Database.getInstance().addSkill(skillName, userID);
     }
 
-    @RequestMapping(value = "/{user_id}/endorse_skill", method = RequestMethod.POST)
+    @RequestMapping(value = "/{user_id}/skills/endorsements", method = RequestMethod.POST)
     public Boolean endorseUserSkill (@PathVariable(value = "user_id") String userID, @RequestParam("endorser") String endorser,
                                      @RequestParam("skill") String skillName) throws IOException {
         return Database.getInstance().endorse(endorser, userID, skillName);

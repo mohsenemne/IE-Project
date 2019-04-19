@@ -1,6 +1,5 @@
 package joboonja.domain.model;
 
-import org.json.simple.JSONObject;
 
 import java.util.List;
 
@@ -72,6 +71,16 @@ public class User {
     }
 
     public String toJSONString() {
+//        JSONObject JSONInfo = new JSONObject();
+//        JSONInfo.put("id", username);
+//        JSONInfo.put("firstName", firstName);
+//        JSONInfo.put("lastName", lastName);
+//        JSONInfo.put("jobTitle", jobTitle);
+//        JSONInfo.put("skills", Skill.getJsonInfo(skills));
+//        JSONInfo.put("bio", bio);
+//        return JSONInfo.toString() ;
+//
+
         String info = "{\"id\":\"" + username + "\",\"firstName\":\"" + firstName + "\",\"lastName\":\"" + lastName
                 + "\",\"jobTitle\":\"" + jobTitle + "\",\"skills\":";
         info += Skill.getJsonInfo(skills);

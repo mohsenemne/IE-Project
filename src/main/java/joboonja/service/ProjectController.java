@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/project")
+@RequestMapping("/projects")
 public class ProjectController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String getListOfProjects () throws ServletException, IOException {
@@ -51,7 +51,7 @@ public class ProjectController {
         }
     }
 
-    @RequestMapping(value = "/{project_id}/add_bid", method = RequestMethod.POST)
+    @RequestMapping(value = "/{project_id}/bids", method = RequestMethod.POST)
     public int addBid (@PathVariable(value = "project_id") String projectID,
                            @RequestParam("bidAmount") String BidAmount) throws IOException {
         int bidAmount = Integer.parseInt(BidAmount);

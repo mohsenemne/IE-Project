@@ -99,7 +99,11 @@ public class Project {
         String info = "[";
         for (int i = 0; i < projects.size(); i++) {
             Project p = projects.get(i);
-            info += "{\"id\":\"" + p.getID() + "\",\"title\":\"" + p.getTitle() + "\",\"budget\":" + p.getBudget() +  "}";
+            info += "{\"id\":\"" + p.getID() + "\",\"title\":\"" + p.getTitle()+ "\",\"description\":\"" + p.getDescription()
+                    + "\",\"imageUrl\":\"" + p.getImageURL() + "\",\"budget\":\"" + p.getBudget()+ "\",\"deadline\":\"" + p.getDeadline()
+                    + "\",\"skills\":";
+            info += Skill.getJsonInfo(p.getRequiredSkills());
+            info += "}";
             if (i != projects.size() - 1)
                 info += ",";
         }
