@@ -32,7 +32,7 @@ class DatabaseLoader {
 
         String userInfo = "{\"username\":\"1\",\"firstName\":\"صادق\",\"lastName\":\"حایری\",\"jobTitle\":\"گیک\","
                 + "\"skills\":[{\"name\":\"HTML\",\"point\":5},{\"name\":\"Javascript\",\"point\"4},"
-                + "{\"name\":\"C++\",\"point\":2},{\"name\":\"Java\",\"point\":3}],\"bio\":"
+                + "{\"name\":\"C\",\"point\":2},{\"name\":\"Java\",\"point\":3}],\"bio\":"
                 + "\"" + "روی سنگ قبرم بنویسید: خدا بیامرز میخواست خیلی کارا بکنه ولی پول نداشت"
                 + "\"}";
         try {

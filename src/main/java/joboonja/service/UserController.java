@@ -41,7 +41,7 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/{user_id}/skills/endorsments", method = RequestMethod.GET)
+    @RequestMapping(value = "/{user_id}/skills/endorsements", method = RequestMethod.GET)
     public String getEndorsments (@PathVariable(value = "user_id") String target) throws JsonProcessingException {
         String endorser = "1";
         if(endorser.equals(target)){
@@ -64,9 +64,10 @@ public class UserController {
     }
 
     @RequestMapping(value = "/{user_id}/skills/endorsements", method = RequestMethod.POST)
-    public Boolean endorseUserSkill (@PathVariable(value = "user_id") String userID, @RequestParam("endorser") String endorser,
+    public Boolean endorseUserSkill (@PathVariable(value = "user_id") String target,
                                      @RequestParam("skill") String skillName) {
-        return Database.getInstance().endorse(endorser, userID, skillName);
+        String endorser = "1";
+        return Database.getInstance().endorse(endorser, target, skillName);
     }
 }
 
