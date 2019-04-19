@@ -1,6 +1,9 @@
 package joboonja.domain.model;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.util.List;
 
 public class User {
@@ -70,34 +73,16 @@ public class User {
         return true;
     }
 
-    public String toJSONString() {
-//        JSONObject JSONInfo = new JSONObject();
-//        JSONInfo.put("id", username);
-//        JSONInfo.put("firstName", firstName);
-//        JSONInfo.put("lastName", lastName);
-//        JSONInfo.put("jobTitle", jobTitle);
-//        JSONInfo.put("skills", Skill.getJsonInfo(skills));
-//        JSONInfo.put("bio", bio);
-//        return JSONInfo.toString() ;
-//
-
-        String info = "{\"id\":\"" + username + "\",\"firstName\":\"" + firstName + "\",\"lastName\":\"" + lastName
-                + "\",\"jobTitle\":\"" + jobTitle + "\",\"skills\":";
-        info += Skill.getJsonInfo(skills);
-        info += ",\"bio\":\"" + bio + "\"}";
+    public String toJSONString() throws JsonProcessingException {
+        ObjectMapper Obj = new ObjectMapper();
+        String info = Obj.writeValueAsString(this);
 
         return info;
     }
 
-    static public String toJSONString(List<User> users) {
-        String info = "[";
-        for (int i = 0; i < users.size(); i++) {
-            User u = users.get(i);
-            info += "{\"id\":\"" + u.getUsername() + "\",\"name\":\"" + u.getName() + "\",\"jobTitle\":\"" + u.getJobTitle() +  "\"}";
-            if (i != users.size() - 1)
-                info += ",";
-        }
-        info += "]";
+    static public String toJSONString(List<User> users) throws JsonProcessingException {
+        ObjectMapper Obj = new ObjectMapper();
+        String info = Obj.writeValueAsString(users);
 
         return info;
     }

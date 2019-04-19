@@ -29,9 +29,19 @@ public class RestControllerRunner {
             return new WebMvcConfigurerAdapter() {
                 @Override
                 public void addCorsMappings(CorsRegistry registry) {
-                    registry.addMapping("/**").allowedMethods("GET, OPTIONS, HEAD, PUT, POST");
+                    registry.addMapping("/*").allowedOrigins("http://localhost:3000");
                 }
             };
         }
     }
 }
+
+//    @Bean
+//    public WebMvcConfigurer corsConfigurer() {
+//        return new WebMvcConfigurerAdapter() {
+//            @Override
+//            public void addCorsMappings(CorsRegistry registry) {
+//                registry.addMapping("/greeting-javaconfig").allowedOrigins("http://localhost:9000");
+//            }
+//        };
+//    }

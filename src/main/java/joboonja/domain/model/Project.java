@@ -1,5 +1,8 @@
 package joboonja.domain.model;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +11,7 @@ public class Project {
     private String title;
     private String description;
     private String imageURL;
-    private List<Skill> requiredSkills;
+    private List<Skill> skills;
     private List<Bid> bids;
     private int budget;
     private long deadline;
@@ -19,7 +22,7 @@ public class Project {
         this.title = title;
         this.description = description;
         this.imageURL = imageURL;
-        this.requiredSkills = skills;
+        this.skills = skills;
         this.budget = budget;
         this.deadline = deadline;
         this.bids = new ArrayList<>();
@@ -33,8 +36,8 @@ public class Project {
     }
     public String getDescription() { return description; }
     public String getImageURL() { return imageURL; }
-    public List<Skill> getRequiredSkills() {
-        return requiredSkills;
+    public List<Skill> getSkills() {
+        return skills;
     }
     public int getBudget() {
         return budget;
@@ -62,7 +65,7 @@ public class Project {
 
     public int skillsPointCalc(List<Skill> skills) {
         int result = 0;
-        for(Skill rs: requiredSkills){
+        for(Skill rs: this.skills){
             for(Skill s: skills){
                 if(rs.getName().equals(s.getName())){
                     if(rs.getPoints() > s.getPoints())
@@ -85,29 +88,16 @@ public class Project {
         return skillsPoint + offerPoint;
     }
 
-    public String toJSONString() {
-        String info = "{\"id\":\"" + id + "\",\"title\":\"" + title+ "\",\"description\":\"" + description
-                + "\",\"imageUrl\":\"" + imageURL + "\",\"budget\":\"" + budget + "\",\"deadline\":\"" + deadline
-                + "\",\"skills\":";
-        info += Skill.getJsonInfo(requiredSkills);
-        info += "}";
+    public String toJSONString() throws JsonProcessingException {
+        ObjectMapper Obj = new ObjectMapper();
+        String info = Obj.writeValueAsString(this);
 
         return info;
     }
 
-    public static String toJSONString(List<Project> projects) {
-        String info = "[";
-        for (int i = 0; i < projects.size(); i++) {
-            Project p = projects.get(i);
-            info += "{\"id\":\"" + p.getID() + "\",\"title\":\"" + p.getTitle()+ "\",\"description\":\"" + p.getDescription()
-                    + "\",\"imageUrl\":\"" + p.getImageURL() + "\",\"budget\":\"" + p.getBudget()+ "\",\"deadline\":\"" + p.getDeadline()
-                    + "\",\"skills\":";
-            info += Skill.getJsonInfo(p.getRequiredSkills());
-            info += "}";
-            if (i != projects.size() - 1)
-                info += ",";
-        }
-        info += "]";
+    public static String toJSONString(List<Project> projects) throws JsonProcessingException {
+        ObjectMapper Obj = new ObjectMapper();
+        String info = Obj.writeValueAsString(projects);
 
         return info;
     }
