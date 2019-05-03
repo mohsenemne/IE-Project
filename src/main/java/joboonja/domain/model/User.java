@@ -13,14 +13,17 @@ public class User {
     private String jobTitle;
     private List<Skill> skills;
     private String bio;
+    private String profilePictureURL ;
 
-    public User(String username, String firstName, String lastName, String jobTitle, List<Skill> skills, String bio){
+    public User(String username, String firstName, String lastName, String jobTitle, List<Skill> skills, String bio,
+                String profilePictureURL){
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.jobTitle = jobTitle;
         this.skills = skills;
         this.bio = bio;
+        this.profilePictureURL = profilePictureURL ;
     }
 
     public String getUsername() {
@@ -33,6 +36,7 @@ public class User {
         return skills;
     }
     public String getBio() { return bio; }
+    public String getProfilePictureURL() { return profilePictureURL; }
 
 
     public String getName() {

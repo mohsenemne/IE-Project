@@ -40,8 +40,9 @@ public class Database {
         String jobTitle = (String) jo.get("jobTitle");
         List<Skill> skills = Skill.parseSkills((JSONArray)jo.get("skills"));
         String bio = (String) jo.get("bio");
+        String profilePictureURL = (String) jo.get("profilePictureURL") ;
 
-        User newUser = new User(username, firstName, lastName, jobTitle, skills, bio);
+        User newUser = new User(username, firstName, lastName, jobTitle, skills, bio, profilePictureURL);
         if(users.add(newUser) < 0)
             return -1;
         return 0;
