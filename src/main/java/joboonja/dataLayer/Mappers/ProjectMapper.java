@@ -36,7 +36,7 @@ public class ProjectMapper {
 
     private String getSkillStatement() {
         return "SELECT skillName, points" +
-                " FROM ProjectSkill" +
+                " FROM ProjectSkillMapper" +
                 " WHERE projectId = ?" ;
     }
 
@@ -53,7 +53,7 @@ public class ProjectMapper {
 
     private String applicableStatement() {
         return "SELECT projectId" +
-                " FROM ProjectSkill" +
+                " FROM ProjectSkillMapper" +
                 " WHERE skillName = ? AND points <= ?" ;
     }
 
@@ -72,6 +72,8 @@ public class ProjectMapper {
                     Skill addSkill = new Skill(skillName, point) ;
                     skills.add(addSkill) ;
                 }
+                con.close();
+                st.close();
                 return skills ;
             } catch (SQLException ex) {
                 System.out.println("error in ProjectMapper.getSkill query.");
@@ -129,6 +131,8 @@ public class ProjectMapper {
                 resultSet.next();
                 Project projectResult = convertResultSetToDomainModel(resultSet, id) ;
                 loadedMap.put(id, projectResult) ;
+                con.close();
+                st.close();
                 return projectResult;
             } catch (SQLException ex) {
                 System.out.println("error in UserMapper.get query.");
@@ -174,6 +178,8 @@ public class ProjectMapper {
             st.setString(7, newProject.auction().getUsername());
             try {
                 st.executeUpdate() ;
+                con.close();
+                st.close();
             } catch (SQLException ex) {
                 System.out.println("error in ProjectMapper.add query.");
                 throw ex;
@@ -200,6 +206,8 @@ public class ProjectMapper {
                         if (tempProject.skillsPointCalc(skills) >= 0)
                             applicables.add(tempProject) ;
                     }
+                    con.close();
+                    st.close();
                 } catch (SQLException ex) {
                     System.out.println("error in ProjectMapper.applicable query.");
                     throw ex;

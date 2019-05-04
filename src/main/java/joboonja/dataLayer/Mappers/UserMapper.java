@@ -64,6 +64,8 @@ public class UserMapper {
                 if (resultSet.next()){
                     return  resultSet.getInt("cnt") ;
                 }
+                con.close();
+                st.close();
                 return 0 ;
             } catch (SQLException ex) {
                 System.out.println("error in UserMapper.getSkillPoint query.");
@@ -87,6 +89,8 @@ public class UserMapper {
                     Skill addSkill = new Skill(skillName, point) ;
                     skills.add(addSkill) ;
                 }
+                con.close();
+                st.close();
                 return skills ;
             } catch (SQLException ex) {
                 System.out.println("error in UserMapper.getSkill query.");
@@ -124,6 +128,8 @@ public class UserMapper {
                 resultSet.next();
                 User userResult = convertResultSetToDomainModel(resultSet, username) ;
                 loadedMap.put(username, userResult) ;
+                con.close();
+                st.close();
                 return userResult;
             } catch (SQLException ex) {
                 System.out.println("error in UserMapper.get query.");
@@ -169,6 +175,8 @@ public class UserMapper {
             st.setString(6, newUser.getProfilePictureURL());
             try {
                 st.executeUpdate() ;
+                con.close();
+                st.close();
             } catch (SQLException ex) {
                 System.out.println("error in UserMapper.add query.");
                 throw ex;
