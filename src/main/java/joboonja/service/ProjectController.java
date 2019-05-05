@@ -7,9 +7,10 @@ import joboonja.domain.model.Project;
 import javax.servlet.ServletException;
 import java.io.Console;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
-import joboonja.domain.repo.BidRepo;
+//import joboonja.domain.repo.BidRepo;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/projects")
 public class ProjectController {
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String getListOfProjects () throws IOException {
+    public String getListOfProjects () throws IOException, SQLException {
         Database db = Database.getInstance();
         String userName = "1" ;
         List<Project> projects = db.getApplicableProjects(userName) ;
@@ -31,7 +32,7 @@ public class ProjectController {
     }
 
     @RequestMapping(value = "/{project_id}", method = RequestMethod.GET)
-    public String getProjectInfo (@PathVariable(value = "project_id") String projectID) throws IOException {
+    public String getProjectInfo (@PathVariable(value = "project_id") String projectID) throws IOException, SQLException {
 
         Database db = Database.getInstance();
         Project project = db.getProject(projectID);
@@ -45,7 +46,7 @@ public class ProjectController {
     }
 
     @RequestMapping(value = "/{project_id}/bids", method = RequestMethod.GET)
-    public String getBids (@PathVariable(value = "project_id") String projectID) throws IOException {
+    public String getBids (@PathVariable(value = "project_id") String projectID) throws IOException, SQLException {
 
         Database db = Database.getInstance();
         List<Bid> bids = db.getBids(projectID);
@@ -59,7 +60,7 @@ public class ProjectController {
 
     @RequestMapping(value = "/{project_id}/bids", method = RequestMethod.PUT)
     public int addBid (@PathVariable(value = "project_id") String projectID,
-                           @RequestParam("bidAmount") String BidAmount) throws IOException {
+                           @RequestParam("bidAmount") String BidAmount) throws SQLException {
         int bidAmount = Integer.parseInt(BidAmount);
         Database db = Database.getInstance();
 

@@ -16,11 +16,12 @@ import javax.servlet.annotation.WebListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.SQLException;
 
 
 class DatabaseLoader {
 
-    static void contextInitialized() {
+    static void contextInitialized() throws SQLException {
         Database db = Database.getInstance();
         try {
             loadData(db);
@@ -64,7 +65,7 @@ class DatabaseLoader {
         }
     }
 
-    private static void loadData(Database db) throws ParseException, IOException {
+    private static void loadData(Database db) throws ParseException, IOException, SQLException {
         CloseableHttpClient client = HttpClientBuilder.create().build();
         loadProjects(client, db);
         loadSkills(client, db);
@@ -89,7 +90,7 @@ class DatabaseLoader {
         return builder.toString();
     }
 
-    private static void loadProjects(CloseableHttpClient client, Database db) throws ParseException, IOException {
+    private static void loadProjects(CloseableHttpClient client, Database db) throws ParseException, IOException, SQLException {
         String jsonString = getRequestTo("http://142.93.134.194:8000/joboonja/project", client);
         JSONArray ja = (JSONArray) new JSONParser().parse(jsonString);
         for (Object o : ja) {
@@ -97,7 +98,7 @@ class DatabaseLoader {
         }
     }
 
-    private static void loadSkills(CloseableHttpClient client, Database db) throws ParseException, IOException {
+    private static void loadSkills(CloseableHttpClient client, Database db) throws ParseException, IOException, SQLException {
         String jsonString = getRequestTo("http://142.93.134.194:8000/joboonja/skill", client);
 
         JSONArray ja = (JSONArray) new JSONParser().parse(jsonString);

@@ -36,7 +36,7 @@ public class ProjectMapper {
 
     private String getSkillStatement() {
         return "SELECT skillName, points" +
-                " FROM ProjectSkillMapper" +
+                " FROM ProjectSkill" +
                 " WHERE projectId = ?" ;
     }
 
@@ -53,8 +53,19 @@ public class ProjectMapper {
 
     private String applicableStatement() {
         return "SELECT projectId" +
-                " FROM ProjectSkillMapper" +
+                " FROM ProjectSkill" +
                 " WHERE skillName = ? AND points <= ?" ;
+    }
+
+    private String getProjectListStatement() {
+        return "SELECT " + COLUMNS +
+                " FROM Project" ;
+    }
+
+    private String getSearchStatement() {
+        return "SELECT " + COLUMNS +
+                " FROM Project" +
+                " WHERE title LIKE ? OR description LIKE ?" ;
     }
 
     private List<Skill> getSkill(String id) throws SQLException {
@@ -175,7 +186,7 @@ public class ProjectMapper {
             st.setString(4, newProject.getImageURL());
             st.setInt(5, newProject.getBudget());
             st.setLong(6, newProject.getDeadline());
-            st.setString(7, newProject.auction().getUsername());
+            st.setString(7, null);
             try {
                 st.executeUpdate() ;
                 con.close();
@@ -188,32 +199,59 @@ public class ProjectMapper {
         return 0 ;
     }
 
-
-    public List<Project> getApplicables(List<Skill> skills) throws SQLException {
-        List<Project> applicables = new ArrayList<>();
-        for (Skill s:skills) {
-            try (Connection con = DBCPDataSource.getConnection();
-                 PreparedStatement st = con.prepareStatement(applicableStatement())
-            ) {
-                st.setString(1, s.getName());
-                st.setInt(2, s.getPoints());
-                ResultSet resultSet;
-                try {
-                    resultSet = st.executeQuery() ;
-                    while (resultSet.next()) {
-                        String tempProjectId = resultSet.getString(1) ;
-                        Project tempProject = get(tempProjectId) ;
-                        if (tempProject.skillsPointCalc(skills) >= 0)
-                            applicables.add(tempProject) ;
-                    }
-                    con.close();
-                    st.close();
-                } catch (SQLException ex) {
-                    System.out.println("error in ProjectMapper.applicable query.");
-                    throw ex;
-                }
+    public List<Project> filter(List<Project> projectList, List<Skill> skills) {
+        List<Project> applicableList = new ArrayList<>() ;
+        for (Project p:projectList){
+            if(p.skillsPointCalc(skills)>=0){
+                applicableList.add(p) ;
             }
         }
-        return applicables ;
+        return applicableList;
+    }
+
+    public List<Project> getApplicables(List<Skill> skills) throws SQLException {
+        List<Project> projectList = getList() ;
+        return filter(projectList, skills) ;
+    }
+
+    private List<Project> getList() throws SQLException {
+        List<Project> resultProjectList = new ArrayList<>();
+        try (Connection con = DBCPDataSource.getConnection();
+             PreparedStatement st = con.prepareStatement(getProjectListStatement())
+        ) {
+            ResultSet resultSet ;
+            try {
+                resultSet = st.executeQuery() ;
+                while(resultSet.next()) {
+                    resultProjectList.add(convertResultSetToDomainModel(resultSet, resultSet.getString(1))) ;
+                }
+            } catch (SQLException ex) {
+                System.out.println("error in ProjectMapper.getList query.");
+                throw ex;
+            }
+        }
+        return resultProjectList ;
+    }
+
+    public  List<Project> searchProjects(List<Skill> skills, String searchKey) throws SQLException {
+        List<Project> resultProjectList = new ArrayList<>() ;
+        try (Connection con = DBCPDataSource.getConnection();
+             PreparedStatement st = con.prepareStatement(getSearchStatement())
+        ) {
+            st.setString(1, "%"+searchKey+"%");
+            st.setString(2, "%"+searchKey+"%");
+            ResultSet resultSet ;
+            try {
+                resultSet = st.executeQuery() ;
+                while (resultSet.next()){
+                    resultProjectList.add(convertResultSetToDomainModel(resultSet, resultSet.getString(1)));
+                }
+            } catch (SQLException ex) {
+                System.out.println("error in ProjectMapper.searchProjects query.");
+                throw ex;
+            }
+        }
+
+        return filter(resultProjectList, skills);
     }
 }

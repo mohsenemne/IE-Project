@@ -1,31 +1,42 @@
 package joboonja.domain;
 
+import joboonja.dataLayer.Mappers.*;
 import joboonja.domain.model.*;
-import joboonja.domain.repo.*;
+//import joboonja.domain.repo.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class Database {
     private static Database db = null;
+    private UserMapper userMapper ;
+    private ProjectMapper projectMapper ;
+    private BidMapper bidMapper ;
+    private SkillMapper skillMapper ;
+    private EndorsementMapper endorsementMapper ;
+    private ProjectSkillMapper projectSkillMapper ;
+    private UserSkillMapper userSkillMapper ;
 
-    private ProjectRepo projects;
-    private UserRepo users;
-    private BidRepo bids;
-    private SkillsRepo skills;
-    private EndorsementRepo endorsements;
+//    private ProjectRepo projects;
+//    private UserRepo users;
+//    private BidRepo bids;
+//    private SkillsRepo skills;
+//    private EndorsementRepo endorsements;
 
-    private Database(){
-        projects = new ProjectRepo();
-        users = new UserRepo();
-        bids = new BidRepo();
-        skills = new SkillsRepo();
-        endorsements = new EndorsementRepo();
+    private Database() throws SQLException {
+        userMapper = new UserMapper();
+        projectMapper = new ProjectMapper();
+        bidMapper = new BidMapper();
+        skillMapper = new SkillMapper() ;
+        endorsementMapper = new EndorsementMapper() ;
+        projectSkillMapper = new ProjectSkillMapper() ;
+        userSkillMapper = new UserSkillMapper() ;
     }
 
-    public static Database getInstance()
+    public static Database getInstance() throws SQLException
     {
         if (db == null)
             db = new Database();
@@ -33,7 +44,7 @@ public class Database {
         return db;
     }
 
-    public int registerUser(JSONObject jo) throws ParseException {
+    public int registerUser(JSONObject jo) throws SQLException {
         String username = (String) jo.get("username");
         String firstName = (String) jo.get("firstName");
         String lastName = (String) jo.get("lastName");
@@ -43,12 +54,16 @@ public class Database {
         String profilePictureURL = (String) jo.get("profilePictureURL") ;
 
         User newUser = new User(username, firstName, lastName, jobTitle, skills, bio, profilePictureURL);
-        if(users.add(newUser) < 0)
+        if(userMapper.add(newUser) < 0)
             return -1;
+        for(Skill s: skills){
+            System.out.println("add user skill");
+            userSkillMapper.add(username, s.getName());
+        }
         return 0;
     }
 
-    public int addProject(JSONObject jo) throws ParseException {
+    public int addProject(JSONObject jo) throws SQLException {
         String id = (String) jo.get("id");
         String title = (String) jo.get("title");
         String description = (String) jo.get("description");
@@ -58,17 +73,21 @@ public class Database {
         long deadline = (long)jo.get("deadline");
 
         Project newProject = new Project(id, title, description, imageURL, requiredSkills, budget, deadline);
-        if(projects.add(newProject) < 0)
+        if(projectMapper.add(newProject) < 0)
             return -1;
+        for(Skill s: requiredSkills){
+            System.out.println("add project skill");
+            projectSkillMapper.add(s.getName(), id, s.getPoints());
+        }
         return 0;
     }
 
-    public int addBid(String biddingUser, String projectID, int bidAmount) {
-        User user = users.get(biddingUser);
+    public int addBid(String biddingUser, String projectID, int bidAmount) throws SQLException {
+        User user = userMapper.get(biddingUser);
         if(user == null)
             return -1;
 
-        Project project = projects.get(projectID);
+        Project project = projectMapper.get(projectID);
         if(project == null)
             return -2;
 
@@ -77,80 +96,91 @@ public class Database {
             return points - 2;
 
         Bid newBid = new Bid(user, project, bidAmount, points);
-        if(bids.add(newBid) == 0)
+        if(bidMapper.add(newBid) == 0)
             project.addBid(newBid);
 
         return 0;
     }
 
-    public int addSkill(String skillName)  {
-        return skills.add(skillName);
+    public int addSkill(String skillName) throws SQLException  {
+        return skillMapper.add(skillName);
     }
 
-    public User getUser(String username) {
-        return users.get(username);
+    public User getUser(String username) throws SQLException {
+        return userMapper.get(username);
     }
 
-    public Project getProject(String projectID) {
-        return projects.get(projectID);
+    public Project getProject(String projectID) throws SQLException {
+        return projectMapper.get(projectID);
     }
 
-    public List<Project> getApplicableProjects(String username) {
-        User user = users.get(username);
+    public List<Project> getApplicableProjects(String username) throws SQLException {
+        User user = userMapper.get(username);
         if(user == null)
             return null;
-        return projects.getApplicables(user.getSkills());
+        return projectMapper.getApplicables(user.getSkills());
     }
 
-    public List<User> getUsersList() {
-        return users.getList();
+    public List<User> getUsersList() throws SQLException {
+        return userMapper.getList();
     }
 
-    public boolean hasBidded(String username, String projectID) {
-        User user = users.get(username);
-        Project project = projects.get(projectID);
+//    public boolean hasBidded(String username, String projectID) {
+//        User user = users.get(username);
+//        Project project = projects.get(projectID);
+//
+//        return bids.hasBidded(user, project);
+//    }
+//
+//    public boolean hasEndorsed(User endorser, User target, String skill){
+//        return endorsements.hasEndorsed(endorser, target, skill);
+//    }
 
-        return bids.hasBidded(user, project);
-    }
-
-    public boolean hasEndorsed(User endorser, User target, String skill){
-        return endorsements.hasEndorsed(endorser, target, skill);
-    }
-
-    public boolean endorse(String endorser, String target, String skill){
-        User endrsr = users.get(endorser);
+    public boolean endorse(String endorser, String target, String skill) throws SQLException {
+        User endrsr = userMapper.get(endorser);
         if (endrsr == null)
             return false;
-        User trgt = users.get(target);
+        User trgt = userMapper.get(target);
         if (trgt == null)
             return false;
-        return endorsements.addEndorsment(endrsr, trgt, skill);
+        return endorsementMapper.addEndorsment(endrsr, trgt, skill);
     }
 
-    public boolean deleteSkill(String skillName, String username){
-        User u = users.get(username);
+    public boolean deleteSkill(String skillName, String username) throws SQLException {
+        User u = userMapper.get(username);
         if (u == null)
             return false;
         return u.deleteSkill(skillName);
     }
 
-    public boolean addSkill(String skillName, String username){
-        User u = users.get(username);
+    public boolean addSkill(String skillName, String username) throws SQLException {
+        User u = userMapper.get(username);
         if (u == null)
             return false;
         return u.addSkill(skillName);
     }
 
-    public List<String> getSkills(String username) {
-        User u = users.get(username);
-        return skills.getList(Skill.getNames(u.getSkills()));
+    public List<String> getSkills(String username) throws SQLException {
+        User u = userMapper.get(username);
+        return skillMapper.getList(Skill.getNames(u.getSkills()));
     }
 
-    public List<Bid> getBids(String projectID) {
-        return bids.getBids(projectID);
+    public List<Bid> getBids(String projectID) throws SQLException {
+        return bidMapper.getBids(projectID);
     }
 
-    public List<Endorsement> getEndorsments(String endorser, String target) {
-        return endorsements.getEndorsments(endorser, target);
+    public List<Endorsement> getEndorsements(String endorser, String target) throws SQLException {
+        return endorsementMapper.getEndorsments(endorser, target);
+    }
+
+    public List<Project> searchProjects(String username, String searchKey) throws SQLException {
+        User user = userMapper.get(username);
+        if(user == null)
+            return null;
+        return projectMapper.searchProjects(user.getSkills(), searchKey);
+    }
+
+    public List<User> searchUsers(String searchKey) throws SQLException {
+        return userMapper.searchUsers(searchKey);
     }
 }

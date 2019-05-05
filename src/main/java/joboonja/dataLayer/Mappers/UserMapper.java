@@ -40,7 +40,7 @@ public class UserMapper {
     }
 
     private String getSkillNameStatement() {
-        return "SELECT skillName, point" +
+        return "SELECT skillName" +
                 " FROM UserSkill" +
                 " WHERE userId = ?" ;
     }
@@ -49,6 +49,17 @@ public class UserMapper {
         return "SELECT COUNT(*) AS cnt" +
                 " FROM Endorsement" +
                 " WHERE endorsedId = ? AND skillName = ?" ;
+    }
+
+    private String getUserListStatement() {
+        return "SELECT " + COLUMNS +
+                " FROM User" ;
+    }
+
+    private String getSearchStatement() {
+        return "SELECT " + COLUMNS +
+                " FROM User" +
+                " WHERE firstName LIKE ? OR lastName LIKE ?" ;
     }
 
     private int getSkillPoint(String username, String skillName) throws SQLException {
@@ -83,7 +94,7 @@ public class UserMapper {
             ResultSet resultSet;
             try {
                 resultSet = st.executeQuery();
-                while(!resultSet.next()){
+                while(resultSet.next()){
                     String skillName = resultSet.getString(1) ;
                     int point = getSkillPoint(username, skillName) ;
                     Skill addSkill = new Skill(skillName, point) ;
@@ -186,4 +197,48 @@ public class UserMapper {
         return 0;
     }
 
+    public List<User> getList() throws SQLException {
+        List<User> resultUserList = new ArrayList<>();
+        try (Connection con = DBCPDataSource.getConnection();
+             PreparedStatement st = con.prepareStatement(getUserListStatement())
+        ) {
+            ResultSet resultSet ;
+            try {
+                resultSet = st.executeQuery() ;
+                while(resultSet.next()) {
+                    resultUserList.add(convertResultSetToDomainModel(resultSet, resultSet.getString(1))) ;
+                }
+                con.close();
+                st.close();
+            } catch (SQLException ex) {
+                System.out.println("error in UserMapper.getList query.");
+                throw ex;
+            }
+        }
+        return resultUserList ;
+    }
+
+    public List<User> searchUsers(String searchKey) throws SQLException {
+        List<User> resultUserList = new ArrayList<>() ;
+        try (Connection con = DBCPDataSource.getConnection();
+             PreparedStatement st = con.prepareStatement(getSearchStatement())
+        ) {
+            st.setString(1, "%"+searchKey+"%");
+            st.setString(2, "%"+searchKey+"%");
+            ResultSet resultSet ;
+            try {
+                resultSet = st.executeQuery() ;
+                while (resultSet.next()){
+                    resultUserList.add(convertResultSetToDomainModel(resultSet, resultSet.getString(1)));
+                }
+                con.close();
+                st.close();
+            } catch (SQLException ex) {
+                System.out.println("error in UserMapper.searchProjects query.");
+                throw ex;
+            }
+        }
+
+        return resultUserList;
+    }
 }

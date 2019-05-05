@@ -7,6 +7,7 @@ import joboonja.domain.model.Skill;
 import joboonja.domain.model.User;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.*;
@@ -16,13 +17,13 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String getListOfUsers () throws IOException {
+    public String getListOfUsers () throws IOException, SQLException {
         Database db = Database.getInstance() ;
         return User.toJSONString(db.getUsersList()) ;
     }
 
     @RequestMapping(value = "/{user_id}", method = RequestMethod.GET)
-    public String getUserInfo (@PathVariable(value = "user_id") String userID) throws IOException {
+    public String getUserInfo (@PathVariable(value = "user_id") String userID) throws IOException, SQLException {
         Database db = Database.getInstance();
         User user= db.getUser(userID);
 
@@ -35,27 +36,27 @@ public class UserController {
     }
 
     @RequestMapping(value = "/{user_id}/skills", method = RequestMethod.DELETE)
-    public Boolean deleteUserSkill (@PathVariable(value = "user_id") String userID, @RequestParam("skill") String skillName) {
+    public Boolean deleteUserSkill (@PathVariable(value = "user_id") String userID, @RequestParam("skill") String skillName) throws SQLException {
 
         return Database.getInstance().deleteSkill(skillName, userID);
     }
 
 
     @RequestMapping(value = "/{user_id}/skills/endorsements", method = RequestMethod.GET)
-    public String getEndorsments (@PathVariable(value = "user_id") String target) throws JsonProcessingException {
+    public String getEndorsments (@PathVariable(value = "user_id") String target) throws JsonProcessingException, SQLException {
         String endorser = "1";
         if(endorser.equals(target)){
             return null;
         }
 
         Database db = Database.getInstance();
-        List<Endorsement> endorsements = db.getEndorsments(endorser, target);
+        List<Endorsement> endorsements = db.getEndorsements(endorser, target);
         return Skill.toJSONString(Endorsement.getSkillNames(endorsements));
     }
 
 
     @RequestMapping(value = "/{user_id}/skills", method = RequestMethod.PUT)
-    public Boolean addUserSkill (@PathVariable(value = "user_id") String userID, @RequestParam("skill") String skillName) {
+    public Boolean addUserSkill (@PathVariable(value = "user_id") String userID, @RequestParam("skill") String skillName) throws SQLException {
 
         if(skillName == null)
             return false;
@@ -65,7 +66,7 @@ public class UserController {
 
     @RequestMapping(value = "/{user_id}/skills/endorsements", method = RequestMethod.POST)
     public Boolean endorseUserSkill (@PathVariable(value = "user_id") String target,
-                                     @RequestParam("skill") String skillName) {
+                                     @RequestParam("skill") String skillName) throws SQLException {
         String endorser = "1";
         return Database.getInstance().endorse(endorser, target, skillName);
     }

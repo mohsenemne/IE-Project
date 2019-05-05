@@ -41,7 +41,7 @@ public class SkillMapper {
                 st.close();
             } catch (SQLException ex) {
                 System.out.println("error in SkillMapper.add query.");
-                throw ex;
+//                throw ex;
             }
         }
         return 0 ;

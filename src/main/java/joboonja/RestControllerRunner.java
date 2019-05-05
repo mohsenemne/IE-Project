@@ -11,12 +11,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import javax.servlet.annotation.WebListener;
+import java.sql.SQLException;
 
 
 @SpringBootApplication
 public class RestControllerRunner {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         DatabaseLoader.contextInitialized();
         SpringApplication.run(RestControllerRunner.class, args);
     }
