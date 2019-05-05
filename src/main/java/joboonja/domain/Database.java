@@ -71,8 +71,9 @@ public class Database {
         List<Skill> requiredSkills = Skill.parseSkills((JSONArray)jo.get("skills"));
         int budget = (int)(long)jo.get("budget");
         long deadline = (long)jo.get("deadline");
+        long creationDate = (long)jo.get("creationDate");
 
-        Project newProject = new Project(id, title, description, imageURL, requiredSkills, budget, deadline);
+        Project newProject = new Project(id, title, description, imageURL, requiredSkills, budget, deadline, creationDate);
         if(projectMapper.add(newProject) < 0)
             return -1;
         for(Skill s: requiredSkills){

@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class ProjectMapper {
 
-    private static final String COLUMNS = "id, title, description, imageURL, budget, deadline, winner";
+    private static final String COLUMNS = "id, title, description, imageURL, budget, deadline, creationDate, winner";
     private Map<String, Project> loadedMap = new HashMap<>();
     private UserMapper userMapper ;
 
@@ -47,8 +47,8 @@ public class ProjectMapper {
 //    }
 
     private String insertStatement() {
-        return "INSERT INTO Project" +
-                " VALUES (?,?,?,?,?,?,?)" ;
+        return "INSERT OR IGNORE INTO Project" +
+                " VALUES (?,?,?,?,?,?,?,?)" ;
     }
 
     private String applicableStatement() {
@@ -123,8 +123,9 @@ public class ProjectMapper {
                 rs.getString(4),
                 getSkill(id),
                 rs.getInt(5),
-                rs.getLong(6)
-        ) ;
+                rs.getLong(6),
+                rs.getLong(7)
+                ) ;
     }
 
     public Project get(String id) throws SQLException{
@@ -186,7 +187,8 @@ public class ProjectMapper {
             st.setString(4, newProject.getImageURL());
             st.setInt(5, newProject.getBudget());
             st.setLong(6, newProject.getDeadline());
-            st.setString(7, null);
+            st.setLong(7, newProject.getCreationDate());
+            st.setString(8, null);
             try {
                 st.executeUpdate() ;
                 con.close();

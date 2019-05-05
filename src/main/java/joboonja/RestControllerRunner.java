@@ -1,7 +1,6 @@
 package joboonja;
 
-import joboonja.domain.Database;
-import joboonja.DatabaseLoader ;
+import org.json.simple.parser.ParseException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -10,15 +9,18 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import javax.servlet.annotation.WebListener;
+import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Timer;
 
 
 @SpringBootApplication
 public class RestControllerRunner {
 
-    public static void main(String[] args) throws SQLException {
-        DatabaseLoader.contextInitialized();
+    public static void main(String[] args) throws SQLException, IOException, ParseException {
+        DatabaseLoader dbl = new DatabaseLoader(); // Instantiate DatabaseLoader class
+        dbl.loadDataBase();
+
         SpringApplication.run(RestControllerRunner.class, args);
     }
 

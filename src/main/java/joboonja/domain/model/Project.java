@@ -15,9 +15,10 @@ public class Project {
     private List<Bid> bids;
     private int budget;
     private long deadline;
+    private long creationDate;
     private User winner;
 
-    public Project(String id, String title, String description, String imageURL, List<Skill> skills, int budget, long deadline){
+    public Project(String id, String title, String description, String imageURL, List<Skill> skills, int budget, long deadline, long creationDate){
         this.id = id;
         this.title = title;
         this.description = description;
@@ -25,6 +26,7 @@ public class Project {
         this.skills = skills;
         this.budget = budget;
         this.deadline = deadline;
+        this.creationDate = creationDate;
         this.bids = new ArrayList<>();
     }
 
@@ -100,5 +102,9 @@ public class Project {
         String info = Obj.writeValueAsString(projects);
 
         return info;
+    }
+
+    public long getCreationDate() {
+        return creationDate;
     }
 }
