@@ -144,7 +144,11 @@ public class Database {
         User trgt = userMapper.get(target);
         if (trgt == null)
             return false;
-        return endorsementMapper.addEndorsment(endrsr, trgt, skill);
+        if(endorsementMapper.addEndorsment(endrsr, trgt, skill)) {
+            trgt.incPoint(skill);
+            return true;
+        }
+        return false;
     }
 
     public boolean deleteSkill(String skillName, String username) throws SQLException {
