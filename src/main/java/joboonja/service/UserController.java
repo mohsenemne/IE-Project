@@ -25,7 +25,7 @@ public class UserController {
     @RequestMapping(value = "/{user_id}", method = RequestMethod.GET)
     public String getUserInfo (@PathVariable(value = "user_id") String userID) throws IOException, SQLException {
         Database db = Database.getInstance();
-        User user= db.getUser(userID);
+        User user = db.getUser(userID);
 
         if(user == null) {
             return "" ;
@@ -43,7 +43,7 @@ public class UserController {
 
 
     @RequestMapping(value = "/{user_id}/skills/endorsements", method = RequestMethod.GET)
-    public String getEndorsments (@PathVariable(value = "user_id") String target) throws JsonProcessingException, SQLException {
+    public String getEndorsements (@PathVariable(value = "user_id") String target) throws JsonProcessingException, SQLException {
         String endorser = "1";
         if(endorser.equals(target)){
             return null;

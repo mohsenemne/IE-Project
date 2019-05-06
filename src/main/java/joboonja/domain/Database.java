@@ -28,10 +28,10 @@ public class Database {
 
     private Database() throws SQLException {
         userMapper = new UserMapper();
-        projectMapper = new ProjectMapper();
-        bidMapper = new BidMapper();
+        projectMapper = new ProjectMapper(userMapper);
+        bidMapper = new BidMapper(userMapper, projectMapper);
         skillMapper = new SkillMapper() ;
-        endorsementMapper = new EndorsementMapper() ;
+        endorsementMapper = new EndorsementMapper(userMapper) ;
         projectSkillMapper = new ProjectSkillMapper() ;
         userSkillMapper = new UserSkillMapper() ;
     }
@@ -151,14 +151,22 @@ public class Database {
         User u = userMapper.get(username);
         if (u == null)
             return false;
-        return u.deleteSkill(skillName);
+        if(u.deleteSkill(skillName)){
+            userSkillMapper.delete(username, skillName);
+            return true;
+        }
+        return false;
     }
 
     public boolean addSkill(String skillName, String username) throws SQLException {
         User u = userMapper.get(username);
         if (u == null)
             return false;
-        return u.addSkill(skillName);
+        if(u.addSkill(skillName)){
+            userSkillMapper.add(username, skillName);
+            return true;
+        }
+        return false;
     }
 
     public List<String> getSkills(String username) throws SQLException {

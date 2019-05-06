@@ -47,7 +47,6 @@ public class ProjectController {
 
     @RequestMapping(value = "/{project_id}/bids", method = RequestMethod.GET)
     public String getBids (@PathVariable(value = "project_id") String projectID) throws IOException, SQLException {
-
         Database db = Database.getInstance();
         List<Bid> bids = db.getBids(projectID);
 

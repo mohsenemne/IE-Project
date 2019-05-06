@@ -15,7 +15,7 @@ public class BidMapper {
     private UserMapper userMapper ;
     private ProjectMapper projectMapper ;
 
-    public BidMapper() throws SQLException {
+    public BidMapper(UserMapper userMapper, ProjectMapper projectMapper) throws SQLException {
         Connection con = DBCPDataSource.getConnection();
         Statement st = con.createStatement();
         st.executeUpdate("CREATE TABLE IF NOT EXISTS " + "Bid" + " " + "(userId TEXT, projectId TEXT," +
@@ -24,6 +24,9 @@ public class BidMapper {
 
         st.close();
         con.close();
+
+        this.userMapper = userMapper;
+        this.projectMapper = projectMapper;
     }
 
     private String getStatement() {

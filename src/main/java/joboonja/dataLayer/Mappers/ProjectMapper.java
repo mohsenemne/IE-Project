@@ -18,7 +18,7 @@ public class ProjectMapper {
     private Map<String, Project> loadedMap = new HashMap<>();
     private UserMapper userMapper ;
 
-    public ProjectMapper() throws SQLException {
+    public ProjectMapper(UserMapper userMapper) throws SQLException {
         Connection con = DBCPDataSource.getConnection();
         Statement st = con.createStatement();
         st.executeUpdate("CREATE TABLE IF NOT EXISTS " + "Project" + " " + "(id TEXT PRIMARY KEY, title TEXT," +
@@ -26,6 +26,7 @@ public class ProjectMapper {
 
         st.close();
         con.close();
+        this.userMapper = userMapper;
     }
 
     private String getStatement() {
@@ -51,15 +52,10 @@ public class ProjectMapper {
                 " VALUES (?,?,?,?,?,?,?,?)" ;
     }
 
-    private String applicableStatement() {
-        return "SELECT projectId" +
-                " FROM ProjectSkill" +
-                " WHERE skillName = ? AND points <= ?" ;
-    }
-
     private String getProjectListStatement() {
         return "SELECT " + COLUMNS +
-                " FROM Project" ;
+                " FROM Project" +
+                " ORDER BY creationDate DESC" ;
     }
 
     private String getSearchStatement() {

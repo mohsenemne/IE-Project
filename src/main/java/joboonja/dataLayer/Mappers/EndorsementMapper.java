@@ -14,7 +14,7 @@ public class EndorsementMapper {
     private static final String COLUMNS = "endorserId, endorsedId, skillName";
     private UserMapper userMapper ;
 
-    public EndorsementMapper() throws SQLException {
+    public EndorsementMapper(UserMapper userMapper) throws SQLException {
         Connection con = DBCPDataSource.getConnection();
         Statement st = con.createStatement();
         st.executeUpdate("CREATE TABLE IF NOT EXISTS " + "Endorsement" + " " + "(endorserId TEXT, endorsedId TEXT," +
@@ -23,6 +23,8 @@ public class EndorsementMapper {
 
         st.close();
         con.close();
+
+        this.userMapper = userMapper;
     }
 
     private String getStatement() {
