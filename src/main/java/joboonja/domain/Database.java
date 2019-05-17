@@ -7,6 +7,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -44,23 +45,23 @@ public class Database {
         return db;
     }
 
-    public int registerUser(JSONObject jo) throws SQLException {
-        String username = (String) jo.get("username");
-        String firstName = (String) jo.get("firstName");
-        String lastName = (String) jo.get("lastName");
-        String jobTitle = (String) jo.get("jobTitle");
-        List<Skill> skills = Skill.parseSkills((JSONArray)jo.get("skills"));
-        String bio = (String) jo.get("bio");
-        String profilePictureURL = (String) jo.get("profilePictureURL") ;
-
-        User newUser = new User(username, firstName, lastName, jobTitle, skills, bio, profilePictureURL);
+    public boolean registerUser(User newUser) throws SQLException, NoSuchAlgorithmException {
+         List<Skill> skills = newUser.getSkills() ;
+         String username = newUser.getUsername() ;
         if(userMapper.add(newUser) < 0)
-            return -1;
+            return false;
         for(Skill s: skills){
             System.out.println("add user skill");
             userSkillMapper.add(username, s.getName());
         }
-        return 0;
+        return true;
+    }
+
+    public boolean loginUser(User newUser) throws SQLException, NoSuchAlgorithmException {
+        if(userMapper.get(newUser.getUsername(), newUser.getPassword()) != null){
+            return true ;
+        }
+        return false ;
     }
 
     public int addProject(JSONObject jo) throws SQLException {

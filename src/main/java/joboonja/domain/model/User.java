@@ -3,11 +3,14 @@ package joboonja.domain.model;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.simple.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
     private String username;
+    private String password ;
     private String firstName;
     private String lastName;
     private String jobTitle;
@@ -15,9 +18,10 @@ public class User {
     private String bio;
     private String profilePictureURL ;
 
-    public User(String username, String firstName, String lastName, String jobTitle, List<Skill> skills, String bio,
+    public User(String username, String password, String firstName, String lastName, String jobTitle, List<Skill> skills, String bio,
                 String profilePictureURL){
         this.username = username;
+        this.password = password ;
         this.firstName = firstName;
         this.lastName = lastName;
         this.jobTitle = jobTitle;
@@ -26,8 +30,22 @@ public class User {
         this.profilePictureURL = profilePictureURL ;
     }
 
+    public User(JSONObject jo){
+        this.username = (String) jo.get("username");
+        this.password = (String) jo.get("password");
+        this.firstName = (String) jo.get("firstName");
+        this.lastName = (String) jo.get("lastName");
+        this.jobTitle = (String) jo.get("jobTitle");
+        this.skills = new ArrayList<>();
+        this.bio = (String) jo.get("bio");
+        this.profilePictureURL = (String) jo.get("profilePictureURL");
+    }
+
     public String getUsername() {
         return username;
+    }
+    public String getPassword() {
+        return password ;
     }
     public String getFirstName() { return firstName; }
     public String getLastName() { return lastName; }

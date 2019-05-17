@@ -5,22 +5,24 @@ import joboonja.domain.model.Skill;
 import joboonja.domain.model.User;
 
 
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.security.MessageDigest;
 
 public class UserMapper {
 
-    private static final String COLUMNS = "username, firstName, lastName, jobTitle, bio, profilePictureURL";
+    private static final String COLUMNS = "username, password, firstName, lastName, jobTitle, bio, profilePictureURL";
     private Map<String, User> loadedMap = new HashMap<>();
 
 
     public UserMapper() throws SQLException {
         Connection con = DBCPDataSource.getConnection();
         Statement st = con.createStatement();
-        st.executeUpdate("CREATE TABLE IF NOT EXISTS " + "User" + " " + "(username TEXT PRIMARY KEY, firstName TEXT," +
+        st.executeUpdate("CREATE TABLE IF NOT EXISTS " + "User" + " " + "(username TEXT PRIMARY KEY, password TEXT PRIMARY KEY,firstName TEXT," +
                 " lastName TEXT, jobTitle TEXT, bio TEXT, profilePictureURL TEXT)");
 
         st.close();
@@ -28,15 +30,15 @@ public class UserMapper {
     }
 
 
-    private String getStatement() {
+    private String getStatement(boolean pass) {
         return "SELECT " + COLUMNS +
                 " FROM User" +
-                " WHERE username = ?";
+                " WHERE username = ?" + (pass?" AND password = ?":"");
     }
 
     private String insertStatement() {
         return "INSERT INTO User" +
-                " VALUES (?,?,?,?,?,?)" ;
+                " VALUES (?,?,?,?,?,?,?)" ;
     }
 
     private String getSkillNameStatement() {
@@ -60,6 +62,12 @@ public class UserMapper {
         return "SELECT " + COLUMNS +
                 " FROM User" +
                 " WHERE firstName LIKE ? OR lastName LIKE ?" ;
+    }
+
+    private String encrypt(String data) throws NoSuchAlgorithmException {
+        MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+        messageDigest.update(data.getBytes());
+        return new String(messageDigest.digest());
     }
 
     private int getSkillPoint(String username, String skillName) throws SQLException {
@@ -117,9 +125,10 @@ public class UserMapper {
                 rs.getString(2),
                 rs.getString(3),
                 rs.getString(4),
-                getSkill(username),
                 rs.getString(5),
-                rs.getString(6)
+                getSkill(username),
+                rs.getString(6),
+                rs.getString(7)
         );
     }
 
@@ -130,7 +139,7 @@ public class UserMapper {
             return result;
 
         try (Connection con = DBCPDataSource.getConnection();
-             PreparedStatement st = con.prepareStatement(getStatement())
+             PreparedStatement st = con.prepareStatement(getStatement(false))
         ) {
             st.setString(1, username);
             ResultSet resultSet;
@@ -149,13 +158,42 @@ public class UserMapper {
         }
     }
 
+    public User get(String username, String password) throws SQLException, NoSuchAlgorithmException {
+        User result = loadedMap.get(username);
+        String encryptedPass = encrypt(password) ;
+        if (result != null)
+            if(result.getPassword().equals(encryptedPass))
+                return result;
+            else
+                return null;
+        try (Connection con = DBCPDataSource.getConnection();
+             PreparedStatement st = con.prepareStatement(getStatement(true))
+        ) {
+            st.setString(1, username);
+            st.setString(2, encryptedPass);
+            ResultSet resultSet ;
+            try {
+                resultSet = st.executeQuery();
+                resultSet.next();
+                User userResult = convertResultSetToDomainModel(resultSet, username) ;
+                loadedMap.put(username, userResult) ;
+                con.close();
+                st.close();
+                return userResult;
+            } catch (SQLException ex) {
+                System.out.println("error in UserMapper.getLog query.");
+                throw ex;
+            }
+        }
+    }
+
     private boolean contains(String username) throws SQLException {
         if (loadedMap.get(username) != null) {
             return true;
         }
 
         try (Connection con = DBCPDataSource.getConnection();
-             PreparedStatement st = con.prepareStatement(getStatement())
+             PreparedStatement st = con.prepareStatement(getStatement(false))
         ) {
             st.setString(1, username);
             ResultSet resultSet;
@@ -170,7 +208,7 @@ public class UserMapper {
     }
 
 
-    public int add(User newUser) throws SQLException{
+    public int add(User newUser) throws SQLException, NoSuchAlgorithmException {
         if(this.contains(newUser.getUsername())){
             return -1;
         }
@@ -179,11 +217,12 @@ public class UserMapper {
              PreparedStatement st = con.prepareStatement(insertStatement())
         ) {
             st.setString(1, newUser.getUsername());
-            st.setString(2, newUser.getFirstName());
-            st.setString(3, newUser.getLastName());
-            st.setString(4, newUser.getJobTitle());
-            st.setString(5, newUser.getBio());
-            st.setString(6, newUser.getProfilePictureURL());
+            st.setString(2, encrypt(newUser.getPassword()));
+            st.setString(3, newUser.getFirstName());
+            st.setString(4, newUser.getLastName());
+            st.setString(5, newUser.getJobTitle());
+            st.setString(6, newUser.getBio());
+            st.setString(7, newUser.getProfilePictureURL());
             try {
                 st.executeUpdate() ;
                 con.close();
@@ -192,6 +231,9 @@ public class UserMapper {
                 System.out.println("error in UserMapper.add query.");
                 throw ex;
             }
+        } catch (NoSuchAlgorithmException ex) {
+            System.out.println("error in encryption.");
+            throw ex;
         }
 
         return 0;
