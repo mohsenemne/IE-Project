@@ -78,6 +78,6 @@ public class DatabaseLoader extends TimerTask {
 
     public void loadDataBase() throws ParseException, SQLException, IOException {
         loadSkills();
-        loadProjectsPeriodically(3000);
+        loadProjectsPeriodically(30000);
     }
 }

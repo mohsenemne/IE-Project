@@ -3,6 +3,7 @@ package joboonja;
 import org.json.simple.parser.ParseException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -11,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Timer;
+
 
 
 @SpringBootApplication
@@ -34,18 +35,28 @@ public class RestControllerRunner {
                 public void addCorsMappings(CorsRegistry registry) {
                     registry.addMapping("/**").allowedOrigins("http://localhost:3000");
                     registry.addMapping("/**").allowedMethods("GET", "POST", "DELETE", "PUT");
+                    registry.addMapping("/**").allowedHeaders("Content-Type");
+                    registry.addMapping("/**").allowedHeaders("Authorization");
+                    registry.addMapping("/**").allowCredentials(true);
                 }
             };
         }
     }
+
+    @Configuration
+    public class AppConfig {
+
+        @Bean
+        public FilterRegistrationBean filterRegistrationBean() {
+            FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+            FilterJWT customURLFilter = new FilterJWT();
+
+            registrationBean.setFilter(customURLFilter);
+            registrationBean.setOrder(2); //set precedence
+            return registrationBean;
+        }
+    }
+
+
 }
 
-//    @Bean
-//    public WebMvcConfigurer corsConfigurer() {
-//        return new WebMvcConfigurerAdapter() {
-//            @Override
-//            public void addCorsMappings(CorsRegistry registry) {
-//                registry.addMapping("/greeting-javaconfig").allowedOrigins("http://localhost:9000");
-//            }
-//        };
-//    }

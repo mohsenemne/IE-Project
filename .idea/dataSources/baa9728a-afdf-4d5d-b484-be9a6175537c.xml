@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="joboonjaRDB.db">
-  <database-model serializer="dbm" dbms="SQLITE" family-id="SQLITE" format-version="4.14">
+  <database-model serializer="dbm" dbms="SQLITE" family-id="SQLITE" format-version="4.15">
     <root id="1">
       <ServerVersion>3.25.1</ServerVersion>
     </root>
@@ -46,11 +46,9 @@ projectId</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>sqlite_autoindex_Bid_1</UnderlyingIndexName>
     </key>
-    <foreign-key id="19" parent="6">
+    <foreign-key id="19" parent="6" name="Bid_User_id_fk">
       <ColNames>userId</ColNames>
       <RefTableName>User</RefTableName>
-      <RefKeyName>User_pk</RefKeyName>
-      <RefColNames>username</RefColNames>
       <OnDelete>cascade</OnDelete>
       <OnUpdate>cascade</OnUpdate>
     </foreign-key>
@@ -89,11 +87,9 @@ skillName</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>sqlite_autoindex_Endorsement_1</UnderlyingIndexName>
     </key>
-    <foreign-key id="26" parent="7">
+    <foreign-key id="26" parent="7" name="Endorsement_User_id_fk">
       <ColNames>endorserId</ColNames>
       <RefTableName>User</RefTableName>
-      <RefKeyName>User_pk</RefKeyName>
-      <RefColNames>username</RefColNames>
       <OnDelete>cascade</OnDelete>
       <OnUpdate>cascade</OnUpdate>
     </foreign-key>
@@ -154,8 +150,6 @@ skillName</RefColNames>
     <foreign-key id="38" parent="8">
       <ColNames>winner</ColNames>
       <RefTableName>User</RefTableName>
-      <RefKeyName>User_pk</RefKeyName>
-      <RefColNames>username</RefColNames>
       <OnDelete>set-null</OnDelete>
       <OnUpdate>cascade</OnUpdate>
     </foreign-key>
@@ -218,70 +212,60 @@ projectId</ColNames>
     </key>
     <column id="49" parent="11" name="username">
       <Position>1</Position>
-      <DataType>text|0s</DataType>
+      <DataType>TEXT|0s</DataType>
     </column>
-    <column id="50" parent="11" name="firstName">
+    <column id="50" parent="11" name="password">
       <Position>2</Position>
-      <DataType>text|0s</DataType>
+      <DataType>TEXT|0s</DataType>
     </column>
-    <column id="51" parent="11" name="lastName">
+    <column id="51" parent="11" name="firstName">
       <Position>3</Position>
-      <DataType>text|0s</DataType>
+      <DataType>TEXT|0s</DataType>
     </column>
-    <column id="52" parent="11" name="jobTitle">
+    <column id="52" parent="11" name="lastName">
       <Position>4</Position>
-      <DataType>text|0s</DataType>
+      <DataType>TEXT|0s</DataType>
     </column>
-    <column id="53" parent="11" name="bio">
+    <column id="53" parent="11" name="jobTitle">
       <Position>5</Position>
-      <DataType>text|0s</DataType>
+      <DataType>TEXT|0s</DataType>
     </column>
-    <column id="54" parent="11" name="profilePictureURL">
+    <column id="54" parent="11" name="bio">
       <Position>6</Position>
-      <DataType>text|0s</DataType>
-      <DefaultExpression>NULL</DefaultExpression>
+      <DataType>TEXT|0s</DataType>
     </column>
-    <index id="55" parent="11" name="sqlite_autoindex_User_1">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>username</ColNames>
-      <ColumnCollations></ColumnCollations>
-      <Unique>1</Unique>
-    </index>
-    <key id="56" parent="11" name="User_pk">
-      <ColNames>username</ColNames>
-      <Primary>1</Primary>
-      <UnderlyingIndexName>sqlite_autoindex_User_1</UnderlyingIndexName>
-    </key>
-    <column id="57" parent="12" name="userId">
+    <column id="55" parent="11" name="profilePictureURL">
+      <Position>7</Position>
+      <DataType>TEXT|0s</DataType>
+    </column>
+    <column id="56" parent="12" name="userId">
       <Position>1</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="58" parent="12" name="skillName">
+    <column id="57" parent="12" name="skillName">
       <Position>2</Position>
       <DataType>text|0s</DataType>
     </column>
-    <index id="59" parent="12" name="sqlite_autoindex_UserSkill_1">
+    <index id="58" parent="12" name="sqlite_autoindex_UserSkill_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>userId
 skillName</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="60" parent="12" name="UserSkill_pk">
+    <key id="59" parent="12" name="UserSkill_pk">
       <ColNames>userId
 skillName</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>sqlite_autoindex_UserSkill_1</UnderlyingIndexName>
     </key>
-    <foreign-key id="61" parent="12">
+    <foreign-key id="60" parent="12">
       <ColNames>userId</ColNames>
       <RefTableName>User</RefTableName>
-      <RefKeyName>User_pk</RefKeyName>
-      <RefColNames>username</RefColNames>
       <OnDelete>cascade</OnDelete>
       <OnUpdate>cascade</OnUpdate>
     </foreign-key>
-    <foreign-key id="62" parent="12">
+    <foreign-key id="61" parent="12">
       <ColNames>skillName</ColNames>
       <RefTableName>Skill</RefTableName>
       <RefKeyName>Skill_pk</RefKeyName>
@@ -289,23 +273,23 @@ skillName</ColNames>
       <OnDelete>cascade</OnDelete>
       <OnUpdate>cascade</OnUpdate>
     </foreign-key>
-    <column id="63" parent="13" name="type">
+    <column id="62" parent="13" name="type">
       <Position>1</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="64" parent="13" name="name">
+    <column id="63" parent="13" name="name">
       <Position>2</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="65" parent="13" name="tbl_name">
+    <column id="64" parent="13" name="tbl_name">
       <Position>3</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="66" parent="13" name="rootpage">
+    <column id="65" parent="13" name="rootpage">
       <Position>4</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="67" parent="13" name="sql">
+    <column id="66" parent="13" name="sql">
       <Position>5</Position>
       <DataType>text|0s</DataType>
     </column>

@@ -61,8 +61,7 @@ public class ProjectMapper {
     private String getSearchStatement() {
         return "SELECT " + COLUMNS +
                 " FROM Project" +
-                " WHERE title LIKE ? OR description LIKE ?" +
-                " ORDER BY creationDate DESC" ;
+                " WHERE title LIKE ? OR description LIKE ?" ;
     }
 
     private List<Skill> getSkill(String id) throws SQLException {
