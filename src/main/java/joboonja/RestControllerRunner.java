@@ -6,6 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -34,14 +38,15 @@ public class RestControllerRunner {
                 @Override
                 public void addCorsMappings(CorsRegistry registry) {
                     registry.addMapping("/**").allowedOrigins("http://localhost:3000");
-                    registry.addMapping("/**").allowedMethods("GET", "POST", "DELETE", "PUT");
-                    registry.addMapping("/**").allowedHeaders("Content-Type");
-                    registry.addMapping("/**").allowedHeaders("Authorization");
+                    registry.addMapping("/**").allowedMethods("GET", "POST", "DELETE", "PUT","OPTION");
+//                    registry.addMapping("/**").allowedHeaders("Content-Type");
+                    registry.addMapping("/**").allowedHeaders("Authorization, Content-Type");
                     registry.addMapping("/**").allowCredentials(true);
                 }
             };
         }
     }
+
 
     @Configuration
     public class AppConfig {
