@@ -1,5 +1,7 @@
 package joboonja.service;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import joboonja.domain.Database;
 import joboonja.domain.model.Bid;
 import joboonja.domain.model.Project;
@@ -19,9 +21,16 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/projects")
 public class ProjectController {
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String getListOfProjects () throws IOException, SQLException {
+    public String getListOfProjects (@RequestHeader("Authorization") String token) throws IOException, SQLException {
         Database db = Database.getInstance();
-        String userName = "1" ;
+        String userName ;
+        try {
+            DecodedJWT jwt = JWT.decode(token);
+            userName = jwt.getClaim("username").asString() ;
+        } catch (Exception ignored) {
+            System.out.println("error in getListOfProjectService JWT token");
+            return null ;
+        }
         List<Project> projects = db.getApplicableProjects(userName) ;
         if (projects != null) {
             return Project.toJSONString(projects) ;
@@ -59,11 +68,19 @@ public class ProjectController {
 
     @RequestMapping(value = "/{project_id}/bids", method = RequestMethod.PUT)
     public int addBid (@PathVariable(value = "project_id") String projectID,
-                           @RequestParam("bidAmount") String BidAmount) throws SQLException {
+                           @RequestParam("bidAmount") String BidAmount,
+                       @RequestHeader("Authorization") String token) throws SQLException {
         int bidAmount = Integer.parseInt(BidAmount);
         Database db = Database.getInstance();
 
-        String biddingUser = "1" ;
+        String biddingUser ;
+        try {
+            DecodedJWT jwt = JWT.decode(token);
+            biddingUser = jwt.getClaim("username").asString() ;
+        } catch (Exception ignored) {
+            System.out.println("error in addBidService JWT token");
+            return 412 ;
+        }
         int result = db.addBid(biddingUser, projectID, bidAmount);
         if(result < 0)
             if (result < -2)

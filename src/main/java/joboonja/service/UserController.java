@@ -1,5 +1,7 @@
 package joboonja.service;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import joboonja.domain.Database;
 import joboonja.domain.model.Endorsement;
@@ -43,8 +45,16 @@ public class UserController {
 
 
     @RequestMapping(value = "/{user_id}/skills/endorsements", method = RequestMethod.GET)
-    public String getEndorsements (@PathVariable(value = "user_id") String target) throws JsonProcessingException, SQLException {
-        String endorser = "1";
+    public String getEndorsements (@PathVariable(value = "user_id") String target,
+                                   @RequestHeader("Authorization") String token) throws JsonProcessingException, SQLException {
+        String endorser ;
+        try {
+            DecodedJWT jwt = JWT.decode(token);
+            endorser = jwt.getClaim("username").asString() ;
+        } catch (Exception ignored) {
+            System.out.println("error in getEndorsementService JWT token");
+            return null ;
+        }
         if(endorser.equals(target)){
             return null;
         }
@@ -66,8 +76,16 @@ public class UserController {
 
     @RequestMapping(value = "/{user_id}/skills/endorsements", method = RequestMethod.POST)
     public Boolean endorseUserSkill (@PathVariable(value = "user_id") String target,
-                                     @RequestParam("skill") String skillName) throws SQLException {
-        String endorser = "1";
+                                     @RequestParam("skill") String skillName,
+                                     @RequestHeader("Authorization") String token) throws SQLException {
+        String endorser ;
+        try {
+            DecodedJWT jwt = JWT.decode(token);
+            endorser = jwt.getClaim("username").asString() ;
+        } catch (Exception ignored) {
+            System.out.println("error in endorserUserSkillService JWT token");
+            return null ;
+        }
         return Database.getInstance().endorse(endorser, target, skillName);
     }
 }
