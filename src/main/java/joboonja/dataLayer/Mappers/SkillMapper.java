@@ -13,7 +13,7 @@ public class SkillMapper {
     public SkillMapper() throws SQLException {
         Connection con = DBCPDataSource.getConnection();
         Statement st = con.createStatement();
-        st.executeUpdate("CREATE TABLE IF NOT EXISTS " + "Skill" + " " + "(name TEXT," +
+        st.executeUpdate("CREATE TABLE IF NOT EXISTS " + "Skill" + " " + "(name CHAR(150)," +
                 " PRIMARY KEY (name))");
 
         st.close();
@@ -21,7 +21,7 @@ public class SkillMapper {
     }
 
     private String insertStatement() {
-        return "INSERT INTO Skill" +
+        return "INSERT IGNORE INTO Skill" +
                 " VALUES (?)" ;
     }
 

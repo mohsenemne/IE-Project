@@ -1,7 +1,6 @@
 package joboonja.service;
 
 import com.auth0.jwt.JWT;
-import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import joboonja.domain.Database;
 import joboonja.domain.model.Endorsement;
@@ -12,6 +11,10 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.apache.commons.codec.binary.Base64;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -45,16 +48,10 @@ public class UserController {
 
 
     @RequestMapping(value = "/{user_id}/skills/endorsements", method = RequestMethod.GET)
-    public String getEndorsements (@PathVariable(value = "user_id") String target,
-                                   @RequestHeader("Authorization") String token) throws JsonProcessingException, SQLException {
-        String endorser ;
-        try {
-            DecodedJWT jwt = JWT.decode(token);
-            endorser = jwt.getClaim("username").asString() ;
-        } catch (Exception ignored) {
-            System.out.println("error in getEndorsementService JWT token");
-            return null ;
-        }
+    public String getEndorsements (@RequestHeader("Authorization") String token,
+                                   @PathVariable(value = "user_id") String target) throws JsonProcessingException, SQLException, ParseException {
+        String endorser = (String) ((JSONObject) new JSONParser().parse(new String(Base64.decodeBase64(JWT.decode(token).getPayload())))).get("username");
+        System.out.println(endorser + " " + target);
         if(endorser.equals(target)){
             return null;
         }
@@ -75,18 +72,10 @@ public class UserController {
     }
 
     @RequestMapping(value = "/{user_id}/skills/endorsements", method = RequestMethod.POST)
-    public Boolean endorseUserSkill (@PathVariable(value = "user_id") String target,
-                                     @RequestParam("skill") String skillName,
-                                     @RequestHeader("Authorization") String token) throws SQLException {
-        String endorser ;
-        try {
-            DecodedJWT jwt = JWT.decode(token);
-            endorser = jwt.getClaim("username").asString() ;
-        } catch (Exception ignored) {
-            System.out.println("error in endorserUserSkillService JWT token");
-            return null ;
-        }
+    public Boolean endorseUserSkill (@RequestHeader("Authorization") String token,
+                                     @PathVariable(value = "user_id") String target,
+                                     @RequestParam("skill") String skillName) throws SQLException, ParseException {
+        String endorser = (String) ((JSONObject) new JSONParser().parse(new String(Base64.decodeBase64(JWT.decode(token).getPayload())))).get("username");
         return Database.getInstance().endorse(endorser, target, skillName);
     }
 }
-

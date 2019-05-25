@@ -26,10 +26,10 @@ import static java.util.Collections.emptyList;
 @RequestMapping("/login")
 public class LoginController {
     @ResponseStatus(code = HttpStatus.FORBIDDEN, reason = "", value = HttpStatus.FORBIDDEN)
-    class WrongUsernameOrPassword extends RuntimeException {}
+    private class WrongUsernameOrPassword extends RuntimeException {}
 
     @RequestMapping(value = "" , method = RequestMethod.POST)
-    public String loginUser (@RequestBody String userStr) throws SQLException, ParseException, NoSuchAlgorithmException {
+    public String loginUser (@RequestBody String userStr) throws ParseException, NoSuchAlgorithmException {
         JSONObject jo = (JSONObject) new JSONParser().parse(userStr);
         joboonja.domain.model.User user = new User(jo);
         try{

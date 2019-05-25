@@ -24,8 +24,6 @@ public class DatabaseLoader extends TimerTask {
         loadProjects();
     }
 
-
-
     private static String HttpResponseToString(HttpResponse response) throws IOException {
         BufferedReader bufReader = new BufferedReader(new InputStreamReader(
                 response.getEntity().getContent()));
@@ -79,5 +77,8 @@ public class DatabaseLoader extends TimerTask {
     public void loadDataBase() throws ParseException, SQLException, IOException {
         loadSkills();
         loadProjectsPeriodically(30000);
+        AuctionHandler ah = new AuctionHandler();
+        Timer time = new Timer();
+        time.schedule(new AuctionHandler(), 0, 12000);
     }
 }

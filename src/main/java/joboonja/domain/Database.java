@@ -46,8 +46,8 @@ public class Database {
     }
 
     public boolean registerUser(User newUser) throws SQLException, NoSuchAlgorithmException {
-         List<Skill> skills = newUser.getSkills() ;
-         String username = newUser.getUsername() ;
+        List<Skill> skills = newUser.getSkills() ;
+        String username = newUser.getUsername() ;
         if(userMapper.add(newUser) < 0)
             return false;
         for(Skill s: skills){
@@ -64,6 +64,13 @@ public class Database {
         return false ;
     }
 
+    public void auction(Project p){
+        User winner = p.auction();
+        if(winner != null){
+            projectMapper.setWinner(p.getID(), winner.getUsername());
+        }
+    }
+
     public int addProject(JSONObject jo) throws SQLException {
         String id = (String) jo.get("id");
         String title = (String) jo.get("title");
@@ -74,7 +81,7 @@ public class Database {
         long deadline = (long)jo.get("deadline");
         long creationDate = (long)jo.get("creationDate");
 
-        Project newProject = new Project(id, title, description, imageURL, requiredSkills, budget, deadline, creationDate);
+        Project newProject = new Project(id, title, description, imageURL, requiredSkills, budget, deadline, creationDate, null);
         if(projectMapper.add(newProject) < 0)
             return -1;
         for(Skill s: requiredSkills){
@@ -114,6 +121,10 @@ public class Database {
 
     public Project getProject(String projectID) throws SQLException {
         return projectMapper.get(projectID);
+    }
+
+    public List<Project> getProjects() throws SQLException {
+        return projectMapper.getList();
     }
 
     public List<Project> getApplicableProjects(String username) throws SQLException {

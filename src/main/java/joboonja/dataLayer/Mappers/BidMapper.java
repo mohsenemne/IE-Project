@@ -18,7 +18,7 @@ public class BidMapper {
     public BidMapper(UserMapper userMapper, ProjectMapper projectMapper) throws SQLException {
         Connection con = DBCPDataSource.getConnection();
         Statement st = con.createStatement();
-        st.executeUpdate("CREATE TABLE IF NOT EXISTS " + "Bid" + " " + "(userId TEXT, projectId TEXT," +
+        st.executeUpdate("CREATE TABLE IF NOT EXISTS " + "Bid" + " " + "(userId CHAR(150), projectId CHAR(150)," +
                 " bidAmount INTEGER, PRIMARY KEY (userId, projectId), FOREIGN KEY (userId) REFERENCES User(username)," +
                 " FOREIGN KEY (projectId) REFERENCES Project(id))");
 
@@ -42,8 +42,8 @@ public class BidMapper {
 
     private String hasBidStatement() {
         return "SELECT " + COLUMNS +
-        " FROM Bid" +
-        " WHERE userId = ? AND projectId = ?" ;
+                " FROM Bid" +
+                " WHERE userId = ? AND projectId = ?" ;
     }
 
     private Bid convertResultSetToDomainModel(String projectId, String userId, int bidAmount) throws SQLException {

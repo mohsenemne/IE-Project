@@ -18,7 +18,7 @@ public class Project {
     private long creationDate;
     private User winner;
 
-    public Project(String id, String title, String description, String imageURL, List<Skill> skills, int budget, long deadline, long creationDate){
+    public Project(String id, String title, String description, String imageURL, List<Skill> skills, int budget, long deadline, long creationDate, User winner){
         this.id = id;
         this.title = title;
         this.description = description;
@@ -27,7 +27,7 @@ public class Project {
         this.budget = budget;
         this.deadline = deadline;
         this.creationDate = creationDate;
-        this.bids = new ArrayList<>();
+        this.winner = winner;
     }
 
     public String getID() {
@@ -45,9 +45,14 @@ public class Project {
         return budget;
     }
     public long getDeadline() { return deadline; }
+    public User getWinner() { return winner; }
 
     public void addBid(Bid bid) {
         bids.add(bid);
+    }
+
+    public void setBids(List<Bid> bids){
+        this.bids = bids;
     }
 
     public User auction() {
@@ -62,6 +67,7 @@ public class Project {
                 winner = b.getBiddingUser() ;
             }
         }
+
         return winner;
     }
 

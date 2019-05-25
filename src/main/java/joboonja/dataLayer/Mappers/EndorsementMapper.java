@@ -17,8 +17,8 @@ public class EndorsementMapper {
     public EndorsementMapper(UserMapper userMapper) throws SQLException {
         Connection con = DBCPDataSource.getConnection();
         Statement st = con.createStatement();
-        st.executeUpdate("CREATE TABLE IF NOT EXISTS " + "Endorsement" + " " + "(endorserId TEXT, endorsedId TEXT," +
-                " skillName TEXT, PRIMARY KEY (endorserId, endorsedId, skillName), FOREIGN KEY (endorserId) REFERENCES User(username)," +
+        st.executeUpdate("CREATE TABLE IF NOT EXISTS " + "Endorsement" + " " + "(endorserId CHAR(150), endorsedId CHAR(150)," +
+                " skillName CHAR(150), PRIMARY KEY (endorserId, endorsedId, skillName), FOREIGN KEY (endorserId) REFERENCES User(username)," +
                 " FOREIGN KEY (endorsedId) REFERENCES User(username), FOREIGN KEY (skillName) REFERENCES Skill(name))");
 
         st.close();

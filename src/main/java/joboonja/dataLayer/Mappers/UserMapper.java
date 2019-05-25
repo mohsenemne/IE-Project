@@ -22,8 +22,8 @@ public class UserMapper {
     public UserMapper() throws SQLException {
         Connection con = DBCPDataSource.getConnection();
         Statement st = con.createStatement();
-        st.executeUpdate("CREATE TABLE IF NOT EXISTS " + "User" + " " + "(username TEXT PRIMARY KEY, password TEXT PRIMARY KEY,firstName TEXT," +
-                " lastName TEXT, jobTitle TEXT, bio TEXT, profilePictureURL TEXT)");
+        st.executeUpdate("CREATE TABLE IF NOT EXISTS " + "User" + " " + "(username CHAR(10) PRIMARY KEY, password CHAR(100) ,firstName CHAR(150)," +
+                " lastName CHAR(150), jobTitle CHAR(250), bio CHAR(250), profilePictureURL CHAR(200))");
 
         st.close();
         con.close();
@@ -89,7 +89,7 @@ public class UserMapper {
             } catch (SQLException ex) {
                 System.out.println("error in UserMapper.getSkillPoint query.");
                 throw ex;
-                }
+            }
         }
     }
 
@@ -132,8 +132,19 @@ public class UserMapper {
         );
     }
 
+    private User executeGetQuery(Connection con, PreparedStatement st, String username) throws SQLException {
+        ResultSet resultSet = st.executeQuery();
+        resultSet.next();
+        User userResult = convertResultSetToDomainModel(resultSet, username) ;
+        loadedMap.put(username, userResult) ;
+        con.close();
+        st.close();
+        return userResult;
+    }
 
     public User get(String username) throws SQLException {
+        if(username == null)
+            return null;
         User result = loadedMap.get(username);
         if (result != null)
             return result;
@@ -142,15 +153,8 @@ public class UserMapper {
              PreparedStatement st = con.prepareStatement(getStatement(false))
         ) {
             st.setString(1, username);
-            ResultSet resultSet;
             try {
-                resultSet = st.executeQuery();
-                resultSet.next();
-                User userResult = convertResultSetToDomainModel(resultSet, username) ;
-                loadedMap.put(username, userResult) ;
-                con.close();
-                st.close();
-                return userResult;
+                return executeGetQuery(con, st, username);
             } catch (SQLException ex) {
                 System.out.println("error in UserMapper.get query.");
                 throw ex;
@@ -171,15 +175,8 @@ public class UserMapper {
         ) {
             st.setString(1, username);
             st.setString(2, encryptedPass);
-            ResultSet resultSet ;
             try {
-                resultSet = st.executeQuery();
-                resultSet.next();
-                User userResult = convertResultSetToDomainModel(resultSet, username) ;
-                loadedMap.put(username, userResult) ;
-                con.close();
-                st.close();
-                return userResult;
+                return executeGetQuery(con, st, username);
             } catch (SQLException ex) {
                 System.out.println("error in UserMapper.getLog query.");
                 throw ex;
@@ -239,19 +236,24 @@ public class UserMapper {
         return 0;
     }
 
+    private List<User> executeListQuery(Connection con, PreparedStatement st) throws SQLException {
+        List<User> resultUserList = new ArrayList<>();
+        ResultSet resultSet = st.executeQuery();
+        while(resultSet.next()) {
+            resultUserList.add(convertResultSetToDomainModel(resultSet, resultSet.getString(1))) ;
+        }
+        con.close();
+        st.close();
+        return resultUserList;
+    }
+
     public List<User> getList() throws SQLException {
         List<User> resultUserList = new ArrayList<>();
         try (Connection con = DBCPDataSource.getConnection();
              PreparedStatement st = con.prepareStatement(getUserListStatement())
         ) {
-            ResultSet resultSet ;
             try {
-                resultSet = st.executeQuery() ;
-                while(resultSet.next()) {
-                    resultUserList.add(convertResultSetToDomainModel(resultSet, resultSet.getString(1))) ;
-                }
-                con.close();
-                st.close();
+                resultUserList = executeListQuery(con, st);
             } catch (SQLException ex) {
                 System.out.println("error in UserMapper.getList query.");
                 throw ex;
@@ -261,20 +263,14 @@ public class UserMapper {
     }
 
     public List<User> searchUsers(String searchKey) throws SQLException {
-        List<User> resultUserList = new ArrayList<>() ;
+        List<User> resultUserList ;
         try (Connection con = DBCPDataSource.getConnection();
              PreparedStatement st = con.prepareStatement(getSearchStatement())
         ) {
             st.setString(1, "%"+searchKey+"%");
             st.setString(2, "%"+searchKey+"%");
-            ResultSet resultSet ;
             try {
-                resultSet = st.executeQuery() ;
-                while (resultSet.next()){
-                    resultUserList.add(convertResultSetToDomainModel(resultSet, resultSet.getString(1)));
-                }
-                con.close();
-                st.close();
+                resultUserList = executeListQuery(con, st);
             } catch (SQLException ex) {
                 System.out.println("error in UserMapper.searchProjects query.");
                 throw ex;

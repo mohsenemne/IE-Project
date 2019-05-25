@@ -14,7 +14,7 @@ public class UserSkillMapper {
     public UserSkillMapper() throws SQLException {
         Connection con = DBCPDataSource.getConnection();
         Statement st = con.createStatement();
-        st.executeUpdate("CREATE TABLE IF NOT EXISTS " + "UserSkill" + " " + "(userId TEXT, skillName TEXT," +
+        st.executeUpdate("CREATE TABLE IF NOT EXISTS " + "UserSkill" + " " + "(userId CHAR(150), skillName CHAR(150)," +
                 " PRIMARY KEY (userId, skillName), FOREIGN KEY (userId) REFERENCES User(username)," +
                 " FOREIGN KEY (skillName) REFERENCES Skill(name))");
 

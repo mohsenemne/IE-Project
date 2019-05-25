@@ -37,7 +37,6 @@
       <NameSurrogate>1</NameSurrogate>
       <ColNames>userId
 projectId</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="18" parent="6" name="Bid_pk">
@@ -77,7 +76,6 @@ projectId</ColNames>
       <ColNames>endorserId
 endorsedId
 skillName</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="25" parent="7" name="Endorsement_pk">
@@ -139,7 +137,6 @@ skillName</RefColNames>
     <index id="36" parent="8" name="sqlite_autoindex_Project_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="37" parent="8" name="Project_pk">
@@ -170,7 +167,6 @@ skillName</RefColNames>
       <NameSurrogate>1</NameSurrogate>
       <ColNames>skillName
 projectId</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="43" parent="9" name="ProjectSkill_pk">
@@ -202,7 +198,6 @@ projectId</ColNames>
     <index id="47" parent="10" name="sqlite_autoindex_Skill_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>name</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="48" parent="10" name="Skill_pk">
@@ -250,7 +245,6 @@ projectId</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ColNames>userId
 skillName</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="59" parent="12" name="UserSkill_pk">

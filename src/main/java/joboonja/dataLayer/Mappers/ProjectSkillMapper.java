@@ -14,7 +14,7 @@ public class ProjectSkillMapper {
     public ProjectSkillMapper() throws SQLException {
         Connection con = DBCPDataSource.getConnection();
         Statement st = con.createStatement();
-        st.executeUpdate("CREATE TABLE IF NOT EXISTS " + "ProjectSkill" + " " + "(skillName TEXT, projectId TEXT, point INTEGER," +
+        st.executeUpdate("CREATE TABLE IF NOT EXISTS " + "ProjectSkill" + " " + "(skillName CHAR(150), projectId CHAR(150), points INTEGER," +
                 " PRIMARY KEY (skillName, projectId), FOREIGN KEY (skillName) REFERENCES Skill(name)," +
                 " FOREIGN KEY (projectId) REFERENCES Project(id))");
 
