@@ -1,8 +1,0 @@
-Manifest-Version: 1.0
-Implementation-Version: 1.0-SNAPSHOT
-Built-By: tahabagheri
-Implementation-Vendor-Id: org.apache.maven
-Created-By: IntelliJ IDEA
-Build-Jdk: 1.8.0_201
-Main-Class: ${start-class}
-
