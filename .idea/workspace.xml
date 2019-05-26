@@ -7,69 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc7d0f2f-c391-4509-8e05-0fdc8d07fece" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/setting.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/joboonja/AuctionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/IE_Project_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/IE_Project_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/baa9728a-afdf-4d5d-b484-be9a6175537c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/baa9728a-afdf-4d5d-b484-be9a6175537c.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/joboonjaRDB.db" beforeDir="false" afterPath="$PROJECT_DIR$/joboonjaRDB.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/DatabaseLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/DatabaseLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/FilterJWT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/FilterJWT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/RestControllerRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/JoboonjaApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/dataLayer/ConnectionPool.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/dataLayer/DBCPDataSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/dataLayer/DBCPDataSource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/dataLayer/Mappers/BidMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/dataLayer/Mappers/BidMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/dataLayer/Mappers/EndorsementMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/dataLayer/Mappers/EndorsementMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/dataLayer/Mappers/ProjectMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/dataLayer/Mappers/ProjectMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/dataLayer/Mappers/ProjectSkillMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/dataLayer/Mappers/ProjectSkillMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/dataLayer/Mappers/SkillMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/dataLayer/Mappers/SkillMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/dataLayer/Mappers/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/dataLayer/Mappers/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/dataLayer/Mappers/UserSkillMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/dataLayer/Mappers/UserSkillMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/domain/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/domain/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/domain/model/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/domain/model/Project.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/service/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/service/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/service/ProjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/service/ProjectController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/service/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/service/RegisterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/service/SearchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/service/SearchController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/service/SkillController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/service/SkillController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/joboonja/service/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/joboonja/service/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/DatabaseLoader.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/joboonja/DatabaseLoader.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/FilterJWT.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/joboonja/FilterJWT.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/RestControllerRunner$AppConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/RestControllerRunner$MyConfiguration$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/RestControllerRunner$MyConfiguration.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/RestControllerRunner.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/dataLayer/ConnectionPool.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/dataLayer/DBCPDataSource.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/joboonja/dataLayer/DBCPDataSource.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/dataLayer/Mappers/BidMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/joboonja/dataLayer/Mappers/BidMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/dataLayer/Mappers/EndorsementMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/joboonja/dataLayer/Mappers/EndorsementMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/dataLayer/Mappers/ProjectMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/joboonja/dataLayer/Mappers/ProjectMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/dataLayer/Mappers/ProjectSkillMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/joboonja/dataLayer/Mappers/ProjectSkillMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/dataLayer/Mappers/SkillMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/joboonja/dataLayer/Mappers/SkillMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/dataLayer/Mappers/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/joboonja/dataLayer/Mappers/UserMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/dataLayer/Mappers/UserSkillMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/joboonja/dataLayer/Mappers/UserSkillMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/dataLayer/dbConnectionPool/BasicDBConnectionPool.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/joboonja/dataLayer/dbConnectionPool/BasicDBConnectionPool.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/dataLayer/dbConnectionPool/DBConnectionPoolException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/joboonja/dataLayer/dbConnectionPool/DBConnectionPoolException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/dataLayer/dbConnectionPool/ResourcePool.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/joboonja/dataLayer/dbConnectionPool/ResourcePool.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/dataLayer/dbConnectionPool/imp/SQLiteBasicDBConnectionPool.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/joboonja/dataLayer/dbConnectionPool/imp/SQLiteBasicDBConnectionPool.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/domain/Database.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/joboonja/domain/Database.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/domain/model/Bid.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/joboonja/domain/model/Bid.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/domain/model/Endorsement.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/joboonja/domain/model/Endorsement.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/domain/model/Project.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/joboonja/domain/model/Project.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/domain/model/Skill.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/joboonja/domain/model/Skill.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/domain/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/joboonja/domain/model/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/service/LoginController$WrongUsernameOrPassword.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/joboonja/service/LoginController$WrongUsernameOrPassword.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/service/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/joboonja/service/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/service/ProjectController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/joboonja/service/ProjectController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/service/RegisterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/joboonja/service/RegisterController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/service/SearchController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/joboonja/service/SearchController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/service/SkillController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/joboonja/service/SkillController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/joboonja/service/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/joboonja/service/UserController.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -100,7 +38,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/dataLayer/Mappers/UserMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
+            <state relative-caret-position="210">
               <caret line="25" column="101" selection-start-line="24" selection-start-column="25" selection-end-line="25" selection-end-column="101" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -109,11 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/dataLayer/DBCPDataSource.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
-              <caret line="9" column="41" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="77" />
+            <state relative-caret-position="285">
+              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -121,10 +59,15 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/dataLayer/Mappers/ProjectMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1342">
+            <state relative-caret-position="1245">
               <caret line="93" selection-start-line="93" selection-end-line="93" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -136,7 +79,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
+            <state relative-caret-position="2415">
               <caret line="161" selection-start-line="161" selection-end-line="161" />
             </state>
           </provider>
@@ -145,7 +88,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/dataLayer/Mappers/ProjectSkillMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="93">
+            <state relative-caret-position="165">
               <caret line="16" column="130" selection-start-line="16" selection-start-column="130" selection-end-line="16" selection-end-column="130" />
             </state>
           </provider>
@@ -154,7 +97,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/domain/Database.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1329">
+            <state relative-caret-position="1575">
               <caret line="114" selection-start-line="114" selection-end-line="114" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -175,7 +118,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/DatabaseLoader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="431">
+            <state relative-caret-position="465">
               <caret line="48" selection-start-line="48" selection-end-line="48" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -189,7 +132,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/dataLayer/Mappers/BidMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
+            <state relative-caret-position="1725">
               <caret line="122" column="1" selection-start-line="122" selection-start-column="1" selection-end-line="122" selection-end-column="1" />
             </state>
           </provider>
@@ -242,7 +185,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/joboonja/dataLayer/dbConnectionPool/DBConnectionPoolException.java" />
         <option value="$PROJECT_DIR$/src/main/java/joboonja/dataLayer/dbConnectionPool/BasicDBConnectionPool.java" />
         <option value="$PROJECT_DIR$/src/main/java/joboonja/dataLayer/dbConnectionPool/imp/SQLiteBasicDBConnectionPool.java" />
         <option value="$PROJECT_DIR$/src/main/java/joboonja/dataLayer/dataMappers/iMapper.java" />
@@ -293,6 +235,7 @@
         <option value="$PROJECT_DIR$/src/main/java/joboonja/dataLayer/Mappers/ProjectMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/joboonja/dataLayer/Mappers/SkillMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/joboonja/dataLayer/Mappers/ProjectSkillMapper.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -303,7 +246,7 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="width" value="1440" />
     <option name="height" value="900" />
   </component>
@@ -314,57 +257,13 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="Joboonja" type="b2602c69:ProjectViewProjectNode" />
               <item name="IE-Project" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Joboonja" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IE-Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Joboonja" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IE-Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Joboonja" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IE-Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Joboonja" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IE-Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="joboonja" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Joboonja" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IE-Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="joboonja" type="462c0819:PsiDirectoryNode" />
-              <item name="dataLayer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Joboonja" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IE-Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="joboonja" type="462c0819:PsiDirectoryNode" />
-              <item name="dataLayer" type="462c0819:PsiDirectoryNode" />
-              <item name="Mappers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Joboonja" type="b2602c69:ProjectViewProjectNode" />
@@ -379,7 +278,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -487,12 +385,13 @@
       <workItem from="1558716204017" duration="1763000" />
       <workItem from="1558718628718" duration="127000" />
       <workItem from="1558742044898" duration="2425000" />
-      <workItem from="1558785756084" duration="1951000" />
+      <workItem from="1558785756084" duration="2362000" />
+      <workItem from="1558876011769" duration="904000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="185285000" />
+    <option name="totallyTimeSpent" value="186600000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -507,24 +406,24 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.88950276" visible="true" weight="0.30543634" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.88487583" visible="true" weight="0.30972818" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
       <window_info id="Capture Tool" order="5" />
-      <window_info id="Web" order="6" sideWeight="0.110497236" side_tool="true" visible="true" weight="0.30543634" />
+      <window_info id="Web" order="6" sideWeight="0.11512415" side_tool="true" visible="true" weight="0.30972818" />
       <window_info id="Image Layers" order="7" />
       <window_info anchor="bottom" id="Spring" order="0" weight="0.32891566" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32891566" />
-      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.49928468" visible="true" weight="0.34578314" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.49928468" weight="0.6578313" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.646988" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" />
       <window_info anchor="bottom" id="Application Servers" order="8" weight="0.32891566" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.23493975" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.46626505" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5007153" side_tool="true" weight="0.35421687" />
       <window_info anchor="bottom" id="Java Enterprise" order="11" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
@@ -539,7 +438,7 @@
       <window_info anchor="right" id="Maven" order="3" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
-      <window_info active="true" anchor="right" id="Database" order="6" visible="true" weight="0.1874106" />
+      <window_info anchor="right" id="Database" order="6" visible="true" weight="0.1874106" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info anchor="right" id="Bean Validation" order="9" />
@@ -577,13 +476,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.3.5.RELEASE/spring-web-4.3.5.RELEASE-sources.jar!/org/springframework/web/filter/HttpPutFormContentFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="90" selection-start-line="90" selection-end-line="90" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.3.5.RELEASE/spring-web-4.3.5.RELEASE-sources.jar!/org/springframework/web/filter/HiddenHttpMethodFilter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
@@ -758,24 +650,8 @@
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/d01ba700-997c-4c8d-823c-0e8afc39d544/console.sql">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="das://baa9728a-afdf-4d5d-b484-be9a6175537c/schema/main/table/Bid">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="0893eca5-dd27-41a4-8ac7-1c958c9c72fb">
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://baa9728a-afdf-4d5d-b484-be9a6175537c/schema/main/table/Endorsement">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="0893eca5-dd27-41a4-8ac7-1c958c9c72fb">
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://baa9728a-afdf-4d5d-b484-be9a6175537c/schema/main/table/Bid" />
+    <entry file="das://baa9728a-afdf-4d5d-b484-be9a6175537c/schema/main/table/Endorsement" />
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/commons/commons-dbcp2/2.6.0/commons-dbcp2-2.6.0.jar!/org/apache/commons/dbcp2/BasicDataSource.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
@@ -829,27 +705,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://baa9728a-afdf-4d5d-b484-be9a6175537c/schema/main/table/User">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="d06ad3c5-fab2-4916-bea6-ddfd72c45bc2">
-          <filtering />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://baa9728a-afdf-4d5d-b484-be9a6175537c/schema/main/table/Project">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="d06ad3c5-fab2-4916-bea6-ddfd72c45bc2">
-          <filtering />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://baa9728a-afdf-4d5d-b484-be9a6175537c/schema/main/table/ProjectSkill">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="d06ad3c5-fab2-4916-bea6-ddfd72c45bc2">
-          <filtering />
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://baa9728a-afdf-4d5d-b484-be9a6175537c/schema/main/table/User" />
+    <entry file="das://baa9728a-afdf-4d5d-b484-be9a6175537c/schema/main/table/Project" />
+    <entry file="das://baa9728a-afdf-4d5d-b484-be9a6175537c/schema/main/table/ProjectSkill" />
     <entry file="file://$PROJECT_DIR$/WEB-INF/web.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -860,24 +718,53 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/f05030a2-da44-4844-975b-87cd4b0d414f/console.sql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/3492345a-93bc-469d-8bbf-72d94afd7977/console.sql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/2815421c-9162-450a-b9f7-102e93a206b5/console.sql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/dataLayer/Mappers/UserMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="25" column="101" selection-start-line="24" selection-start-column="25" selection-end-line="25" selection-end-column="101" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/dataLayer/Mappers/ProjectMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1245">
+          <caret line="93" selection-start-line="93" selection-end-line="93" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
+        <state relative-caret-position="2415">
           <caret line="161" selection-start-line="161" selection-end-line="161" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/dataLayer/Mappers/BidMapper.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/dataLayer/Mappers/ProjectSkillMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="122" column="1" selection-start-line="122" selection-start-column="1" selection-end-line="122" selection-end-column="1" />
+        <state relative-caret-position="165">
+          <caret line="16" column="130" selection-start-line="16" selection-start-column="130" selection-end-line="16" selection-end-column="130" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/dataLayer/Mappers/UserMapper.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/domain/Database.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="25" column="101" selection-start-line="24" selection-start-column="25" selection-end-line="25" selection-end-column="101" />
+        <state relative-caret-position="1575">
+          <caret line="114" selection-start-line="114" selection-end-line="114" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -891,15 +778,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/f05030a2-da44-4844-975b-87cd4b0d414f/console.sql">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/3492345a-93bc-469d-8bbf-72d94afd7977/console.sql">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/DatabaseLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
+        <state relative-caret-position="465">
           <caret line="48" selection-start-line="48" selection-end-line="48" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -909,45 +790,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/domain/Database.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/dataLayer/Mappers/BidMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1329">
-          <caret line="114" selection-start-line="114" selection-end-line="114" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="1725">
+          <caret line="122" column="1" selection-start-line="122" selection-start-column="1" selection-end-line="122" selection-end-column="1" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/dataLayer/Mappers/ProjectSkillMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="93">
-          <caret line="16" column="130" selection-start-line="16" selection-start-column="130" selection-end-line="16" selection-end-column="130" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/dataLayer/Mappers/ProjectMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1342">
-          <caret line="93" selection-start-line="93" selection-end-line="93" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/2815421c-9162-450a-b9f7-102e93a206b5/console.sql">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/joboonja/dataLayer/DBCPDataSource.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="9" column="41" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="77" />
+        <state relative-caret-position="285">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
   <component name="masterDetails">
