@@ -156,6 +156,7 @@ public class Database {
         User trgt = userMapper.get(target);
         if (trgt == null)
             return false;
+        trgt.incPoint(skill);
         return endorsementMapper.addEndorsment(endrsr, trgt, skill);
     }
 

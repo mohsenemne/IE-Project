@@ -24,8 +24,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/projects")
 public class ProjectController {
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String getListOfProjects (@RequestHeader("Authorization") String token) throws IOException, SQLException, ParseException {
-        String username = (String) ((JSONObject) new JSONParser().parse(new String(Base64.decodeBase64(JWT.decode(token).getPayload())))).get("username");
+    public String getListOfProjects (@RequestAttribute("username") String username) throws IOException, SQLException, ParseException {
         Database db = Database.getInstance();
         List<Project> projects = db.getApplicableProjects(username) ;
         if (projects != null) {
@@ -63,10 +62,9 @@ public class ProjectController {
     }
 
     @RequestMapping(value = "/{project_id}/bids", method = RequestMethod.PUT)
-    public int addBid (@RequestHeader("Authorization") String token,
+    public int addBid (@RequestAttribute("username") String biddingUser,
                        @PathVariable(value = "project_id") String projectID,
                        @RequestParam("bidAmount") String BidAmount) throws SQLException, ParseException {
-        String biddingUser = (String) ((JSONObject) new JSONParser().parse(new String(Base64.decodeBase64(JWT.decode(token).getPayload())))).get("username");
         int bidAmount = Integer.parseInt(BidAmount);
         Database db = Database.getInstance();
 

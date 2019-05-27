@@ -53,8 +53,10 @@ class FilterJWT implements Filter {
                     .build(); //Reusable verifier instance
             DecodedJWT jwt = verifier.verify(token);
 
-            request.setAttribute("username", jwt.getClaim("username"));
+            request.setAttribute("username", jwt.getClaim("username").asString());
         } catch (Exception ignored) {
+            System.out.println("here");
+
             response.setStatus(401);
             return;
         }

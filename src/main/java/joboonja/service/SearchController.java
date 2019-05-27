@@ -18,9 +18,8 @@ import java.sql.SQLException;
 @RequestMapping("/search")
 public class SearchController {
     @RequestMapping(value = "/projects", method = RequestMethod.GET)
-    public String searchProject (@RequestHeader("Authorization") String token,
+    public String searchProject (@RequestAttribute("username") String username,
                                  @RequestParam("key") String searchKey) throws SQLException, JsonProcessingException, ParseException {
-        String username = (String) ((JSONObject) new JSONParser().parse(new String(Base64.decodeBase64(JWT.decode(token).getPayload())))).get("username");
         Database db = Database.getInstance();
         return Project.toJSONString(db.searchProjects(username, searchKey));
     }

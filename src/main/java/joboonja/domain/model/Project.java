@@ -74,14 +74,18 @@ public class Project {
     public int skillsPointCalc(List<Skill> skills) {
         int result = 0;
         for(Skill rs: this.skills){
+            boolean found = false;
             for(Skill s: skills){
                 if(rs.getName().equals(s.getName())){
+                    found = true;
                     if(rs.getPoints() > s.getPoints())
                         return -1 ;
                     int point = s.getPoints() - rs.getPoints() ;
                     result += point*point ;
                 }
             }
+            if(!found)
+                return -1;
         }
         return result*10000;
     }
