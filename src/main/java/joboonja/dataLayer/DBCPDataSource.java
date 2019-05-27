@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class DBCPDataSource {
     private static BasicDataSource ds = new BasicDataSource();
-    private final static String dbURL = "jdbc:mysql://localhost:3306/joboonja";
+    private final static String dbURL = "jdbc:mysql://docker-mysql:3306/joboonja";
 
     static {
         ds.setUrl(dbURL);

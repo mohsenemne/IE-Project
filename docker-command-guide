@@ -1,0 +1,32 @@
+###for build and run the database image:
+
+https://hub.docker.com/r/mysql/mysql-server/
+
+1) shell> docker pull mysql/mysql-server
+
+2) shell> docker run --name=joboonjadb -d mysql/mysql-server
+
+3) docker logs joboonjadb
+
+#for generate random password
+4) shell> docker logs mysql1 2>&1 | grep GENERATED
+
+
+5) shell> docker exec -it mysql1 mysql -uroot -p
+
+6) mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';
+
+
+###for building and run backend
+
+https://spring.io/guides/gs/spring-boot-docker/
+
+1) mvn package dockerfile:build 
+
+ ###for building and running react
+
+ 1) docker build -t ie-front .
+
+ 2) docker run -it -p 3000:3000 ie-front
+
+ 

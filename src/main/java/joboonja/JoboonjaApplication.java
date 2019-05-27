@@ -3,9 +3,9 @@ package joboonja;
 import org.json.simple.parser.ParseException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -17,7 +17,7 @@ import java.sql.SQLException;
 
 
 
-@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
+@SpringBootApplication(exclude = {SecurityAutoConfiguration.class, DataSourceAutoConfiguration.class})
 public class JoboonjaApplication {
 
     public static void main(String[] args) throws SQLException, IOException, ParseException {
@@ -30,7 +30,6 @@ public class JoboonjaApplication {
     @Configuration
     public class MyConfiguration {
 
-        @Bean
         public WebMvcConfigurer corsConfigurer() {
             return new WebMvcConfigurerAdapter() {
                 @Override
@@ -48,7 +47,6 @@ public class JoboonjaApplication {
     @Configuration
     public class AppConfig {
 
-        @Bean
         public FilterRegistrationBean filterRegistrationBean() {
             FilterRegistrationBean registrationBean = new FilterRegistrationBean();
             FilterJWT customURLFilter = new FilterJWT();
