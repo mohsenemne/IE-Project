@@ -30,7 +30,7 @@ class FilterJWT implements Filter {
 
         String path = ((HttpServletRequest) servletRequest).getServletPath();
 
-        response.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+        response.setHeader("Access-Control-Allow-Origin", "http://react-app:3000");
         response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
         response.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type");
 
@@ -55,7 +55,7 @@ class FilterJWT implements Filter {
 
             request.setAttribute("username", jwt.getClaim("username").asString());
         } catch (Exception ignored) {
-            System.out.println("here");
+//            System.out.println("here");
 
             response.setStatus(401);
             return;

@@ -41,7 +41,7 @@ public class ProjectController {
         Database db = Database.getInstance();
         Project project = db.getProject(projectID);
 
-        System.out.println(project.toJSONString());
+//        System.out.println(project.toJSONString());
         if(project == null)
             return null ;
         else{

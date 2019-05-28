@@ -4,7 +4,7 @@ services:
 
     docker-mysql:
         image: mysql
-        container_name: joboonja
+        container_name: database
         environment:
             MYSQL_ROOT_PASSWORD: taha1234
             MYSQL_DATABASE: joboonja
@@ -12,6 +12,7 @@ services:
 
     spring-app:
         restart: always
+        container_name: backend
         image: ie-project/joboonja
 
         expose:
@@ -21,4 +22,19 @@ services:
 
 
     react-app:
+        build:
+          ../IE-Front
+        expose:
+            - "3000"
+        ports:
+            - 3000:3000
+        links:
+            - spring-app
+        command:
+            npm run start
+
+
+
+
+
 
