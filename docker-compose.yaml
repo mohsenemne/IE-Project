@@ -22,16 +22,20 @@ services:
 
 
     react-app:
+        container_name: frontend
         build:
-          ../IE-Front
-        expose:
-            - "3000"
+            context: ../IE-Front/.
+            dockerfile: ../IE-Front/Dockerfile
         ports:
-            - 3000:3000
-        links:
-            - spring-app
-        command:
-            npm run start
+            - '3001:3000'
+
+        volumes:
+            - '.:/app'
+            - '/app/node_modules'
+#            environment:
+#                - NODE_ENV=development
+        depends_on:
+          - spring-app
 
 
 
