@@ -9,36 +9,25 @@ services:
             MYSQL_ROOT_PASSWORD: taha1234
             MYSQL_DATABASE: joboonja
 
-
     spring-app:
         restart: always
         container_name: backend
         image: ie-project/joboonja
 
         expose:
-             - "8080"
+            - "8080"
+        ports: 
+            - '8080:8080'
         depends_on:
-             - docker-mysql
+            - docker-mysql
 
 
     react-app:
         container_name: frontend
         build:
             context: ../IE-Front/.
-            dockerfile: ../IE-Front/Dockerfile
+            # dockerfile: ../IE-Front/Dockerfile
         ports:
-            - '3001:3000'
-
-        volumes:
-            - '.:/app'
-            - '/app/node_modules'
-#            environment:
-#                - NODE_ENV=development
+            - '3000:3000'
         depends_on:
-          - spring-app
-
-
-
-
-
-
+            - spring-app

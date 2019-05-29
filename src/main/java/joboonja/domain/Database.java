@@ -51,7 +51,6 @@ public class Database {
         if(userMapper.add(newUser) < 0)
             return false;
         for(Skill s: skills){
-            System.out.println("add user skill");
             userSkillMapper.add(username, s.getName());
         }
         return true;
@@ -85,7 +84,6 @@ public class Database {
         if(projectMapper.add(newProject) < 0)
             return -1;
         for(Skill s: requiredSkills){
-            System.out.println("add project skill");
             projectSkillMapper.add(s.getName(), id, s.getPoints());
         }
         return 0;

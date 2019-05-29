@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -29,12 +30,12 @@ public class JoboonjaApplication {
 
     @Configuration
     public class MyConfiguration {
-
+        @Bean
         public WebMvcConfigurer corsConfigurer() {
             return new WebMvcConfigurerAdapter() {
                 @Override
                 public void addCorsMappings(CorsRegistry registry) {
-                    registry.addMapping("/**").allowedOrigins("http://localhost:3000");
+                    registry.addMapping("/**").allowedOrigins("localhost:3000");
                     registry.addMapping("/**").allowedMethods("GET", "POST", "DELETE", "PUT","OPTIONS");
                     registry.addMapping("/**").allowedHeaders("Authorization, Content-Type");
                     registry.addMapping("/**").allowCredentials(true);
@@ -46,7 +47,7 @@ public class JoboonjaApplication {
 
     @Configuration
     public class AppConfig {
-
+        @Bean
         public FilterRegistrationBean filterRegistrationBean() {
             FilterRegistrationBean registrationBean = new FilterRegistrationBean();
             FilterJWT customURLFilter = new FilterJWT();

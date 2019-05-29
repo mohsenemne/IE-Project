@@ -1,20 +1,13 @@
 package joboonja.service;
 
-import com.auth0.jwt.JWT;
 import joboonja.domain.Database;
 import joboonja.domain.model.Bid;
 import joboonja.domain.model.Project;
 
-import javax.servlet.ServletException;
-import java.io.Console;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-//import joboonja.domain.repo.BidRepo;
-import org.apache.commons.codec.binary.Base64;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,7 +34,6 @@ public class ProjectController {
         Database db = Database.getInstance();
         Project project = db.getProject(projectID);
 
-//        System.out.println(project.toJSONString());
         if(project == null)
             return null ;
         else{

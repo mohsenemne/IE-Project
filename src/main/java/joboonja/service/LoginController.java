@@ -14,13 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
-import static java.util.Collections.emptyList;
-
-import static java.util.Collections.emptyList;
-
 
 @RestController
 @RequestMapping("/login")

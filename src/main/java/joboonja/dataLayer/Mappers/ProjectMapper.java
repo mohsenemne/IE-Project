@@ -277,7 +277,6 @@ public class ProjectMapper {
         try (Connection con = DBCPDataSource.getConnection();
              PreparedStatement st = con.prepareStatement(setWinnerStatement())
         ) {
-            System.out.println(winner);
             st.setString(1, winner);
             st.setString(2, projectID);
             try {
